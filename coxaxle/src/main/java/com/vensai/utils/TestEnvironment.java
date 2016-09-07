@@ -20,7 +20,7 @@ import com.saucelabs.saucerest.SauceREST;
 
 /**
  * 
- * @author Justin Phlegar & Waightstill W Avery
+ * @author 
  * @summary This class is designed to be extended by page classes and
  *          implemented by test classes. It houses test environment data and
  *          associated getters and setters, setup for both local and remote
@@ -28,7 +28,7 @@ import com.saucelabs.saucerest.SauceREST;
  *          The need for this arose due to the parallel behavior that indicated
  *          that WebDriver instances were crossing threads and testing on the
  *          wrong os/browser configurations
- * @date April 5, 2015
+ * @date 
  *
  */
 public class TestEnvironment {
@@ -275,8 +275,8 @@ public class TestEnvironment {
 	 * properties file based on the application.
 	 * 
 	 * @param None
-	 * @version 12/16/2014
-	 * @author Justin Phlegar
+	 * @version 
+	 * @author 
 	 * @return Nothing
 	 */
 	// @Step("Launch \"{0}\"")
@@ -303,8 +303,8 @@ public class TestEnvironment {
 	 * 
 	 * @param testName
 	 *            - Name of the test
-	 * @version 12/16/2014
-	 * @author Jessica Marshall
+	 * @version 
+	 * @author 
 	 */
 	protected vensaiDriver testStart(String testName) {
 		// Uncomment the following line to have TestReporter outputs output to
@@ -346,8 +346,8 @@ public class TestEnvironment {
 	 * Sets up the driver type, location, browser under test, os
 	 * 
 	 * @param None
-	 * @version 12/16/2014
-	 * @author Justin Phlegar
+	 * @version 
+	 * @author 
 	 * @return Nothing
 	 * @throws IOException
 	 * @throws InterruptedException
