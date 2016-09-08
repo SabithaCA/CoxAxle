@@ -22,8 +22,7 @@ import com.vensai.core.interfaces.impl.internal.ElementFactory;
  * Several different methods of waiting for a page to finish loading.
  * 
  * 
- * @version 10/16/2014
- * @author Justin Phlegar
+ * @author 
  * 
  */
 public class PageLoaded {
@@ -59,8 +58,7 @@ public class PageLoaded {
 	 *            The webDriver
 	 * @param obj
 	 *            The element you are waiting to display on the page
-	 * @version 10/16/2014
-	 * @author Justin Phlegar
+	 * @author 
 	 * @return False if the element is not found after the timeout, true if is
 	 *         found
 	 */
@@ -111,8 +109,7 @@ public class PageLoaded {
 	 *            The webDriver
 	 * @param obj
 	 *            The element you are waiting to display on the page
-	 * @version 10/16/2014
-	 * @author Justin Phlegar
+	 * @author
 	 * @return False if the element is not found after the timeout, true if is
 	 *         found
 	 */
@@ -136,8 +133,7 @@ public class PageLoaded {
 	 *            The webDriver
 	 * @param obj
 	 *            The element you are waiting to display on the page
-	 * @version 12/16/2014
-	 * @author Jessica Marshall
+	 * @author 
 	 * @return False if the element is not found after the timeout, true if is
 	 *         found
 	 */
@@ -160,8 +156,7 @@ public class PageLoaded {
 	 *            The webDriver
 	 * @param obj
 	 *            The element you are waiting to display on the page
-	 * @version 12/16/2014
-	 * @author Jessica Marshall
+	 * @author 
 	 * @return False if the element is not found after the timeout, true if is
 	 *         found
 	 */
@@ -201,8 +196,7 @@ public class PageLoaded {
 	 *            The webDriver
 	 * @param obj
 	 *            The element you are waiting to display on the page
-	 * @version 12/16/2014
-	 * @author Jessica Marshall
+	 * @author 
 	 * @return False if the element is not found after the timeout, true if is
 	 *         found
 	 */
@@ -221,8 +215,7 @@ public class PageLoaded {
 	 * @param timeout
 	 *            Integer value of number seconds to wait for a page to finish
 	 *            loaded before quiting
-	 * @version 12/16/2014
-	 * @author Jessica Marshall
+	 * @author 
 	 * @return False if the element is not found after the timeout, true if is
 	 *         found
 	 */
@@ -237,8 +230,7 @@ public class PageLoaded {
 	 * 
 	 * @param driver
 	 *            The webDriver
-	 * @version 10/16/2014
-	 * @author Justin Phlegar
+	 * @author
 	 * 
 	 */
 	public void isAngularComplete() {
@@ -265,8 +257,7 @@ public class PageLoaded {
 	 *            The webDriver
 	 * @param obj
 	 *            The element you are waiting to display on the page
-	 * @version 12/16/2014
-	 * @author Jessica Marshall
+	 * @author 
 	 * @return False if the element is not found after the timeout, true if is
 	 *         found
 	 */
@@ -305,8 +296,7 @@ public class PageLoaded {
 	 *            The webDriver
 	 * @param obj
 	 *            The element you are waiting to display on the page
-	 * @version 12/16/2014
-	 * @author Jessica Marshall
+	 * @author 
 	 * @return False if the element is not found after the timeout, true if is
 	 *         found
 	 */
@@ -326,8 +316,7 @@ public class PageLoaded {
 	 * @param timeout
 	 *            Integer value of number seconds to wait for a page to finish
 	 *            loaded before quiting
-	 * @version 12/16/2014
-	 * @author Jessica Marshall
+	 * @author 
 	 * @return False if the element is not found after the timeout, true if is
 	 *         found
 	 */
@@ -342,7 +331,7 @@ public class PageLoaded {
 	 * com.vensai.utils.Constants If object is not present within the time, throw
 	 * an error
 	 * 
-	 * @author Justin
+	 * @author 
 	 */
 	public static boolean syncPresent(vensaiDriver driver, Element element) {
 		return syncPresent(driver, driver.getElementTimeout(),getSyncToFailTest(), element);
@@ -354,7 +343,7 @@ public class PageLoaded {
 	 * parameter timeout If object is not present within the time, throw an
 	 * error
 	 * 
-	 * @author Justin
+	 * @author 
 	 */
 	public static boolean syncPresent(vensaiDriver driver, int timeout, Element element) {
 		return syncPresent(driver, timeout, getSyncToFailTest(), element);
@@ -366,7 +355,7 @@ public class PageLoaded {
 	 * parameter timeout If object is not present within the time, handle error
 	 * based on returnError
 	 * 
-	 * @author Justin
+	 * @author 
 	 */
 	public static boolean syncPresent(vensaiDriver driver, int timeout, boolean returnError, Element element) {
 		boolean found = false;
@@ -410,7 +399,7 @@ public class PageLoaded {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not visible within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author 
 	 */
 	public static boolean syncVisible(vensaiDriver driver, Element element) {
 		return syncVisible(driver, driver.getElementTimeout(),getSyncToFailTest(),  element);
@@ -421,8 +410,7 @@ public class PageLoaded {
 	 * element is visible on the screen Will loop for the time out passed in the
 	 * variable timeout If object is not visible within the time, throw an error
 	 * 
-	 * @author Justin
-	 * 
+	 * @author 
 	 */
 	public static boolean syncVisible(vensaiDriver driver, int timeout, Element element) {
 		return syncVisible(driver, timeout, getSyncToFailTest(), element);
@@ -434,8 +422,7 @@ public class PageLoaded {
 	 * variable timeout If object is not visible within the time, handle the
 	 * error based on the boolean
 	 *
-	 * @author Justin
-	 *
+	 * @author 
 	 */
 	public static boolean syncVisible(vensaiDriver driver, int timeout, boolean returnError, Element element) {
 		boolean found = false;
@@ -476,7 +463,7 @@ public class PageLoaded {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not visible within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author 
 	 */
 	public static boolean syncHidden(vensaiDriver driver, Element element) {
 		return syncHidden(driver, driver.getElementTimeout(),getSyncToFailTest(),  element);
@@ -488,7 +475,7 @@ public class PageLoaded {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not visible within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author 
 	 */
 	public static boolean syncHidden(vensaiDriver driver, int timeout, Element element) {
 		return syncHidden(driver, timeout, getSyncToFailTest(), element);
@@ -500,7 +487,7 @@ public class PageLoaded {
 	 * variable timeout If object is not visible within the time, handle the
 	 * error based on the boolean
 	 * 
-	 * @author Justin
+	 * @author 
 	 */
 	public static boolean syncHidden(vensaiDriver driver, int timeout, boolean returnError, Element element) {
 		boolean found = false;
@@ -540,7 +527,7 @@ public class PageLoaded {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not enabled within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author
 	 */
 	public static boolean syncEnabled(vensaiDriver driver, Element element) {
 		return syncEnabled(driver, driver.getElementTimeout(),getSyncToFailTest(),  element);
@@ -552,7 +539,7 @@ public class PageLoaded {
 	 * element is enabled on the screen Will loop for the time out passed in the
 	 * variable timeout If object is not enabled within the time, throw an error
 	 * 
-	 * @author Justin
+	 * @author 
 	 * 
 	 */
 	public static boolean syncEnabled(vensaiDriver driver, int timeout, Element element) {
@@ -565,7 +552,7 @@ public class PageLoaded {
 	 * variable timeout If object is not enabled within the time, handle the
 	 * error based on the boolean
 	 *
-	 * @author Justin
+	 * @author 
 	 *
 	 */
 	public static boolean syncEnabled(vensaiDriver driver, int timeout, boolean returnError, Element element) {
@@ -608,7 +595,7 @@ public class PageLoaded {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not disabled within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author 
 	 */
 	public static boolean syncDisabled(vensaiDriver driver, Element element) {
 		return syncDisabled(driver, driver.getElementTimeout(), getSyncToFailTest(),  element);
@@ -621,7 +608,7 @@ public class PageLoaded {
 	 * the variable timeout If object is not disabled within the time, throw an
 	 * error
 	 * 
-	 * @author Justin
+	 * @author
 	 * 
 	 */
 	public static boolean syncDisabled(vensaiDriver driver, int timeout, Element element) {
@@ -634,7 +621,7 @@ public class PageLoaded {
 	 * the variable timeout If object is not disabled within the time, handle
 	 * the error based on the boolean
 	 *
-	 * @author Justin
+	 * @author 
 	 *
 	 */
 	public static boolean syncDisabled(vensaiDriver driver, int timeout, boolean returnError, Element element) {
@@ -676,7 +663,7 @@ public class PageLoaded {
 	 * listed in org.vensai.chameleon.CONSTANT.TIMEOUT If text is not present
 	 * within the time, throw an error
 	 * 
-	 * @author Justin
+	 * @author 
 	 */
 	public static boolean syncTextInElement(vensaiDriver driver, String text, Element element) {
 		return syncTextInElement(driver, text, driver.getElementTimeout(), getSyncToFailTest(), element);
@@ -689,7 +676,7 @@ public class PageLoaded {
 	 * passed in the variable timeout If text is not present within the time,
 	 * throw an error
 	 * 
-	 * @author Justin
+	 * @author 
 	 * 
 	 */
 	public static boolean syncTextInElement(vensaiDriver driver, String text, int timeout, Element element) {
@@ -702,7 +689,7 @@ public class PageLoaded {
 	 * passed in the variable timeout If text is not present within the time,
 	 * handle the error based on the boolean
 	 *
-	 * @author Justin
+	 * @author 
 	 *
 	 */
 	public static boolean syncTextInElement(vensaiDriver driver, String text, int timeout, boolean returnError, Element element) {
@@ -740,7 +727,7 @@ public class PageLoaded {
 	/**
 	 * Use WebDriver Wait to determine if object is present in the DOM or not
 	 * 
-	 * @author Justin
+	 * @author 
 	 * @param driver
 	 *            Main WebDriver
 	 * @param locator
@@ -763,7 +750,7 @@ public class PageLoaded {
 	/**
 	 * Use WebDriver Wait to determine if object is visible on the screen or not
 	 * 
-	 * @author Justin
+	 * @author 
 	 * @param driver
 	 *            Main WebDriver
 	 * @param element
@@ -796,7 +783,7 @@ public class PageLoaded {
 	/**
 	 * Use WebDriver Wait to determine if object is enabled on the screen or not
 	 * 
-	 * @author Justin
+	 * @author 
 	 * @param driver
 	 *            Main WebDriver
 	 * @param element
@@ -820,7 +807,7 @@ public class PageLoaded {
 	/**
 	 * Use WebDriver Wait to determine if object contains the expected text
 	 * 
-	 * @author Justin
+	 * @author 
 	 * @param driver
 	 *            Main WebDriver
 	 * @param element

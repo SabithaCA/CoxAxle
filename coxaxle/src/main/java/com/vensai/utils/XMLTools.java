@@ -120,8 +120,7 @@ public class XMLTools extends SoapService {
     /**
      * @summary Takes an xpath and adds a node to the location of the xpath and
      *          name of tagName
-     * @author Justin Phlegar
-     * @version Created: 08/28/2014
+     * @author  Sabitha
      * @param doc
      *            Document: XML Document that will be updated
      * @param nodeName
@@ -165,8 +164,7 @@ public class XMLTools extends SoapService {
 
     /**
      * @summary Takes an xpath and return the value found
-     * @author Justin Phlegar
-     * @version Created: 08/28/2014
+     * @author  Sabitha
      * @param xpath
      *            String: xpath to evaluate
      * @throws XPathExpressionException
@@ -201,8 +199,7 @@ public class XMLTools extends SoapService {
 
     /**
      * @summary Load and XML file from an external location
-     * @author Justin Phlegar
-     * @version Created: 08/28/2014
+     * @author  Sabitha
      * @param xpath
      *            String: xpath to evaluate
      */
@@ -378,8 +375,7 @@ public class XMLTools extends SoapService {
 
     /**
      * @summary Main validation function that validates and reports findings
-     * @author Justin Phlegar
-     * @version Created: 08/28/2014
+     * @author  Sabitha
      * @param doc
      *            Document: XML Document to evalute
      * @param xpath
@@ -485,8 +481,7 @@ public class XMLTools extends SoapService {
 
     /**
      * @summary Validate XML Repsonse and reports findings
-     * @author Justin Phlegar
-     * @version Created: 08/28/2014
+     * @author  Sabitha
      * @param doc
      *            Document: XML Document to evalute
      * @param xpath
@@ -529,8 +524,7 @@ public class XMLTools extends SoapService {
      *          is not limited to simple values, but may also call various
      *          functions by adding "fx:" as a prefix. Please see
      *          {@link #handleValueFunction} for more information
-     * @author Justin Phlegar
-     * @version Created: 08/28/2014
+     * @author  Sabitha
      * @param xpath
      *            String: xpath to evaluate
      * @param value
@@ -644,8 +638,7 @@ public class XMLTools extends SoapService {
 
     /**
      * @summary Call functions during setting of the xpath
-     * @author Justin Phlegar
-     * @version Created: 08/28/2014
+     * @author  Sabitha
      * @param xpath
      *            String: Xpath to run the function on
      * @param function

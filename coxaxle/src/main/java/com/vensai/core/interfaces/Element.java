@@ -26,7 +26,7 @@ import com.vensai.core.interfaces.impl.internal.ImplementedBy;
 public interface Element extends WebElement, WrapsElement, Locatable {
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @see main.java.com.vensai.core.interfaces.impl.ElementImpl#clear()
 	 * @summary - used to clear text entry areas; has not effect on any other
 	 *          elements
@@ -37,13 +37,13 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	WebDriver getWrappedDriver();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @summary - draws the focus to an object using Actions
 	 */
 	void focus();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @see org.openqa.selenium.WebElement#click()
 	 * @summary - default Selenium click
 	 */
@@ -58,7 +58,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	void jsClick();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @see org.openqa.selenium.WebElement#click()
 	 * @summary - draws the focus to an object and clicks the object using
 	 *          Actions
@@ -68,7 +68,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	void focusClick();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @param keysToSend
 	 *            - an array of characters or string literals
 	 * @see main.java.com.vensai.core.interfaces.impl.ElementImpl#sendKeys(java.lang.CharSequence...)
@@ -79,7 +79,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	void sendKeys(CharSequence... keysToSend);
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @see org.openqa.selenium.WebElement#submit
 	 * @summary - submits form to remote server; exception thrown if the element
 	 *          is not within a form
@@ -88,7 +88,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	void submit();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @param by
 	 *            - Search for specified {@link By} location and return it's
 	 *            {@link WebElement}
@@ -99,7 +99,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	WebElement findElement(By by);
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @param by
 	 *            - Search for specified {@link By} location and return all
 	 *            elements found in a {@link List}
@@ -110,7 +110,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	List<WebElement> findElements(By by);
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @param name
 	 *            - Search for specified attribute and return it's value
 	 * @return {@link String} Value of specified attribute
@@ -123,7 +123,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	ArrayList getAllAttributes();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @param propertyName
 	 *            - Search for specified property and return it's value
 	 * @return {@link String} Value of specified property
@@ -140,7 +140,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	Coordinates getCoordinates();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @return {@link Point} Return x and y location
 	 * @see main.java.com.vensai.core.interfaces.impl.ElementImpl#getLocation()
 	 */
@@ -148,7 +148,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	Point getLocation();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @return {@link Dimension} Return height and width of element
 	 * @see main.java.com.vensai.core.interfaces.impl.ElementImpl#getSize()
 	 */
@@ -156,7 +156,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	Dimension getSize();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @return {@link String} Text value in element
 	 * @see main.java.com.vensai.core.interfaces.impl.ElementImpl#getText()
 	 */
@@ -164,7 +164,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	String getText();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @return {@link String} Tag value in element
 	 * @see main.java.com.vensai.core.interfaces.impl.ElementImpl#getTagName()
 	 */
@@ -172,7 +172,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	String getTagName();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @return {@link Boolean} Return TRUE if element is enabled, FALSE if it is
 	 *         not
 	 * @see main.java.com.vensai.core.interfaces.impl.ElementImpl#isEnabled()
@@ -184,7 +184,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	boolean isSelected();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @return {@link Boolean} Return TRUE if element is Displayed, FALSE if it
 	 *         is not
 	 * @see main.java.com.vensai.core.interfaces.impl.ElementImpl#isDisplayed()
@@ -194,28 +194,28 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 
 	/**
 	 * @summary - Returns true when the inner element is ready to be used.
-	 * @author Justin
+	 * @author Sabitha
 	 * @return boolean true for an initialized WebElement, or false if we were
 	 *         somehow passed a null WebElement.
 	 */
 	boolean elementWired();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @return locator - type of element that was used to create element using
 	 *         {@link FindBy}
 	 */
 	By getElementLocator();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @return {@link By} locator value of element that was used to create
 	 *         element using {@link FindBy}
 	 */
 	String getElementIdentifier();
 
 	/**
-	 * @author Justin
+	 * @author Sabitha
 	 * @return locator identifier and the value of element that was used to
 	 *         create element using {@link FindBy}
 	 */
@@ -247,7 +247,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * com.vensai.utils.Constants If object is not present within the time, throw
 	 * an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncPresent();
 
@@ -257,7 +257,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * parameter timeout If object is not present within the time, throw an
 	 * error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncPresent(int timeout);
 
@@ -267,7 +267,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * parameter timeout If object is not present within the time, handle error
 	 * based on returnError
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncPresent(int timeout, boolean returnError);
 
@@ -278,7 +278,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not visible within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncVisible();
 
@@ -287,7 +287,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * element is visible on the screen Will loop for the time out passed in the
 	 * variable timeout If object is not visible within the time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 * 
 	 */
 	public boolean syncVisible(int timeout);
@@ -298,7 +298,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * variable timeout If object is not visible within the time, handle the
 	 * error based on the boolean
 	 *
-	 * @author Justin
+	 * @author Sabitha
 	 *
 	 */
 	public boolean syncVisible(int timeout, boolean returnError);
@@ -309,7 +309,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not visible within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncHidden();
 
@@ -319,7 +319,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not visible within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncHidden(int timeout);
 
@@ -329,7 +329,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * variable timeout If object is not visible within the time, handle the
 	 * error based on the boolean
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncHidden(int timeout, boolean returnError);
 
@@ -340,7 +340,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not enabled within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncEnabled();
 
@@ -350,7 +350,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * element is enabled on the screen Will loop for the time out passed in the
 	 * variable timeout If object is not enabled within the time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 * 
 	 */
 	public boolean syncEnabled(int timeout);
@@ -361,7 +361,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * variable timeout If object is not enabled within the time, handle the
 	 * error based on the boolean
 	 *
-	 * @author Justin
+	 * @author Sabitha
 	 *
 	 */
 	public boolean syncEnabled(int timeout, boolean returnError);
@@ -373,7 +373,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not disabled within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncDisabled();
 
@@ -384,7 +384,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * the variable timeout If object is not disabled within the time, throw an
 	 * error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 * 
 	 */
 	public boolean syncDisabled(int timeout);
@@ -395,7 +395,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * the variable timeout If object is not disabled within the time, handle
 	 * the error based on the boolean
 	 *
-	 * @author Justin
+	 * @author Sabitha
 	 *
 	 */
 	public boolean syncDisabled(int timeout, boolean returnError);
@@ -407,7 +407,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * listed in org.vensai.chameleon.CONSTANT.TIMEOUT If text is not present
 	 * within the time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncTextInElement(String text);
 
@@ -418,7 +418,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * passed in the variable timeout If text is not present within the time,
 	 * throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 * 
 	 */
 	public boolean syncTextInElement(String text, int timeout);
@@ -429,7 +429,7 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 * passed in the variable timeout If text is not present within the time,
 	 * handle the error based on the boolean
 	 *
-	 * @author Justin
+	 * @author Sabitha
 	 *
 	 */
 	public boolean syncTextInElement(String text, int timeout, boolean returnError);

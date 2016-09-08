@@ -56,8 +56,7 @@ public class WindowHandler {
 	 * 			the title of the window you wish to switch to.  Do not need to pass in the whole title,
 	 * 			can be a part of it such as "Lilo".  Can also pass in a null value ("") if the window
 	 * 			does not have a title.  Returns a true if the window was found & switched to and false if not
-	 * @version Created 10/29/2014
-	 * @author 	Jessica Marshall
+	 * @author 	Sabitha
 	 * @param 	driver, title, numOfWaitSeconds
 	 * @throws 	NA
 	 * @return 	true/false
