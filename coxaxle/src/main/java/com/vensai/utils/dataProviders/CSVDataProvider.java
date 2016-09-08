@@ -18,8 +18,7 @@ public class CSVDataProvider {
 	 * as a 2d array
 	 * 
 	 * @param	filePath		the file path of the CSV file
-	 * @version	12/18/2014
-	 * @author 	Jessica Marshall
+	 * @author 	Sabitha
 	 * @return 	2d array of test data
 	 */
 	public static Object[][] getTestScenarioData(String filePath){

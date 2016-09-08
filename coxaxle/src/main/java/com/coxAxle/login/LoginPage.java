@@ -2,9 +2,12 @@ package com.coxAxle.login;
 
 import java.util.ResourceBundle;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 
 import com.vensai.core.interfaces.Button;
+import com.vensai.core.interfaces.Element;
+import com.vensai.core.interfaces.Link;
 import com.vensai.core.interfaces.Listbox;
 import com.vensai.core.interfaces.Textbox;
 import com.vensai.core.interfaces.impl.internal.ElementFactory;
@@ -20,6 +23,7 @@ public class LoginPage {
 	@FindBy(name = "email")	private Textbox txtEmail;
 	@FindBy(name = "password")	private Textbox txtPassword;
 	@FindBy(id = "submitbutton")	private Button btnLogin;
+	@FindBy(linkText = "SignUp")	private Link lnkSignup;
 	
 	/**Constructor**/
 	public LoginPage(vensaiDriver driver){
@@ -55,6 +59,12 @@ public class LoginPage {
 		txtPassword.set(userCredentialRepo.getString("PASSWORD"));
 		btnLogin.click();
 
+	}
+	
+	//Allowed link names SignUp, Login, Forgot Password
+	public void clickLink(String linkText) {
+		Element ln = driver.findLink(By.linkText(linkText));
+		ln.click();
 	}
 	
 	

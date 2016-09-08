@@ -241,7 +241,7 @@ public class ElementImpl implements Element {
 	/**
 	 * Get the By Locator object used to create this element
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 * @return {@link By} Return the By object to reuse
 	 */
 	@Override
@@ -315,7 +315,7 @@ public class ElementImpl implements Element {
 	/**
 	 * Get the By Locator object used to create this element
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 * @return {@link By} Return the By object to reuse
 	 */
 	private String getElementLocatorAsString() {
@@ -401,7 +401,7 @@ public class ElementImpl implements Element {
 	 * com.vensai.utils.Constants If object is not present within the time, throw
 	 * an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncPresent() {
 		return PageLoaded.syncPresent(getWrappedDriver(), getWrappedDriver().getElementTimeout(), PageLoaded.getSyncToFailTest(), new ElementImpl(getWrappedElement()));
@@ -413,7 +413,7 @@ public class ElementImpl implements Element {
 	 * parameter timeout If object is not present within the time, throw an
 	 * error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncPresent(int timeout) {
 		return PageLoaded.syncPresent(getWrappedDriver(), timeout, PageLoaded.getSyncToFailTest(),  new ElementImpl(getWrappedElement()));
@@ -425,7 +425,7 @@ public class ElementImpl implements Element {
 	 * parameter timeout If object is not present within the time, handle error
 	 * based on returnError
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncPresent(int timeout, boolean returnError) {
 		return PageLoaded.syncPresent(getWrappedDriver(), timeout, returnError, new ElementImpl(getWrappedElement()));
@@ -438,7 +438,7 @@ public class ElementImpl implements Element {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not visible within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncVisible() {
 		return PageLoaded.syncVisible(getWrappedDriver(), getWrappedDriver().getElementTimeout(), PageLoaded.getSyncToFailTest(), new ElementImpl(getWrappedElement()));
@@ -449,7 +449,7 @@ public class ElementImpl implements Element {
 	 * element is visible on the screen Will loop for the time out passed in the
 	 * variable timeout If object is not visible within the time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 * 
 	 */
 	public boolean syncVisible(int timeout) {
@@ -462,7 +462,7 @@ public class ElementImpl implements Element {
 	 * variable timeout If object is not visible within the time, handle the
 	 * error based on the boolean
 	 *
-	 * @author Justin
+	 * @author Sabitha
 	 *
 	 */
 	public boolean syncVisible(int timeout, boolean returnError) {
@@ -475,7 +475,7 @@ public class ElementImpl implements Element {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not visible within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncHidden() {
 		return PageLoaded.syncHidden(getWrappedDriver(), getWrappedDriver().getElementTimeout(), PageLoaded.getSyncToFailTest(), new ElementImpl(getWrappedElement()));
@@ -487,7 +487,7 @@ public class ElementImpl implements Element {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not visible within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncHidden(int timeout) {
 		return PageLoaded.syncHidden(getWrappedDriver(), timeout, PageLoaded.getSyncToFailTest(), new ElementImpl(getWrappedElement()));
@@ -499,7 +499,7 @@ public class ElementImpl implements Element {
 	 * variable timeout If object is not visible within the time, handle the
 	 * error based on the boolean
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncHidden(int timeout, boolean returnError) {
 		return PageLoaded.syncHidden(getWrappedDriver(), timeout, returnError, new ElementImpl(getWrappedElement()));
@@ -512,7 +512,7 @@ public class ElementImpl implements Element {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not enabled within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncEnabled() {
 		return PageLoaded.syncEnabled(getWrappedDriver(), getWrappedDriver().getElementTimeout(),PageLoaded.getSyncToFailTest(),  new ElementImpl(getWrappedElement()));
@@ -524,7 +524,7 @@ public class ElementImpl implements Element {
 	 * element is enabled on the screen Will loop for the time out passed in the
 	 * variable timeout If object is not enabled within the time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 * 
 	 */
 	public boolean syncEnabled(int timeout) {
@@ -537,7 +537,7 @@ public class ElementImpl implements Element {
 	 * variable timeout If object is not enabled within the time, handle the
 	 * error based on the boolean
 	 *
-	 * @author Justin
+	 * @author Sabitha
 	 *
 	 */
 	public boolean syncEnabled(int timeout, boolean returnError) {
@@ -551,7 +551,7 @@ public class ElementImpl implements Element {
 	 * org.vensai.chameleon.CONSTANT.TIMEOUT If object is not disabled within the
 	 * time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncDisabled() {
 		return PageLoaded.syncDisabled(getWrappedDriver(), getWrappedDriver().getElementTimeout(), PageLoaded.getSyncToFailTest(), new ElementImpl(getWrappedElement()));
@@ -564,7 +564,7 @@ public class ElementImpl implements Element {
 	 * the variable timeout If object is not disabled within the time, throw an
 	 * error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 * 
 	 */
 	public boolean syncDisabled(int timeout) {
@@ -577,7 +577,7 @@ public class ElementImpl implements Element {
 	 * the variable timeout If object is not disabled within the time, handle
 	 * the error based on the boolean
 	 *
-	 * @author Justin
+	 * @author Sabitha
 	 *
 	 */
 	public boolean syncDisabled(int timeout, boolean returnError) {
@@ -591,7 +591,7 @@ public class ElementImpl implements Element {
 	 * listed in org.vensai.chameleon.CONSTANT.TIMEOUT If text is not present
 	 * within the time, throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 */
 	public boolean syncTextInElement(String text) {
 		return PageLoaded.syncTextInElement(getWrappedDriver(), text, getWrappedDriver().getElementTimeout(), PageLoaded.getSyncToFailTest(), new ElementImpl(getWrappedElement()));
@@ -604,7 +604,7 @@ public class ElementImpl implements Element {
 	 * passed in the variable timeout If text is not present within the time,
 	 * throw an error
 	 * 
-	 * @author Justin
+	 * @author Sabitha
 	 * 
 	 */
 	public boolean syncTextInElement(String text, int timeout) {
@@ -617,7 +617,7 @@ public class ElementImpl implements Element {
 	 * passed in the variable timeout If text is not present within the time,
 	 * handle the error based on the boolean
 	 *
-	 * @author Justin
+	 * @author Sabitha
 	 *
 	 */
 	public boolean syncTextInElement(String text, int timeout, boolean returnError) {

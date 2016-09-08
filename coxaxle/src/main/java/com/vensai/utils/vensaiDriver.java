@@ -782,7 +782,7 @@ public class vensaiDriver implements WebDriver, JavaScriptExecutor, TakesScreens
 	}
 	/**
 	 * Subclass to assist with interacting with a RemoteWebDriver
-	 * @author Justin Phlegar
+	 * @author  Sabitha
 	 * @see https://selenium.googlecode.com/svn/trunk/docs/api/java/org/openqa/selenium/remote/RemoteWebDriver.html#getCapabilities()
 	 * @see https://selenium.googlecode.com/svn/trunk/docs/api/java/org/openqa/selenium/Capabilities.html
 	 */
@@ -836,7 +836,7 @@ public class vensaiDriver implements WebDriver, JavaScriptExecutor, TakesScreens
 	/**
 	 * This class contains methods that hook into the PageLoaded class, allowing for compact usage with the driver
 	 * Example usages provided with each method contained within.
-	 * @author Waightstill W Avery
+	 * @author Sabitha
 	 */
 	public class Page {
 		/*

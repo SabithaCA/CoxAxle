@@ -11,10 +11,6 @@ import org.apache.poi.ss.util.CellReference;
 import java.io.File;
 import java.io.IOException;
 
-
-/**
- * Created by Adam on 12/22/2015.
- */
 public class Excel {
 
     //Variables
