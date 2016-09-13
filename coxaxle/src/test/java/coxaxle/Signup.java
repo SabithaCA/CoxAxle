@@ -8,9 +8,9 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.coxAxle.login.LoginPage;
+import com.coxAxle.admin.SignInPage;
+import com.coxAxle.dealer.RegistrationPage;
 import com.coxAxle.navigation.MainNav;
-import com.coxAxle.signup.RegistrationPage;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
@@ -54,13 +54,18 @@ public class Signup extends TestEnvironment{
 	public void registerUser(String name, String email, String phone, String code,
 			String password, String comfirmPassword, String zipcode, String alertMsg) {
 
-		LoginPage loginPage = new LoginPage(getDriver());
-		loginPage.clickLink("SignUp");
+		SignInPage SignInPage = new SignInPage(getDriver());
+		SignInPage.clickLink("Sign Up");
 
 		RegistrationPage resPage = new RegistrationPage(getDriver());
-		//resPage.registerUser();
+		resPage.validatingSignUpFields();
+		resPage.validateMandatoryFields();
 		resPage.enterRegistrationDetails(name, email, phone, code,password, comfirmPassword,zipcode);
-		resPage.verifyActivateAccountAlert(alertMsg);
+		resPage.clickCancel();
+		resPage.validateMandatoryFields();
+		/*resPage.enterRegistrationDetails(name, email, phone, code,password, comfirmPassword,zipcode);
+		resPage.clickSubmit();*/
+		//resPage.verifyActivateAccountAlert(alertMsg);
 	}
 
 }
