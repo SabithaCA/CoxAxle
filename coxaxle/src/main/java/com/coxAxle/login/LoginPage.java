@@ -54,8 +54,9 @@ public class LoginPage {
 	 */
 	public void loginWithCredentials(String Email){
 		
-		System.out.println(userCredentialRepo.getString(Email));
-		txtEmail.set(userCredentialRepo.getString(Email));
+		//System.out.println(userCredentialRepo.getString(Email));
+		//userCredentialRepo.getString(Email)
+		txtEmail.set(Email);
 		txtPassword.set(userCredentialRepo.getString("PASSWORD"));
 		btnLogin.click();
 
