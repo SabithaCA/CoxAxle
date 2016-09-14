@@ -36,8 +36,14 @@ public class RegistrationPage {
 	@FindBy(xpath = "//input[@value='CANCEL']") private Button btnCancel;
 	@FindBy(id = "submitbutton") private Button btnSubmit;
 	@FindBy(xpath = "//form/div/div/ul/li") private Element eleAlert;
-	
-	
+	@FindBy(xpath = "//form/div[1]/div/div[1]/div/div") private Element eleDealerNameMandatory;
+	@FindBy(xpath = "//form/div[1]/div/div[2]/div[1]/div") private Element eleEmailMandatory;
+	@FindBy(xpath = "//form/div[1]/div/div[3]/div/div") private Element elePhoneMandatory;
+	@FindBy(xpath = "//form/div[1]/div/div[4]/div/div") private Element eleDealerCodeMandatory;
+	@FindBy(xpath = "//form/div[1]/div/div[8]/div[1]/div") private Element elePwdMandatory;
+	@FindBy(xpath = "//form/div[1]/div/div[9]/div/div[1]") private Element eleConfirmPwdMandatory;
+
+
 	/**Constructor**/
 	public RegistrationPage(vensaiDriver driver){
 		this.driver = driver;
@@ -70,12 +76,12 @@ public class RegistrationPage {
 		txtPassword.set(password);
 		txtConfirmPassword.set(comfirmPassword);	
 	}
-	
+
 	public void clickSubmit(){
 		pageLoaded(btnSubmit);
 		btnSubmit.click();
 	}
-	
+
 	public void clickCancel(){
 		pageLoaded(btnCancel);
 		btnCancel.click();
@@ -92,22 +98,27 @@ public class RegistrationPage {
 			TestReporter.logStep("Error occured while creating the dealer account");
 		}
 	}
-	
+
 	public void validatingSignUpFields(){
-	TestReporter.assertTrue(txtName.syncVisible(10, false),"Dealer name field is visible on SignUp page");
-	TestReporter.assertTrue(txtemail.syncVisible(10, false),"Email field is visible on SignUp page");
-	TestReporter.assertTrue(txtPhone.syncVisible(10, false),"Phone field is visible on SignUp page");
-	TestReporter.assertTrue(txtDealerCode.syncVisible(10, false),"Dealer Code field is visible on SignUp page");
-	TestReporter.assertTrue(txtZipCode.syncVisible(10, false),"Zip Code field is visible on SignUp page");
-	TestReporter.assertTrue(txtAddress.syncVisible(10, false),"Address field is visible on SignUp page");
-	TestReporter.assertTrue(btnDealerLogo.syncVisible(10, false),"Dealer Logo field is visible on SignUp page");
-	TestReporter.assertTrue(txtPassword.syncVisible(10, false),"Password field is visible on SignUp page");
-	TestReporter.assertTrue(txtConfirmPassword.syncVisible(10, false),"Confirm Password field is visible on SignUp page");
-	TestReporter.assertTrue(txtTwitter.syncVisible(10, false),"Dealer Twitter Page Link  field is visible on SignUp page");
-	TestReporter.assertTrue(txtFB.syncVisible(10, false),"Dealer FB Page Link  field is visible on SignUp page");
+		TestReporter.assertTrue(txtName.syncVisible(10, false),"Dealer name field is visible on SignUp page");
+		TestReporter.assertTrue(txtemail.syncVisible(10, false),"Email field is visible on SignUp page");
+		TestReporter.assertTrue(txtPhone.syncVisible(10, false),"Phone field is visible on SignUp page");
+		TestReporter.assertTrue(txtDealerCode.syncVisible(10, false),"Dealer Code field is visible on SignUp page");
+		TestReporter.assertTrue(txtZipCode.syncVisible(10, false),"Zip Code field is visible on SignUp page");
+		TestReporter.assertTrue(txtAddress.syncVisible(10, false),"Address field is visible on SignUp page");
+		TestReporter.assertTrue(btnDealerLogo.syncVisible(10, false),"Dealer Logo field is visible on SignUp page");
+		TestReporter.assertTrue(txtPassword.syncVisible(10, false),"Password field is visible on SignUp page");
+		TestReporter.assertTrue(txtConfirmPassword.syncVisible(10, false),"Confirm Password field is visible on SignUp page");
+		TestReporter.assertTrue(txtTwitter.syncVisible(10, false),"Dealer Twitter Page Link  field is visible on SignUp page");
+		TestReporter.assertTrue(txtFB.syncVisible(10, false),"Dealer FB Page Link  field is visible on SignUp page");
 	}
-	
+
 	public void validateMandatoryFields(){
-		TestReporter.assertEquals(txtName.findElement(By.tagName("div")).getText(), "*", "Field is mandatory");
+		TestReporter.assertEquals(eleDealerNameMandatory.getText(), "*", "Dealer name field is mandatory");
+		TestReporter.assertEquals(eleEmailMandatory.getText(), "*", "Email field is mandatory");
+		TestReporter.assertEquals(elePhoneMandatory.getText(), "*", "Phone field is mandatory");
+		TestReporter.assertEquals(eleDealerCodeMandatory.getText(), "*", "Dealer code field is mandatory");
+		TestReporter.assertEquals(elePwdMandatory.getText(), "*", "Password field is mandatory");
+		TestReporter.assertEquals(eleConfirmPwdMandatory.getText(), "*", "Confirm Password field is mandatory");
 	}
 }

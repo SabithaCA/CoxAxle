@@ -37,8 +37,6 @@ public class SignInPage {
 
 	public void verifyPageIsLoaded(){
 
-
-
 	}
 
 
