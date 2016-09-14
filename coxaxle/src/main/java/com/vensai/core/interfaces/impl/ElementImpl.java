@@ -3,13 +3,16 @@ package com.vensai.core.interfaces.impl;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ByClassName;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitWebElement;
@@ -20,6 +23,7 @@ import org.openqa.selenium.internal.Locatable;
 import com.vensai.core.Beta;
 import com.vensai.core.interfaces.Element;
 import com.vensai.utils.vensaiDriver;
+import com.vensai.utils.Constants;
 import com.vensai.utils.PageLoaded;
 import com.vensai.utils.TestReporter;
 
@@ -31,6 +35,7 @@ public class ElementImpl implements Element {
 
 	protected WebElement element;
 	protected vensaiDriver driver;
+	//protected By by;
 
 	public ElementImpl(final WebElement element) {
 		this.element = element;
@@ -39,6 +44,7 @@ public class ElementImpl implements Element {
 	public ElementImpl(final WebElement element, final vensaiDriver driver) {
 		this.element = element;
 		this.driver = driver;
+		//this.by = by;
 	}
 
 	/**
@@ -622,5 +628,93 @@ public class ElementImpl implements Element {
 	 */
 	public boolean syncTextInElement(String text, int timeout, boolean returnError) {
 		return PageLoaded.syncTextInElement(getWrappedDriver(), text, timeout, returnError, new ElementImpl(getWrappedElement()));
+	}
+	/*protected WebElement reload(){ 
+		  getWrappedDriver().manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
+		  try{
+		   element.isDisplayed();
+		  }catch(WebDriverException | NullPointerException e){
+		   if(by == null) element = getWrappedDriver().findElement(getElementLocatorUsingElement(element));
+		   else {
+		    try{
+		     element = getWrappedDriver().findElement(by);
+		    }catch(WebDriverException e2){}
+		    catch(NullPointerException npe){
+		     System.out.println("Something in reload was null");
+		    }
+		   }
+		  }
+		  getWrappedDriver().manage().timeouts().implicitlyWait(Constants.ELEMENT_TIMEOUT, TimeUnit.SECONDS);
+		     return element;
+		 }
+	 private By getElementLocatorUsingElement(WebElement element) {
+		  By by = null;
+		  String locator = "";
+		  int startPosition = 0;
+		  try {
+		   startPosition = element.toString().lastIndexOf("->") + 3;
+		   locator = element.toString().substring(startPosition, element.toString().lastIndexOf(": "));
+		   locator = locator.trim();
+		   switch (locator) {
+		   case "className":
+		   case "class name":
+		    by = new ByClassName(getElementIdentifier());
+		    break;
+		   case "cssSelector":
+		    by = By.cssSelector(getElementIdentifier());
+		    break;
+		   case "id":
+		    by = By.id(getElementIdentifier());
+		    break;
+		   case "linkText":
+		    by = By.linkText(getElementIdentifier());
+		    break;
+		   case "name":
+		    by = By.name(getElementIdentifier());
+		    break;
+		   case "tagName":
+		    by = By.tagName(getElementIdentifier());
+		    break;
+		   case "xpath":
+		    by = By.xpath(getElementIdentifier());
+		    break;
+		   }
+		   return by;
+		  } catch (Exception e) {
+		   e.printStackTrace();
+		   return null;
+		  }
+		 }
+	public void highlight(WebDriver driver) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", reload());
+	}*/
+	public void highlight(WebDriver driver) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", this);
+	}
+
+	public void mouseHover(WebDriver driver) {
+		new Actions(driver).moveToElement(element).build().perform();
+	}
+
+	public void coordinateClick(WebDriver driver){
+		Element element = new ElementImpl(getWrappedElement());
+		int xPos = element.getCoordinates().inViewPort().x;
+		int yPos = element.getCoordinates().inViewPort().y;
+		int width = element.getSize().width;
+		int height = element.getSize().height;
+		float xMidpoint = (float)xPos + width/2;
+		float yMidpoint = (float)yPos - height/2;
+
+		String javaScript = "var element = document.elementFromPoint("+xMidpoint+","+yMidpoint+");element.click()";
+		// Create a JS executor
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript(javaScript);
+	}
+
+	public void scrollIntoView(WebDriver driver){
+
+		JavascriptExecutor executor = (JavascriptExecutor)driver; 
+		executor.executeScript("arguments[0].scrollIntoView(true)", element);
+		//  Reporter.log(new Timestamp(date.getTime()) + " :: Scrolled into view [ <b>@FindBy: " + getElementLocatorInfo()  + " </b>]");
 	}
 }

@@ -1,13 +1,10 @@
 package com.coxAxle.dealer;
 
 import java.util.ResourceBundle;
-
 import org.openqa.selenium.support.FindBy;
-
 import com.vensai.core.interfaces.Button;
 import com.vensai.core.interfaces.Element;
 import com.vensai.core.interfaces.Link;
-import com.vensai.core.interfaces.Listbox;
 import com.vensai.core.interfaces.Textbox;
 import com.vensai.core.interfaces.impl.internal.ElementFactory;
 import com.vensai.utils.Constants;
@@ -40,7 +37,7 @@ public class HomePage {
 	private void pageLoaded(Element ele){
 		ele.syncVisible(20, false);
 	}
-
+	
 	public void validateMainMenuItems(){
 		TestReporter.assertTrue(lnkHome.syncVisible(10, false), "Home menu item is visible");
 		TestReporter.assertTrue(lnkCustomers.syncVisible(10, false), "Customers menu item is visible");
@@ -56,5 +53,12 @@ public class HomePage {
 		boolean status = eleAlert.getText().trim().equalsIgnoreCase(alertMsg.trim()); 
 		TestReporter.assertTrue(status, "Activate account message is validated");
 
+	}
+	
+	public void clickAccountTab(){
+		pageLoaded(lnkAccount);
+		TestReporter.assertTrue(lnkAccount.syncEnabled(10, false), "Account menu item is visible");
+		//lnkAccount.highlight(driver);
+		lnkAccount.click();
 	}
 }

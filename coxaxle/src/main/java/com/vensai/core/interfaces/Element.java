@@ -433,4 +433,12 @@ public interface Element extends WebElement, WrapsElement, Locatable {
 	 *
 	 */
 	public boolean syncTextInElement(String text, int timeout, boolean returnError);
+
+	public void highlight(WebDriver driver);
+
+	public void mouseHover(WebDriver driver);
+
+	public void coordinateClick(WebDriver driver);
+
+	public void scrollIntoView(WebDriver driver);
 }
