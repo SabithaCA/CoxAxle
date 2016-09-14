@@ -15,6 +15,11 @@ import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
 
+/**
+ * @summary Dealer Login
+ * @author  Sabitha Adama
+ * @date 	13/09/2016
+ */
 
 public class AT_01_Login extends TestEnvironment{
 

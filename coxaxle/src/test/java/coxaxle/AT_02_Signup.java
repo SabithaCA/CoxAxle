@@ -15,8 +15,12 @@ import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
 
-
-public class Signup extends TestEnvironment{
+/**
+ * @summary Dealer SignUp
+ * @author  Sabitha Adama
+ * @date 	14/09/2016
+ */
+public class AT_02_Signup extends TestEnvironment{
 
 	// **************
 	// Data Provider
@@ -24,7 +28,7 @@ public class Signup extends TestEnvironment{
 	@DataProvider(name = "dataScenario")
 	public Object[][] scenarios() {
 		try {
-			Object[][] excelData = new ExcelDataProvider("/datasheets/Signup.xlsx","sample").getTestData();
+			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_02_Signup.xlsx","sample").getTestData();
 			return excelData;
 		}
 		catch (RuntimeException e){
@@ -42,7 +46,7 @@ public class Signup extends TestEnvironment{
 		setOperatingSystem(operatingSystem);
 		setRunLocation(runLocation);
 		setTestEnvironment(environment);
-		testStart("Signup");
+		testStart("AT_02_Signup");
 	}
 
 	@AfterTest
@@ -54,18 +58,38 @@ public class Signup extends TestEnvironment{
 	public void registerUser(String name, String email, String phone, String code,
 			String password, String comfirmPassword, String zipcode, String alertMsg) {
 
+		//Sign Up
+		TestReporter.logStep("Navigating to Sign Up page");
 		SignInPage SignInPage = new SignInPage(getDriver());
 		SignInPage.clickLink("Sign Up");
 
+		//Validating all the Sign Up page fields and mandatory fields
+		TestReporter.logStep("Validating all the Sign Up page fields and mandatory fields");
 		RegistrationPage resPage = new RegistrationPage(getDriver());
 		resPage.validatingSignUpFields();
 		resPage.validateMandatoryFields();
+
+		//Validating Cancel button functionality
+		TestReporter.logStep("Validating Cancel button functionality");
 		resPage.enterRegistrationDetails(name, email, phone, code,password, comfirmPassword,zipcode);
 		resPage.clickCancel();
-		resPage.validateMandatoryFields();
-		/*resPage.enterRegistrationDetails(name, email, phone, code,password, comfirmPassword,zipcode);
-		resPage.clickSubmit();*/
-		//resPage.verifyActivateAccountAlert(alertMsg);
+		SignInPage.clickLink("Sign Up");
+
+		//Submitting the new dealer details
+		TestReporter.logStep("Submitting the new dealer details");
+		resPage.enterRegistrationDetails(name, email, phone, code,password, comfirmPassword,zipcode);
+		resPage.clickSubmit();
+
+		//Validating the account activation message
+		TestReporter.logStep("Validating the account activation message");
+		resPage.verifyActivateAccountAlert(alertMsg);
+		/*SignInPage.clickLink("Sign In");
+		SignInPage.loginWithCredentials(email,password);
+
+		//Logout
+		MainNav mainNav = new MainNav(getDriver());
+		TestReporter.assertTrue(mainNav.isLogoutDisplayed(), "Verify user is successfully logged in");
+		mainNav.clickLogout();*/
 	}
 
 }
