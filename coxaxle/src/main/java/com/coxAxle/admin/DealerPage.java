@@ -23,7 +23,7 @@ public class DealerPage {
 	/**Page Elements**/
 	@FindBy(xpath = "//table/tbody")	private Webtable wtDealerTabel;
 	@FindBy(linkText = "Next")  private Button btnNext;
-	@FindBy(xpath = "//td[3]/table/tbody") private Webtable wtDealerDetails;
+	@FindBy(xpath = "//div[2]/table/tbody") private Webtable wtDealerDetails;
 	
 	/**Constructor**/
 	public DealerPage(vensaiDriver driver){
@@ -76,10 +76,9 @@ public class DealerPage {
 		String[] Emails=null;
 		String A=verifyDealerDetail();
 
-		while(validateButtonsEnabledOrDisabled(btnNext)==true){
+		while(btnNext.syncVisible()==true && validateButtonsEnabledOrDisabled(btnNext)==true){
 			btnNext.click();
 			A=A+verifyDealerDetail();
-
 			Emails=A.split("_");
 			for (String string : Emails) {
 				if(string.equalsIgnoreCase(Email)){
@@ -92,16 +91,13 @@ public class DealerPage {
 						if(Columns_row.get(3).getText().equalsIgnoreCase(Email)){
 							System.out.println("gng inside loop");
 							Columns_row_link.get(0).click();
-							break;
-
-						}
-						else{
-
+							break; 
 						}
 					}	
 				}
-			}break;	
+			}
 		}
+		
 	}
 	
 	public String[] verifyDealerDetails(){
