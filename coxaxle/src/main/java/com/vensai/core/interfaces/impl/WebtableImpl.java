@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 import javax.naming.directory.NoSuchAttributeException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -69,7 +71,7 @@ public class WebtableImpl extends ElementImpl implements Webtable {
 	 * @return int - number of columns found for a given row
 	 */
 	@Override
-	public int getColumnCount(int row) {
+	public int getColumnCount(WebDriver driver,int row) {
 		return getColumnCollection(getRowCollection().get(row)).size();
 	}
 
@@ -87,7 +89,7 @@ public class WebtableImpl extends ElementImpl implements Webtable {
 	 * @return WebElement - the desired cell
 	 */
 	@Override
-	public Element getCell(int row, int column) {
+	public Element getCell(WebDriver driver, int row, int column) {
 		getWrappedDriver().setElementTimeout(1, TimeUnit.SECONDS);
 		Element cell = new ElementImpl(getWrappedElement()
 				.findElement(By.xpath("tbody/tr[" + row + "]/td[" + column + "]|tbody/tr[" + row + "]/th[" + column
@@ -110,8 +112,8 @@ public class WebtableImpl extends ElementImpl implements Webtable {
 	 *            - Desired column in which to find the cell
 	 */
 	@Override
-	public void clickCell(int row, int column) {
-		getCell(row, column).click();
+	public void clickCell(WebDriver driver,int row, int column) {
+		getCell(driver, row, column).click();
 	}
 
 	/**
@@ -128,8 +130,8 @@ public class WebtableImpl extends ElementImpl implements Webtable {
 	 * @return String - text of cell contents
 	 */
 	@Override
-	public String getCellData(int row, int column) {
-		return getCell(row, column).getText();
+	public String getCellData(WebDriver driver,int row, int column) {
+		return getCell(driver, row, column).getText();
 	}
 
 	/**
@@ -143,8 +145,8 @@ public class WebtableImpl extends ElementImpl implements Webtable {
 	 * @return int - row number containing the desired text
 	 */
 	@Override
-	public int getRowWithCellText(String text) {
-		return getRowWithCellText(text, -1);
+	public int getRowWithCellText(WebDriver driver,String text) {
+		return getRowWithCellText(driver,text, -1);
 	}
 
 	/**
@@ -160,8 +162,8 @@ public class WebtableImpl extends ElementImpl implements Webtable {
 	 * @return int - row number containing the desired text
 	 */
 	@Override
-	public int getRowWithCellText(String text, int columnPosition) {
-		return getRowWithCellText(text, columnPosition, 1);
+	public int getRowWithCellText(WebDriver driver,String text, int columnPosition) {
+		return getRowWithCellText(driver, text, columnPosition, 1);
 	}
 
 	/**
@@ -180,7 +182,7 @@ public class WebtableImpl extends ElementImpl implements Webtable {
 	 * @return int - row number containing the desired text
 	 */
 	@Override
-	public int getRowWithCellText(String text, int columnPosition, int startRow) {
+	public int getRowWithCellText(WebDriver driver,String text, int columnPosition, int startRow) {
 		return getRowWithCellText(text, columnPosition, startRow, true);
 	}
 
@@ -251,8 +253,8 @@ public class WebtableImpl extends ElementImpl implements Webtable {
 	 * @return int - column number containing the desired text
 	 */
 	@Override
-	public int getColumnWithCellText(String text) {
-		return getColumnWithCellText(text, 1);
+	public int getColumnWithCellText(WebDriver driver ,String text) {
+		return getColumnWithCellText(driver, text, 1);
 	}
 
 	/**
@@ -267,7 +269,7 @@ public class WebtableImpl extends ElementImpl implements Webtable {
 	 * @return int - column number containing the desired text
 	 */
 	@Override
-	public int getColumnWithCellText(String text, int rowPosition) {
+	public int getColumnWithCellText(WebDriver driver, String text, int rowPosition) {
 		int currentColumn = 1;
 		List<WebElement> columns = getColumnCollection(getRowCollection().get(rowPosition - 1));
 		for (WebElement cell : columns) {
@@ -278,5 +280,23 @@ public class WebtableImpl extends ElementImpl implements Webtable {
 			}
 		}
 		return 0;
+	}
+
+	@Override
+	public WebElement getCell(SearchContext driver, int row, int column) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getRowThatContainsCellText(SearchContext driver, String text, int columnPosition) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void clickCell(int row, int column) {
+		// TODO Auto-generated method stub
+		
 	}
 }
