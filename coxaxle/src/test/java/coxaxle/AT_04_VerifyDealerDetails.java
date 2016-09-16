@@ -54,7 +54,7 @@ public class AT_04_VerifyDealerDetails extends TestEnvironment{
 
 	@AfterTest
 	public void close(ITestContext testResults){
-		endTest("TestAlert", testResults);
+		//endTest("TestAlert", testResults);
 	}
 
 	@Test(dataProvider = "dataScenario")
@@ -78,9 +78,9 @@ public class AT_04_VerifyDealerDetails extends TestEnvironment{
 		TestReporter.logStep("Verify the Account details od dealer");
 		AccountPage accountPage = new AccountPage(driver);
 		String[] DealerAccount_Details=accountPage.verifyAccountDetails();
-		/*for (int i = 0; i < DealerAccount_Details.length; i++) {
+		for (int i = 0; i < DealerAccount_Details.length; i++) {
 			System.out.println(DealerAccount_Details[i]);
-		}*/
+		}
 		
 		//Logout
 		MainNav mainNav = new MainNav(getDriver());
@@ -100,10 +100,11 @@ public class AT_04_VerifyDealerDetails extends TestEnvironment{
 		TestReporter.logStep("Clicking on specified Dealer and Verifying the Dealer details");
 		DealerPage dealerPage = new DealerPage(driver);
 		dealerPage.clickOnSpecifiedDealer(email);
+		TestReporter.logStep("Getting details");
 		String[] Dealer_Details=dealerPage.verifyDealerDetails();
-		/*for (int i = 0; i < Dealer_Details.length; i++) {
+		for (int i = 0; i < Dealer_Details.length; i++) {
 			System.out.println(Dealer_Details[i]);
-		}*/
+		}
 		
 		//Comparing Dealer and Dealer account details
 		TestReporter.logStep("Comparing Dealer and Dealer account details");
