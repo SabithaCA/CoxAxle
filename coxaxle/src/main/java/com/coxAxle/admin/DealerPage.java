@@ -17,8 +17,6 @@ public class DealerPage {
 
 	private vensaiDriver driver = null;
 	private ResourceBundle userCredentialRepo = ResourceBundle.getBundle(Constants.USER_CREDENTIALS_PATH);
-	/*ArrayList<List<String>> values;
-	ArrayList<List<String>> al=new ArrayList<List<String>>();*/
 
 	/**Page Elements**/
 	@FindBy(xpath = "//table/tbody")	private Webtable wtDealerTabel;
@@ -75,31 +73,36 @@ public class DealerPage {
 	public  void clickOnSpecifiedDealer(String Email){
 		String[] Emails=null;
 		String A=verifyDealerDetail();
-
+		Emails=A.split("_");
+		clickOnNameLink(Emails,Email);
 		while(btnNext.syncVisible()==true && validateButtonsEnabledOrDisabled(btnNext)==true){
 			btnNext.click();
 			A=A+verifyDealerDetail();
 			Emails=A.split("_");
-			for (String string : Emails) {
-				if(string.equalsIgnoreCase(Email)){
-					System.out.println(string);
-					TestReporter.assertTrue(string.equalsIgnoreCase(Email),"Email Id is verified");
-					for (int row=0; row<Emails.length; row++){
-						List<WebElement> rows_table = wtDealerTabel.findElements(By.tagName("tr"));
-						List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
-						List<WebElement> Columns_row_link = rows_table.get(row).findElements(By.tagName("a"));
-						if(Columns_row.get(3).getText().equalsIgnoreCase(Email)){
-							System.out.println("gng inside loop");
-							Columns_row_link.get(0).click();
-							break; 
-						}
-					}	
-				}
-			}
+			clickOnNameLink(Emails,Email);
 		}
 		
 	}
 	
+	public void clickOnNameLink(String[] Emails, String Email){
+		for (String string : Emails) {
+			if(string.equalsIgnoreCase(Email)){
+				System.out.println(string);
+				TestReporter.assertTrue(string.equalsIgnoreCase(Email),"Email Id is verified");
+				for (int row=0; row<Emails.length; row++){
+					List<WebElement> rows_table = wtDealerTabel.findElements(By.tagName("tr"));
+					List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
+			
+					List<WebElement> Columns_row_link = rows_table.get(row).findElements(By.tagName("a"));
+					if(Columns_row.get(3).getText().equalsIgnoreCase(Email)){
+						System.out.println("gng inside loop");
+						Columns_row_link.get(0).click();
+						break; 
+					}
+				}	
+			}
+		}
+	}
 	public String[] verifyDealerDetails(){
 		String value="";
 		String[] table_Values=null;
