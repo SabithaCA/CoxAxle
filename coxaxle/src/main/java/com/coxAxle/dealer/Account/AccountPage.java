@@ -1,4 +1,4 @@
-package com.coxAxle.dealer;
+package com.coxAxle.dealer.Account;
 
 import java.util.List;
 import java.util.ResourceBundle;
@@ -69,5 +69,20 @@ public class AccountPage {
 		}*/
 		//return Arrays.asList(table_Values);
 		return table_Values;
+	}
+	
+	public void clickUpdateAccount(){
+		TestReporter.assertTrue(btnUpdateAccount.syncEnabled(20, false), "Update Account button is enabled");
+		btnUpdateAccount.click();
+	}
+	
+	public void clickChangePassword(){
+		TestReporter.assertTrue(btnChangePassword.syncEnabled(20, false), "Change password button is enabled");
+		btnChangePassword.click();
+	}
+	
+	public void clickChangeLogo(){
+		TestReporter.assertTrue(btnChangeLogo.syncEnabled(20, false), "Change logo button is enabled");
+		btnChangeLogo.click();
 	}
 }

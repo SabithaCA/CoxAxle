@@ -9,10 +9,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.coxAxle.admin.SignInPage;
-import com.coxAxle.dealer.AccountPage;
+import com.coxAxle.dealer.Account.AccountPage;
 import com.coxAxle.dealer.HomePage;
-import com.coxAxle.dealer.RegistrationPage;
-import com.coxAxle.navigation.MainNav;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
