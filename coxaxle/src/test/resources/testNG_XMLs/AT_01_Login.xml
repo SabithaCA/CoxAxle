@@ -6,7 +6,7 @@
 	<parameter name="runLocation" value="local" />
 	<parameter name="browserVersion" value="" />
 	<parameter name="operatingSystem" value="windows" />
- 	<test name="SampleTest">
+ 	<test name="Login">
 		<classes>
 			<class name="coxaxle.AT_01_Login" />
 		</classes>
