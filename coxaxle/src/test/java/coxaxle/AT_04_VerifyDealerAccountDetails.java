@@ -19,7 +19,7 @@ import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
 
 /**
- * @summary Validate Dealer Account
+ * @summary Validate Dealer Account Details
  * @author  Sabitha Adama
  * @date 	15/09/2016
  */
@@ -49,7 +49,7 @@ public class AT_04_VerifyDealerAccountDetails extends TestEnvironment{
 		setOperatingSystem(operatingSystem);
 		setRunLocation(runLocation);
 		setTestEnvironment(environment);
-		testStart("AT_04_VerifyDealerDetails");
+		testStart("AT_04_VerifyDealerAccountDetails");
 	}
 
 	@AfterTest
@@ -81,21 +81,21 @@ public class AT_04_VerifyDealerAccountDetails extends TestEnvironment{
 		for (int i = 0; i < DealerAccount_Details.length; i++) {
 			System.out.println(DealerAccount_Details[i]);
 		}
-		
+
 		//Logout
 		MainNav mainNav = new MainNav(getDriver());
 		TestReporter.assertTrue(mainNav.isLogoutDisplayed(), "Verify user is successfully logged out");
 		mainNav.clickLogout();
-		
+
 		//Login as Admin
 		TestReporter.logStep("Login as Admin");
 		SignInPage.loginWithCredentials(AdminEmail,AdminPassword);
-		
+
 		//Click on Dealers tab
 		TestReporter.logStep("Click on Dealers tab");
 		AdminHomePage adminHomePage=new AdminHomePage(driver);
 		adminHomePage.clickDealersTab();
-		
+
 		//Clicking on specified Dealer and Verifying the Dealer details
 		TestReporter.logStep("Clicking on specified Dealer and Verifying the Dealer details");
 		DealerPage dealerPage = new DealerPage(driver);
@@ -105,12 +105,12 @@ public class AT_04_VerifyDealerAccountDetails extends TestEnvironment{
 		for (int i = 0; i < Dealer_Details.length; i++) {
 			System.out.println(Dealer_Details[i]);
 		}
-		
+
 		//Comparing Dealer and Dealer account details
 		TestReporter.logStep("Comparing Dealer and Dealer account details");
 		ArrayUtil arrayutil = new ArrayUtil();
 		arrayutil.comparisonOfOneToMany(DealerAccount_Details,Dealer_Details);
-		
+
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.coxAxle.dealer.Account;
+package com.coxAxle.dealer.Contacts;
 
 import java.util.List;
 import java.util.ResourceBundle;
@@ -13,7 +13,7 @@ import com.vensai.utils.Constants;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.vensaiDriver;
 
-public class AccountPage {
+public class ChangeMobileLogoPage {
 
 	private vensaiDriver driver = null;
 	private ResourceBundle userCredentialRepo = ResourceBundle.getBundle(Constants.USER_CREDENTIALS_PATH);
@@ -25,7 +25,7 @@ public class AccountPage {
 	@FindBy(xpath = "//div[2]/table/tbody") private Webtable WtAccountDetails;
 
 	/**Constructor**/
-	public AccountPage(vensaiDriver driver){
+	public ChangeMobileLogoPage(vensaiDriver driver){
 		this.driver = driver;
 		ElementFactory.initElements(driver, this);
 	}
@@ -64,7 +64,6 @@ public class AccountPage {
 			value=value+"_";
 			//System.out.println("*********** "+value);
 			table_Values=value.split("_");
-			//System.out.println("--------------------------------------------------");
 		}
 		/*for (int i = 0; i < table_Values.length; i++) {
 			System.out.println("Values : "+table_Values[i]);

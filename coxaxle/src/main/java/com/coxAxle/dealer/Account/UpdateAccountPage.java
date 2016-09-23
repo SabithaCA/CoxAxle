@@ -1,9 +1,6 @@
 package com.coxAxle.dealer.Account;
 
-import java.util.List;
 import java.util.ResourceBundle;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.vensai.core.interfaces.Button;
 import com.vensai.core.interfaces.Element;
@@ -88,16 +85,16 @@ public class UpdateAccountPage {
 		txtDealerCode.set(dealerCode);
 		txtZipCode.set(ziopCode);
 		txtAddress.set(address);
-		
+
 		btnContactInfo.click();
 		txtemail.set(email);
 		txtPhone.set(phone);
 		btnWorkingHours.click();
-		
+
 	}
 
 	public void clickSubmit(){
-		TestReporter.assertTrue(btnSubmit.syncEnabled(10, false), "Cancel button is visible");
+		TestReporter.assertTrue(btnSubmit.syncEnabled(10, false), "Submit button is visible");
 		btnSubmit.click();
 	}
 

@@ -22,7 +22,7 @@ public class DealerPage {
 	@FindBy(xpath = "//table/tbody")	private Webtable wtDealerTabel;
 	@FindBy(linkText = "Next")  private Button btnNext;
 	@FindBy(xpath = "//div[2]/table/tbody") private Webtable wtDealerDetails;
-	
+
 	/**Constructor**/
 	public DealerPage(vensaiDriver driver){
 		this.driver = driver;
@@ -81,9 +81,9 @@ public class DealerPage {
 			Emails=A.split("_");
 			clickOnNameLink(Emails,Email);
 		}
-		
+
 	}
-	
+
 	public void clickOnNameLink(String[] Emails, String Email){
 		for (String string : Emails) {
 			if(string.equalsIgnoreCase(Email)){
@@ -92,7 +92,7 @@ public class DealerPage {
 				for (int row=0; row<Emails.length; row++){
 					List<WebElement> rows_table = wtDealerTabel.findElements(By.tagName("tr"));
 					List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
-			
+
 					List<WebElement> Columns_row_link = rows_table.get(row).findElements(By.tagName("a"));
 					if(Columns_row.get(3).getText().equalsIgnoreCase(Email)){
 						System.out.println("gng inside loop");

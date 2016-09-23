@@ -7,10 +7,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.coxAxle.admin.SignInPage;
 import com.coxAxle.dealer.RegistrationPage;
-import com.coxAxle.navigation.MainNav;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
@@ -39,7 +37,8 @@ public class AT_02_Signup extends TestEnvironment{
 
 	@BeforeTest
 	@Parameters({ "runLocation", "browserUnderTest", "browserVersion","operatingSystem", "environment" })
-	public void setup(@Optional String runLocation, String browserUnderTest,String browserVersion, String operatingSystem, String environment) {
+	public void setup(@Optional String runLocation, String browserUnderTest,String browserVersion, 
+			String operatingSystem, String environment) {
 		setApplicationUnderTest("COXAXLE");
 		setBrowserUnderTest(browserUnderTest);
 		setBrowserVersion(browserVersion);

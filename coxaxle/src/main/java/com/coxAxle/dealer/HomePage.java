@@ -37,7 +37,7 @@ public class HomePage {
 	private void pageLoaded(Element ele){
 		ele.syncVisible(20, false);
 	}
-	
+
 	public void validateMainMenuItems(){
 		TestReporter.assertTrue(lnkHome.syncVisible(10, false), "Home menu item is visible");
 		TestReporter.assertTrue(lnkCustomers.syncVisible(10, false), "Customers menu item is visible");
@@ -54,11 +54,29 @@ public class HomePage {
 		TestReporter.assertTrue(status, "Activate account message is validated");
 
 	}
-	
+
 	public void clickAccountTab(){
 		pageLoaded(lnkAccount);
 		TestReporter.assertTrue(lnkAccount.syncEnabled(10, false), "Account menu item is visible");
 		//lnkAccount.highlight(driver);
 		lnkAccount.click();
+	}
+
+	public void clickContactsTab(){
+		pageLoaded(lnkContacts);
+		TestReporter.assertTrue(lnkContacts.syncEnabled(10, false), "Contacts menu item is visible");
+		lnkContacts.click();
+	}
+
+	public void clickVehiclesInventoryTab(){
+		pageLoaded(lnkVehicles);
+		TestReporter.assertTrue(lnkVehicles.syncEnabled(10, false), "Vehicle Inventory menu item is visible");
+		lnkVehicles.click();
+	}
+
+	public void clickBannersTab(){
+		pageLoaded(lnkBanners);
+		TestReporter.assertTrue(lnkBanners.syncEnabled(10, false), "Banners menu item is visible");
+		lnkBanners.click();
 	}
 }
