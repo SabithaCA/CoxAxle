@@ -23,7 +23,7 @@ import com.vensai.utils.dataProviders.ExcelDataProvider;
  * @author  Sabitha Adama
  * @date 	15/09/2016
  */
-public class AT_04_VerifyDealerDetails extends TestEnvironment{
+public class AT_04_VerifyDealerAccountDetails extends TestEnvironment{
 
 	// **************
 	// Data Provider
@@ -54,11 +54,11 @@ public class AT_04_VerifyDealerDetails extends TestEnvironment{
 
 	@AfterTest
 	public void close(ITestContext testResults){
-		endTest("TestAlert", testResults);
+		//endTest("TestAlert", testResults);
 	}
 
 	@Test(dataProvider = "dataScenario")
-	public void registerUser(String email,String password,String AdminEmail,String AdminPassword) {
+	public void registerUser(String email,String password,String AdminEmail,String AdminPassword, String changePassword) {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
