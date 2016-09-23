@@ -1,7 +1,5 @@
 package coxaxle;
 
-import java.util.Arrays;
-
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -19,7 +17,7 @@ import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
 
 /**
- * @summary Validate Dealer Account UI
+ * @summary Validate Dealer Update Account
  * @author  Sabitha Adama
  * @date 	19/09/2016
  */
@@ -42,7 +40,8 @@ public class AT_05_VerifyUpdateAccount extends TestEnvironment{
 
 	@BeforeTest
 	@Parameters({ "runLocation", "browserUnderTest", "browserVersion","operatingSystem", "environment" })
-	public void setup(@Optional String runLocation, String browserUnderTest,String browserVersion, String operatingSystem, String environment) {
+	public void setup(@Optional String runLocation, String browserUnderTest,String browserVersion, 
+			String operatingSystem, String environment) {
 		setApplicationUnderTest("COXAXLE");
 		setBrowserUnderTest(browserUnderTest);
 		setBrowserVersion(browserVersion);
@@ -96,7 +95,7 @@ public class AT_05_VerifyUpdateAccount extends TestEnvironment{
 		/*System.out.println("++++++++++++++++++++++++++++++++");
 		System.out.println(Arrays.toString(data_AfterCancel));
 		System.out.println("++++++++++++++++++++++++++++++++");
-*/
+		 */
 		//Comparing account details with cancel operation
 		TestReporter.logStep("Comparing account details with cancel operation");
 		ArrayUtil arrayutil = new ArrayUtil();

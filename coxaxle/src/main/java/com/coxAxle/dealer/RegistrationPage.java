@@ -1,15 +1,10 @@
 package com.coxAxle.dealer;
 
-import java.util.List;
 import java.util.ResourceBundle;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import com.vensai.core.interfaces.Button;
 import com.vensai.core.interfaces.Element;
-import com.vensai.core.interfaces.Label;
 import com.vensai.core.interfaces.Textbox;
 import com.vensai.core.interfaces.impl.internal.ElementFactory;
 import com.vensai.utils.AlertHandler;
@@ -38,7 +33,6 @@ public class RegistrationPage {
 	@FindBy(id = "submitbutton") private Button btnSubmit;
 	@FindBy(xpath = "//form/div/div/ul/li") private Element eleAlert;
 	@FindBy(xpath = "//div[2]/div/div") private Element eleDealerNameMandatory;
-	//@FindBy(xpath = "//form/div[1]/div/div[2]/div[1]/div") private Element eleEmailMandatory;
 	@FindBy(xpath = "//div[4]/div/div") private Element eleZipMandatory;
 	@FindBy(xpath = "//div[3]/div/div") private Element eleDealerCodeMandatory;
 	@FindBy(xpath = "//div[7]/div[1]/div") private Element elePwdMandatory;

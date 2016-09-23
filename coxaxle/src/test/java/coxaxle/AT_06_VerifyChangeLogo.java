@@ -1,7 +1,5 @@
 package coxaxle;
 
-import java.util.Arrays;
-
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -11,15 +9,13 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.coxAxle.admin.SignInPage;
 import com.coxAxle.dealer.Account.AccountPage;
-import com.coxAxle.dealer.Account.UpdateAccountPage;
 import com.coxAxle.dealer.HomePage;
-import com.vensai.utils.ArrayUtil;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
 
 /**
- * @summary Validate Dealer Account UI
+ * @summary Validate Dealer Change Logo
  * @author  Sabitha Adama
  * @date 	22/09/2016
  */
@@ -42,14 +38,15 @@ public class AT_06_VerifyChangeLogo extends TestEnvironment{
 
 	@BeforeTest
 	@Parameters({ "runLocation", "browserUnderTest", "browserVersion","operatingSystem", "environment" })
-	public void setup(@Optional String runLocation, String browserUnderTest,String browserVersion, String operatingSystem, String environment) {
+	public void setup(@Optional String runLocation, String browserUnderTest,String browserVersion, 
+			String operatingSystem, String environment) {
 		setApplicationUnderTest("COXAXLE");
 		setBrowserUnderTest(browserUnderTest);
 		setBrowserVersion(browserVersion);
 		setOperatingSystem(operatingSystem);
 		setRunLocation(runLocation);
 		setTestEnvironment(environment);
-		testStart("AT_05_VerifyUpdateAccount");
+		testStart("AT_06_VerifyChangeLogo");
 	}
 
 	@AfterTest

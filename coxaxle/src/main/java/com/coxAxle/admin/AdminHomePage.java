@@ -36,7 +36,7 @@ public class AdminHomePage {
 	private void pageLoaded(Element ele){
 		ele.syncVisible(20, false);
 	}
-	
+
 	public void validateMainMenuItems(){
 		TestReporter.assertTrue(lnkHome.syncVisible(10, false), "Home menu item is visible");
 		TestReporter.assertTrue(lnkCustomers.syncVisible(10, false), "Customers menu item is visible");

@@ -7,7 +7,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.coxAxle.admin.SignInPage;
 import com.coxAxle.dealer.Account.AccountPage;
 import com.coxAxle.dealer.HomePage;
@@ -39,7 +38,8 @@ public class AT_03_ValidateDealerAccountUI extends TestEnvironment{
 
 	@BeforeTest
 	@Parameters({ "runLocation", "browserUnderTest", "browserVersion","operatingSystem", "environment" })
-	public void setup(@Optional String runLocation, String browserUnderTest,String browserVersion, String operatingSystem, String environment) {
+	public void setup(@Optional String runLocation, String browserUnderTest,String browserVersion, 
+			String operatingSystem, String environment) {
 		setApplicationUnderTest("COXAXLE");
 		setBrowserUnderTest(browserUnderTest);
 		setBrowserVersion(browserVersion);
@@ -61,10 +61,10 @@ public class AT_03_ValidateDealerAccountUI extends TestEnvironment{
 		SignInPage SignInPage = new SignInPage(driver);
 		TestReporter.logStep("Validating Sign In page elements");
 		SignInPage.validateSignInPageFields();
-		
+
 		TestReporter.logStep("Login as dealer");
 		SignInPage.loginWithCredentials(email,password);
-		
+
 		//Click on Account tab
 		TestReporter.logStep("Click on Account tab");
 		HomePage homePage = new HomePage(driver);
