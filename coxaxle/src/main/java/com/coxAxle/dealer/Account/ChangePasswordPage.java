@@ -22,8 +22,10 @@ public class ChangePasswordPage {
 	/**Page Elements**/
 	@FindBy(name = "password")	private Textbox txtPassword;
 	@FindBy(name = "passwordcheck")  private Textbox txtPasswordConfirm;
-	@FindBy(xpath = "//input[@value='Submit']") private Button btnSubmit;
-	@FindBy(linkText = "Cancel") private Button btnCancel;
+	//@FindBy(id = "submitbutton") private Button btnSubmit;
+	// value="Submit"
+	@FindBy(xpath = "//*[@id='form']/div[@class='modal-footer']/input[@type='submit']") private Button btnSubmit;
+	@FindBy(xpath = "//*[@id='form']/div[@class='modal-footer']/button[@type='button']") private Button btnCancel;
 
 	/**Constructor**/
 	public ChangePasswordPage(vensaiDriver driver){
@@ -35,6 +37,35 @@ public class ChangePasswordPage {
 		ele.syncVisible(20, false);
 	}
 
+	// Validate the presence of Fields on Change password page
+	public void validateChangePasswordPageFields(){
+		TestReporter.assertTrue(txtPassword.syncVisible(10, false),"Password field is visible on Change Password page");
+		TestReporter.assertTrue(txtPasswordConfirm.syncVisible(10, false),"Password Confirmation field is visible on Change Password page");
+		TestReporter.assertTrue(btnSubmit.isDisplayed(),"Submit button is visible on Change Password page");
+		TestReporter.assertTrue(btnCancel.syncVisible(15, false),"Cancel button is visible on Change Password page");
+		
+	}
+	
+	//Validate enable and Click on Submit button
+	public void clickSubmit(){
+		pageLoaded(btnSubmit);
+		TestReporter.assertTrue(btnSubmit.syncEnabled(20, false), "Submit button is enabled");
+		btnSubmit.click();
+	}
+	
+	//Validate enable and Click on Cancel button
+	public void clickCancel(){
+		pageLoaded(btnCancel);
+		TestReporter.assertTrue(btnCancel.syncEnabled(20, false), "Cancel button is enabled");
+		btnCancel.click();
+	}
 
+	//Enter the new password to change the password
+	public void enterPasswords(String changePassword){
+		//txtPassword.clear();
+		txtPassword.set(changePassword);
+		//txtPasswordConfirm.clear();
+		txtPasswordConfirm.set(changePassword);	
+	}
 	
 }

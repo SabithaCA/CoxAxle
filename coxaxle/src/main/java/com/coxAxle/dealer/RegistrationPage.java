@@ -12,6 +12,7 @@ import com.vensai.core.interfaces.Element;
 import com.vensai.core.interfaces.Label;
 import com.vensai.core.interfaces.Textbox;
 import com.vensai.core.interfaces.impl.internal.ElementFactory;
+import com.vensai.utils.AlertHandler;
 import com.vensai.utils.Constants;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.vensaiDriver;
@@ -42,7 +43,9 @@ public class RegistrationPage {
 	@FindBy(xpath = "//div[3]/div/div") private Element eleDealerCodeMandatory;
 	@FindBy(xpath = "//div[7]/div[1]/div") private Element elePwdMandatory;
 	@FindBy(xpath = "//div[8]/div[1]/div[1]") private Element eleConfirmPwdMandatory;
-
+	@FindBy(linkText = "Contact Information") private Button btnContactInformation; 
+	@FindBy(linkText = "Working Hours") private Button btnWorkingHours;
+	@FindBy(linkText = "Password") private Button btnPassword;
 
 	/**Constructor**/
 	public RegistrationPage(vensaiDriver driver){
@@ -65,14 +68,48 @@ public class RegistrationPage {
 	}
 
 	public void enterRegistrationDetails(String name, String email, String phone, String code,
-			String password, String comfirmPassword, String zipcode ){
+			String password, String comfirmPassword, String zipcode, String inTime, String outTime ){
 
 		pageLoaded();
 		txtName.set(name);
-		//txtemail.set(email);
-		//txtPhone.set(phone);
 		txtDealerCode.set(code);
 		txtZipCode.set(zipcode);
+
+		btnContactInformation.click();
+		txtemail.set(email);
+		txtPhone.set(phone);
+		btnWorkingHours.click();
+		//txtMon.set(inTime);
+
+		String[] days={"mon_","tue_","wed_","thu_","fri_","sat_","sun_"};
+		for (int i = 1; i <=2; i++) {
+			if(i==1){
+				for (int j = 0; j < days.length; j++) {
+					driver.findElement(By.name(days[j]+"from")).sendKeys(inTime);
+				}
+			}
+			if(i==2){
+				for (int j = 0; j < days.length; j++) {
+					driver.findElement(By.name(days[j]+"to")).sendKeys(outTime);
+				}
+			}
+		}
+		/*for (int i = 2; i <= 8; i++) {
+			for (int j = 1; j <= 2; j++) {
+				WebElement ele= driver.findElement(By.xpath("//div["+i+"]/div["+j+"]/input"));
+				if(j==1){
+					//((Textbox) ele).set(inTime);
+					//ele.findElement(By.tagName("input")).sendKeys(inTime);
+					ele.sendKeys(inTime);
+				}
+				else{
+					//((Textbox) ele).set(outTime);
+					//ele.findElement(By.tagName("input")).sendKeys(outTime);
+					ele.sendKeys(outTime);
+				}
+			}
+		}*/
+		btnPassword.click();
 		txtPassword.set(password);
 		txtConfirmPassword.set(comfirmPassword);	
 	}
@@ -80,6 +117,8 @@ public class RegistrationPage {
 	public void clickSubmit(){
 		pageLoaded(btnSubmit);
 		btnSubmit.click();
+		//AlertHandler alert=new AlertHandler();
+		AlertHandler.handleAlert(driver, 20);
 	}
 
 	public void clickCancel(){
@@ -107,8 +146,8 @@ public class RegistrationPage {
 		TestReporter.assertTrue(txtZipCode.syncVisible(10, false),"Zip Code field is visible on SignUp page");
 		TestReporter.assertTrue(txtAddress.syncVisible(10, false),"Address field is visible on SignUp page");
 		TestReporter.assertTrue(btnDealerLogo.syncVisible(10, false),"Dealer Logo field is visible on SignUp page");
-		TestReporter.assertTrue(txtPassword.syncVisible(10, false),"Password field is visible on SignUp page");
-		TestReporter.assertTrue(txtConfirmPassword.syncVisible(10, false),"Confirm Password field is visible on SignUp page");
+		//---TestReporter.assertTrue(txtPassword.syncVisible(10, false),"Password field is visible on SignUp page");
+		//---TestReporter.assertTrue(txtConfirmPassword.syncVisible(10, false),"Confirm Password field is visible on SignUp page");
 		//TestReporter.assertTrue(txtTwitter.syncVisible(10, false),"Dealer Twitter Page Link  field is visible on SignUp page");
 		//TestReporter.assertTrue(txtFB.syncVisible(10, false),"Dealer FB Page Link  field is visible on SignUp page");
 	}
@@ -118,7 +157,7 @@ public class RegistrationPage {
 		//TestReporter.assertEquals(eleEmailMandatory.getText(), "*", "Email field is mandatory");
 		TestReporter.assertEquals(eleZipMandatory.getText(), "*", "Phone field is mandatory");
 		TestReporter.assertEquals(eleDealerCodeMandatory.getText(), "*", "Dealer code field is mandatory");
-		TestReporter.assertEquals(elePwdMandatory.getText(), "*", "Password field is mandatory");
-		TestReporter.assertEquals(eleConfirmPwdMandatory.getText(), "*", "Confirm Password field is mandatory");
+		//--TestReporter.assertEquals(elePwdMandatory.getText(), "*", "Password field is mandatory");
+		//--TestReporter.assertEquals(eleConfirmPwdMandatory.getText(), "*", "Confirm Password field is mandatory");
 	}
 }

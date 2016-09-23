@@ -34,7 +34,7 @@ public class AccountPage {
 		ele.syncVisible(20, false);
 	}
 
-
+	//Validate the presence of Buttons on Accounts page
 	public void validateDealerAccountButtons(){
 		pageLoaded(btnChangeLogo);
 		TestReporter.assertTrue(btnUpdateAccount.syncVisible(15, false), "Update account button is visible");
@@ -42,6 +42,8 @@ public class AccountPage {
 		TestReporter.assertTrue(btnChangeLogo.syncVisible(15, false), "Change logo button is visible");
 
 	}
+	
+	//Method to get the details on account page
 	public String[] verifyAccountDetails(){
 		pageLoaded(WtAccountDetails);
 		String value="";
@@ -71,18 +73,25 @@ public class AccountPage {
 		return table_Values;
 	}
 	
+	//Click on Update Account button
 	public void clickUpdateAccount(){
 		TestReporter.assertTrue(btnUpdateAccount.syncEnabled(20, false), "Update Account button is enabled");
 		btnUpdateAccount.click();
 	}
 	
-	public void clickChangePassword(){
-		TestReporter.assertTrue(btnChangePassword.syncEnabled(20, false), "Change password button is enabled");
-		btnChangePassword.click();
+	//Click on Change Password button
+	public void clickChangePassword() throws InterruptedException{
+		Thread.sleep(1000);
+		driver.get(driver.getCurrentUrl());
+		pageLoaded(btnChangePassword);
+		TestReporter.assertTrue(btnChangePassword.syncEnabled(20, false), "Change Password button is enabled");
+		btnChangePassword.jsClick();
+		Thread.sleep(1000);
 	}
 	
+	//Click on Change Logo button
 	public void clickChangeLogo(){
-		TestReporter.assertTrue(btnChangeLogo.syncEnabled(20, false), "Change logo button is enabled");
+		TestReporter.assertTrue(btnChangeLogo.syncEnabled(20, false), "Change Logo button is enabled");
 		btnChangeLogo.click();
 	}
 }

@@ -1,5 +1,7 @@
 package coxaxle;
 
+import java.util.Arrays;
+
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -7,10 +9,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.coxAxle.admin.SignInPage;
 import com.coxAxle.dealer.Account.AccountPage;
+import com.coxAxle.dealer.Account.UpdateAccountPage;
 import com.coxAxle.dealer.HomePage;
+import com.vensai.utils.ArrayUtil;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
@@ -18,9 +21,9 @@ import com.vensai.utils.dataProviders.ExcelDataProvider;
 /**
  * @summary Validate Dealer Account UI
  * @author  Sabitha Adama
- * @date 	14/09/2016
+ * @date 	22/09/2016
  */
-public class AT_03_ValidateDealerAccountUI extends TestEnvironment{
+public class AT_06_VerifyChangeLogo extends TestEnvironment{
 
 	// **************
 	// Data Provider
@@ -46,12 +49,12 @@ public class AT_03_ValidateDealerAccountUI extends TestEnvironment{
 		setOperatingSystem(operatingSystem);
 		setRunLocation(runLocation);
 		setTestEnvironment(environment);
-		testStart("AT_03_ValidateDealerAccountUI");
+		testStart("AT_05_VerifyUpdateAccount");
 	}
 
 	@AfterTest
 	public void close(ITestContext testResults){
-		endTest("TestAlert", testResults);
+		//endTest("TestAlert", testResults);
 	}
 
 	@Test(dataProvider = "dataScenario")
@@ -61,20 +64,23 @@ public class AT_03_ValidateDealerAccountUI extends TestEnvironment{
 		SignInPage SignInPage = new SignInPage(driver);
 		TestReporter.logStep("Validating Sign In page elements");
 		SignInPage.validateSignInPageFields();
-		
+
 		TestReporter.logStep("Login as dealer");
 		SignInPage.loginWithCredentials(email,password);
-		
+
 		//Click on Account tab
 		TestReporter.logStep("Click on Account tab");
 		HomePage homePage = new HomePage(driver);
 		homePage.clickAccountTab();
 
-		TestReporter.logStep("Validating the buttons available under accounts page");
+		//Click on Update Account button
+		TestReporter.logStep("Click on Change Portal Logo button");
 		AccountPage accountPage = new AccountPage(driver);
-		accountPage.validateDealerAccountButtons();
+		accountPage.clickChangeLogo();
+
 	}
 
 }
+
 
 

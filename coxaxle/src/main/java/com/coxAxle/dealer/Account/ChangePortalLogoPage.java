@@ -33,6 +33,24 @@ public class ChangePortalLogoPage {
 		ele.syncVisible(20, false);
 	}
 
+	public void clickBrowse(){
+		pageLoaded(btnDealerLogo);
+		TestReporter.assertTrue(btnDealerLogo.syncEnabled(20, false), "Browse button is enabled");
+		btnDealerLogo.click();
+		
+	}
 
+	public void clickSubmit(){
+		pageLoaded(btnSubmit);
+		TestReporter.assertTrue(btnSubmit.syncEnabled(20, false), "Submit button is enabled");
+		btnSubmit.click();
+	}
+	public void clickCancel(){
+		pageLoaded(btnCancel);
+		TestReporter.assertTrue(btnCancel.syncEnabled(20, false), "Cancel button is enabled");
+		btnCancel.click();
+	}
+	
+	
 	
 }

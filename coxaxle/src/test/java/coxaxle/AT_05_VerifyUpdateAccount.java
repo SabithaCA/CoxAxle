@@ -1,5 +1,7 @@
 package coxaxle;
 
+import java.util.Arrays;
+
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -56,7 +58,8 @@ public class AT_05_VerifyUpdateAccount extends TestEnvironment{
 	}
 
 	@Test(dataProvider = "dataScenario")
-	public void registerUser(String email,String password,String name,String phone,String dealerCode,String address) {
+	public void registerUser(String email,String password,String name,String phone,
+			String dealerCode,String address,String zipCode) {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
@@ -82,15 +85,18 @@ public class AT_05_VerifyUpdateAccount extends TestEnvironment{
 		updateAccount.validateUpdateAccountFields();
 		String[] data_BeforeCancel=updateAccount.getUpdateAccountFieldsInformation();
 		/*System.out.println("++++++++++++++++++++++++++++++++");
-		System.out.println(Arrays.toString(array1));
+		System.out.println(Arrays.toString(data_BeforeCancel));
 		System.out.println("++++++++++++++++++++++++++++++++");*/
 
 		//Entering the data and canceling the update
 		TestReporter.logStep("Entering the data and canceling the update");
-		updateAccount.enterDetailsToUpdate( name,  email,  phone,  dealerCode, address);
+		//updateAccount.enterDetailsToUpdate( name,  email,  phone,  dealerCode, address, zipCode);
 		updateAccount.clickCancel();
 		String[] data_AfterCancel=accountPage.verifyAccountDetails();
-
+		/*System.out.println("++++++++++++++++++++++++++++++++");
+		System.out.println(Arrays.toString(data_AfterCancel));
+		System.out.println("++++++++++++++++++++++++++++++++");
+*/
 		//Comparing account details with cancel operation
 		TestReporter.logStep("Comparing account details with cancel operation");
 		ArrayUtil arrayutil = new ArrayUtil();
@@ -102,7 +108,7 @@ public class AT_05_VerifyUpdateAccount extends TestEnvironment{
 
 		//Entering the data and Updating
 		TestReporter.logStep("Entering the data and Updating");
-		updateAccount.enterDetailsToUpdate( name,  email,  phone,  dealerCode, address);
+		updateAccount.enterDetailsToUpdate( name,  email,  phone,  dealerCode, address, zipCode);
 		updateAccount.clickSubmit();
 		String[] data_BeforeUpdate=accountPage.verifyAccountDetails();
 
@@ -117,5 +123,6 @@ public class AT_05_VerifyUpdateAccount extends TestEnvironment{
 	}
 
 }
+
 
 

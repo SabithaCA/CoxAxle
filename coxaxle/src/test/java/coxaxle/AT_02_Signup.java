@@ -28,7 +28,7 @@ public class AT_02_Signup extends TestEnvironment{
 	@DataProvider(name = "dataScenario")
 	public Object[][] scenarios() {
 		try {
-			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_02_Signup.xlsx","sample").getTestData();
+			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_02_Signup.xlsx","Data").getTestData();
 			return excelData;
 		}
 		catch (RuntimeException e){
@@ -56,7 +56,8 @@ public class AT_02_Signup extends TestEnvironment{
 
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String name, String email, String phone, String code,
-			String password, String comfirmPassword, String zipcode, String alertMsg) {
+			String password, String comfirmPassword, String zipcode, String alertMsg,
+			String inTime, String outTime) {
 
 		//Sign Up
 		TestReporter.logStep("Navigating to Sign Up page");
@@ -71,13 +72,13 @@ public class AT_02_Signup extends TestEnvironment{
 
 		//Validating Cancel button functionality
 		TestReporter.logStep("Validating Cancel button functionality");
-		resPage.enterRegistrationDetails(name, email, phone, code,password, comfirmPassword,zipcode);
-		resPage.clickCancel();
-		SignInPage.clickLink("Sign Up");
+		//resPage.enterRegistrationDetails(name, email, phone, code,password, comfirmPassword,zipcode);
+		//resPage.clickCancel();
+		//SignInPage.clickLink("Sign Up");
 
 		//Submitting the new dealer details
 		TestReporter.logStep("Submitting the new dealer details");
-		resPage.enterRegistrationDetails(name, email, phone, code,password, comfirmPassword,zipcode);
+		resPage.enterRegistrationDetails(name, email, phone, code,password, comfirmPassword,zipcode,inTime,outTime);
 		resPage.clickSubmit();
 
 		//Validating the account activation message
