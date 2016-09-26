@@ -1,6 +1,9 @@
 package com.coxAxle.admin;
 
+import java.util.List;
 import java.util.ResourceBundle;
+
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.vensai.core.interfaces.Button;
 import com.vensai.core.interfaces.Element;
@@ -26,6 +29,7 @@ public class AdminHomePage {
 	@FindBy(linkText = "Banners") private Link lnkBanners;
 	@FindBy(name = "passwordcheck") private Textbox txtConfirmPassword;
 	@FindBy(id = "submitbutton") private Button btnSubmit;
+	@FindBy(id = "main-menu") private List<WebElement> MainMenu;
 
 	/**Constructor**/
 	public AdminHomePage(vensaiDriver driver){
