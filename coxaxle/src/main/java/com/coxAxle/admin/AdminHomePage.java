@@ -24,7 +24,7 @@ public class AdminHomePage {
 	@FindBy(linkText = "Home")  private Link lnkHome;
 	@FindBy(linkText = "Customers") private Link lnkCustomers;
 	@FindBy(linkText = "Dealers") private Link lnkDealers;
-	@FindBy(linkText = "Dealers Contact") private Link lnkDealersContact;
+	@FindBy(linkText = "Contact Dealers") private Link lnkDealersContact;
 	@FindBy(linkText = "Vehicles Inventory") private Link lnkVehiclesInventory;
 	@FindBy(linkText = "Banners") private Link lnkBanners;
 	@FindBy(name = "passwordcheck") private Textbox txtConfirmPassword;
@@ -55,5 +55,12 @@ public class AdminHomePage {
 		TestReporter.assertTrue(lnkDealers.syncEnabled(10, false), "Dealers menu item is visible");
 		//lnkDealers.highlight(driver);
 		lnkDealers.click();
+	}
+	
+	public void clickContactDealersTab(){
+		pageLoaded(lnkDealersContact);
+		TestReporter.assertTrue(lnkDealersContact.syncEnabled(10, false), "Dealers contact menu item is visible");
+		//lnkDealers.highlight(driver);
+		lnkDealersContact.click();
 	}
 }

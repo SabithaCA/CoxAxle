@@ -77,7 +77,7 @@ public class SignInPage {
 		TestReporter.assertTrue(txtPassword.syncVisible(10, false), "Password textbox is visible on Sign In page");
 		TestReporter.assertTrue(btnLogin.syncEnabled(10, false), "Sign In button is visible on Sign In page");
 		TestReporter.assertTrue(lnkSignup.syncVisible(10, false), "Sign Up link is visible on Sign In page");
-		TestReporter.assertTrue(lnkForgotPassword.syncVisible(10, false), "Forgot Password link is visible on Sign In page");
+		//TestReporter.assertTrue(lnkForgotPassword.syncVisible(10, false), "Forgot Password link is visible on Sign In page");
 
 	}
 }
