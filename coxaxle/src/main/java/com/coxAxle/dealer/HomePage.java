@@ -20,9 +20,9 @@ public class HomePage {
 	@FindBy(id = "main-menu")	private Element eleMenu;
 	@FindBy(linkText = "Home")  private Link lnkHome;
 	@FindBy(linkText = "Customers") private Link lnkCustomers;
-	@FindBy(linkText = "Account") private Link lnkAccount;
-	@FindBy(linkText = "Contacts") private Link lnkContacts;
-	@FindBy(linkText = "Vehicles Inventory") private Link lnkVehicles;
+	@FindBy(linkText = "Account Details") private Link lnkAccount;
+	@FindBy(linkText = "Contact Details") private Link lnkContacts;
+	//@FindBy(linkText = "Vehicles Inventory") private Link lnkVehicles;
 	@FindBy(linkText = "Banners") private Link lnkBanners;
 	@FindBy(name = "passwordcheck") private Textbox txtConfirmPassword;
 	@FindBy(id = "submitbutton") private Button btnSubmit;
@@ -43,7 +43,7 @@ public class HomePage {
 		TestReporter.assertTrue(lnkCustomers.syncVisible(10, false), "Customers menu item is visible");
 		TestReporter.assertTrue(lnkAccount.syncEnabled(10, false), "Account menu item is visible");
 		TestReporter.assertTrue(lnkContacts.syncVisible(10, false), "Contacts menu item is visible");
-		TestReporter.assertTrue(lnkVehicles.syncVisible(10, false), "Vehicles menu item is visible");
+	//	TestReporter.assertTrue(lnkVehicles.syncVisible(10, false), "Vehicles menu item is visible");
 		TestReporter.assertTrue(lnkBanners.syncVisible(10, false), "Banners menu item is visible");
 	}
 
@@ -68,11 +68,11 @@ public class HomePage {
 		lnkContacts.click();
 	}
 
-	public void clickVehiclesInventoryTab(){
+	/*public void clickVehiclesInventoryTab(){
 		pageLoaded(lnkVehicles);
 		TestReporter.assertTrue(lnkVehicles.syncEnabled(10, false), "Vehicle Inventory menu item is visible");
 		lnkVehicles.click();
-	}
+	}*/
 
 	public void clickBannersTab(){
 		pageLoaded(lnkBanners);

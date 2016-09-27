@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.vensai.core.interfaces.Button;
+import com.vensai.core.interfaces.Element;
 import com.vensai.core.interfaces.Webtable;
 import com.vensai.core.interfaces.impl.internal.ElementFactory;
 import com.vensai.utils.Constants;
@@ -21,6 +22,7 @@ public class ContactPage {
 	@FindBy(xpath = "//div[3]/div/button")	private Button btnChangeMobileLogo;
 	@FindBy(xpath = "//input[@value='Update Contacts']")  private Button btnUpdateContacts;
 	@FindBy(xpath = "//table/tbody") private Webtable WtContactDetails;
+	@FindBy(xpath = "//div[4]/div[2]/div[1]/div/p[2]/img") private Element eleContactLogo;
 
 	/**Constructor**/
 	public ContactPage(vensaiDriver driver){
@@ -32,6 +34,11 @@ public class ContactPage {
 		btnChangeMobileLogo.syncVisible(20, false);
 	}
 
+	private void pageLoaded(Element ele){
+		ele.syncVisible(20, false);
+	}
+
+
 	//Validate the presence of Buttons on Accounts page
 	public void validateDealerContactButtons(){
 		pageLoaded();
@@ -42,6 +49,8 @@ public class ContactPage {
 
 	//Click on Change Mobile Logo button
 	public void clickChangeMobileLogo(){
+		driver.get(driver.getCurrentUrl());
+		pageLoaded();
 		TestReporter.assertTrue(btnChangeMobileLogo.syncEnabled(20, false), "Change Mobile Logo button is enabled");
 		btnChangeMobileLogo.click();
 	}
@@ -72,5 +81,12 @@ public class ContactPage {
 		return table_Values;
 	}
 
+	public String getContactLogo(){
+		pageLoaded(eleContactLogo);
+		TestReporter.assertTrue(eleContactLogo.getAttribute("src")
+				.contains(""),
+				"Logo is Validated");
+		return eleContactLogo.getAttribute("src");
+	}
 
 }

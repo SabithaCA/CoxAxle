@@ -49,15 +49,19 @@ public class SignInPage {
 	 * @param location
 	 * @param password
 	 */
-	public void loginWithCredentials(String Email,String Password){
+	
+	private void pageLoaded(Element ele){
+		ele.syncVisible(20, false);
+	}
 
+	//method to login into application
+	public void loginWithCredentials(String Email,String Password){
 		//System.out.println(userCredentialRepo.getString(Email));
 		//userCredentialRepo.getString(Email)
 		txtEmail.set(Email);
 		//txtPassword.set(userCredentialRepo.getString("PASSWORD"));
 		txtPassword.set(Password);
 		btnLogin.click();
-
 	}
 
 	//Allowed link names SignUp, Login, Forgot Password
@@ -66,13 +70,14 @@ public class SignInPage {
 		ln.click();
 	}
 
+	//Validating the presence of fields on Signin page
 	public void validateSignInPageFields(){
 		//txtEmail.syncVisible();
 		TestReporter.assertTrue(txtEmail.syncVisible(10, false), "Email textbox is visible on Sign In page");
 		TestReporter.assertTrue(txtPassword.syncVisible(10, false), "Password textbox is visible on Sign In page");
 		TestReporter.assertTrue(btnLogin.syncEnabled(10, false), "Sign In button is visible on Sign In page");
 		TestReporter.assertTrue(lnkSignup.syncVisible(10, false), "Sign Up link is visible on Sign In page");
-		TestReporter.assertTrue(lnkForgotPassword.syncVisible(10, false), "Forgot Password link is visible on Sign In page");
+		//TestReporter.assertTrue(lnkForgotPassword.syncVisible(10, false), "Forgot Password link is visible on Sign In page");
 
 	}
 }

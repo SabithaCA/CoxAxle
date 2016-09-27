@@ -53,13 +53,13 @@ public class AT_08_VerifyUpdateContacts extends TestEnvironment{
 
 	@AfterTest
 	public void close(ITestContext testResults){
-		//endTest("TestAlert", testResults);
+		endTest("TestAlert", testResults);
 	}
 
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String email,String password, String adminEmail, String adminPassword, 
 			String mainContact,String salesContact,String serviceDeskContact,
-			String collisionDeskContact,String webLink) throws InterruptedException {
+			String collisionDeskContact,String webLink,String imagePath) throws InterruptedException {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
