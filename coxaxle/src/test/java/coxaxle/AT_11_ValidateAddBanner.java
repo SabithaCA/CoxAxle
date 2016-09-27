@@ -47,7 +47,7 @@ public class AT_11_ValidateAddBanner extends TestEnvironment{
 		setOperatingSystem(operatingSystem);
 		setRunLocation(runLocation);
 		setTestEnvironment(environment);
-		testStart("AT_10_ValidateDealerContactDetails");
+		testStart("AT_11_ValidateAddBanner");
 	}
 
 	@AfterTest
