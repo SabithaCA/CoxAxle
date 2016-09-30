@@ -1,4 +1,4 @@
-package coxaxle;
+package coxaxle.Dealer;
 
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
@@ -59,7 +59,7 @@ public class AT_08_VerifyUpdateContacts extends TestEnvironment{
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String email,String password, String adminEmail, String adminPassword, 
 			String mainContact,String salesContact,String serviceDeskContact,
-			String collisionDeskContact,String webLink,String imagePath) throws InterruptedException {
+			String collisionDeskContact,String webLink,String imagePath,String imageName,String code) throws InterruptedException {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
@@ -80,9 +80,7 @@ public class AT_08_VerifyUpdateContacts extends TestEnvironment{
 		ContactPage contactsPage = new ContactPage(driver);
 		contactsPage.validateDealerContactButtons();
 		String[] valuesBefore_Cancel=contactsPage.getContactDetails();
-		/*System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-		System.out.println(Arrays.toString(valuesBefore_Cancel));
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");*/
+		//System.out.println(Arrays.toString(valuesBefore_Cancel));
 
 		//Click on Update Contacts button
 		TestReporter.logStep("Click on Update Contacts button");
@@ -94,16 +92,13 @@ public class AT_08_VerifyUpdateContacts extends TestEnvironment{
 		UpdateContactsPage updateContacts=new UpdateContactsPage(driver);
 		updateContacts.validateDealerContactFields();
 		updateContacts.enterUpdateContactData(mainContact,salesContact,serviceDeskContact,
-				collisionDeskContact,webLink);
+				collisionDeskContact,webLink,imageName,code);
 		updateContacts.clickCancel();
 
 		//Getting the details after cancel operation
 		TestReporter.logStep("Getting the details after cancel operation");
 		String[] valuesAfter_Cancel=contactsPage.getContactDetails();
-		/*System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-		System.out.println(Arrays.toString(valuesAfter_Cancel));
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-		 */
+		//System.out.println(Arrays.toString(valuesAfter_Cancel));
 
 		//Comparing contact details with Cancel operation
 		TestReporter.logStep("Comparing contact details with Cancel operation");
@@ -117,21 +112,18 @@ public class AT_08_VerifyUpdateContacts extends TestEnvironment{
 		// Getting values before submit operation
 		TestReporter.logStep("Getting the values before Submit operation");
 		String[] valuesBefore_Submit={mainContact,salesContact,serviceDeskContact,collisionDeskContact,webLink};
-		/*System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-		System.out.println(Arrays.toString(valuesBefore_Submit));
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");*/
+		//System.out.println(Arrays.toString(valuesBefore_Submit));
+
 		//Validate update contact fields, entering data into fields and Clicking on cancel button
 		TestReporter.logStep("Entering data into fields and Clicking on Submit button");
 		updateContacts.enterUpdateContactData(mainContact,salesContact,serviceDeskContact,
-				collisionDeskContact,webLink);
+				collisionDeskContact,webLink,imageName,code);
 		updateContacts.clickSubmit();
 
 		//Getting the values after Submit operation
 		TestReporter.logStep("Getting the values after Submit operation");
 		String[] valuesAfter_Submit=contactsPage.getContactDetails();
-		/*System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-		System.out.println(Arrays.toString(valuesAfter_Submit));
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");*/
+		//System.out.println(Arrays.toString(valuesAfter_Submit));
 
 		//Comparing contact details with Submit operation
 		TestReporter.logStep("Comparing contact details with Submit operation");

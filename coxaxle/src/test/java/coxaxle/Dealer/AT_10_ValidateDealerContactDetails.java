@@ -1,4 +1,4 @@
-package coxaxle;
+package coxaxle.Dealer;
 
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
@@ -60,7 +60,7 @@ public class AT_10_ValidateDealerContactDetails extends TestEnvironment{
 
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String email,String password,String AdminEmail,
-			String AdminPassword, String changePassword) throws InterruptedException {
+			String AdminPassword, String changePassword,String data) throws InterruptedException {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
@@ -81,9 +81,9 @@ public class AT_10_ValidateDealerContactDetails extends TestEnvironment{
 		ContactPage contactsPage = new ContactPage(driver);
 		String[] dealer_Details = contactsPage.getContactDetails();
 		String dealer_Logo = contactsPage.getContactLogo();
-		System.out.println(dealer_Details[0]);
+		//System.out.println(dealer_Details[0]);
 		String[] code = dealer_Details[0].split(" ");
-		System.out.println(code[1]);
+		//System.out.println(code[1]);
 
 		//Dealer Logout
 		TestReporter.logStep("Dealer Logout");
@@ -98,6 +98,7 @@ public class AT_10_ValidateDealerContactDetails extends TestEnvironment{
 		//Clicking on Contact Dealer Tab
 		TestReporter.logStep("Clicking on Contact Dealer Tab");
 		AdminHomePage adminHomePage = new AdminHomePage(driver);
+		adminHomePage.validateMainMenuItems();
 		adminHomePage.clickContactDealersTab();
 
 		//Getting the Dealer Contact information through Admin Login

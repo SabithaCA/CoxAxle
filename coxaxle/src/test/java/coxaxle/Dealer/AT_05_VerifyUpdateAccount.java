@@ -1,4 +1,4 @@
-package coxaxle;
+package coxaxle.Dealer;
 
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
@@ -83,19 +83,15 @@ public class AT_05_VerifyUpdateAccount extends TestEnvironment{
 		UpdateAccountPage updateAccount=new UpdateAccountPage(driver);
 		updateAccount.validateUpdateAccountFields();
 		String[] data_BeforeCancel=updateAccount.getUpdateAccountFieldsInformation();
-		/*System.out.println("++++++++++++++++++++++++++++++++");
-		System.out.println(Arrays.toString(data_BeforeCancel));
-		System.out.println("++++++++++++++++++++++++++++++++");*/
+		//System.out.println(Arrays.toString(data_BeforeCancel));
 
 		//Entering the data and canceling the update
 		TestReporter.logStep("Entering the data and canceling the update");
 		//updateAccount.enterDetailsToUpdate( name,  email,  phone,  dealerCode, address, zipCode);
 		updateAccount.clickCancel();
 		String[] data_AfterCancel=accountPage.verifyAccountDetails();
-		/*System.out.println("++++++++++++++++++++++++++++++++");
-		System.out.println(Arrays.toString(data_AfterCancel));
-		System.out.println("++++++++++++++++++++++++++++++++");
-		 */
+		//System.out.println(Arrays.toString(data_AfterCancel));
+
 		//Comparing account details with cancel operation
 		TestReporter.logStep("Comparing account details with cancel operation");
 		ArrayUtil arrayutil = new ArrayUtil();

@@ -74,7 +74,6 @@ public class RegistrationPage {
 		txtPhone.set(phone);
 		btnWorkingHours.click();
 		//txtMon.set(inTime);
-
 		String[] days={"mon_","tue_","wed_","thu_","fri_","sat_","sun_"};
 		for (int i = 1; i <=2; i++) {
 			if(i==1){
@@ -88,26 +87,12 @@ public class RegistrationPage {
 				}
 			}
 		}
-		/*for (int i = 2; i <= 8; i++) {
-			for (int j = 1; j <= 2; j++) {
-				WebElement ele= driver.findElement(By.xpath("//div["+i+"]/div["+j+"]/input"));
-				if(j==1){
-					//((Textbox) ele).set(inTime);
-					//ele.findElement(By.tagName("input")).sendKeys(inTime);
-					ele.sendKeys(inTime);
-				}
-				else{
-					//((Textbox) ele).set(outTime);
-					//ele.findElement(By.tagName("input")).sendKeys(outTime);
-					ele.sendKeys(outTime);
-				}
-			}
-		}*/
 		btnPassword.click();
 		txtPassword.set(password);
 		txtConfirmPassword.set(comfirmPassword);	
 	}
 
+	//Click Submit
 	public void clickSubmit(){
 		pageLoaded(btnSubmit);
 		btnSubmit.click();
@@ -115,23 +100,25 @@ public class RegistrationPage {
 		AlertHandler.handleAlert(driver, 20);
 	}
 
+	//Click Cancel
 	public void clickCancel(){
 		pageLoaded(btnCancel);
 		btnCancel.click();
 	}
 
-
+	//Signup Activate Alert
 	public void verifyActivateAccountAlert(String alertMsg){
-		try{
-			pageLoaded(eleAlert);
-			boolean status = eleAlert.getText().trim().equalsIgnoreCase(alertMsg.trim()); 
-			TestReporter.assertTrue(status, "Activate account message is validated");
+		pageLoaded(eleAlert);
+		boolean status = eleAlert.getText().trim().equalsIgnoreCase(alertMsg.trim()); 
+		if(status==true){
+			TestReporter.logStep("Activate account message is validated");
 		}
-		catch(Exception e){
+		else{
 			TestReporter.logStep("Error occured while creating the dealer account");
 		}
 	}
 
+	//Validating Signup fields
 	public void validatingSignUpFields(){
 		TestReporter.assertTrue(txtName.syncVisible(10, false),"Dealer name field is visible on SignUp page");
 		//TestReporter.assertTrue(txtemail.syncVisible(10, false),"Email field is visible on SignUp page");
@@ -146,6 +133,7 @@ public class RegistrationPage {
 		//TestReporter.assertTrue(txtFB.syncVisible(10, false),"Dealer FB Page Link  field is visible on SignUp page");
 	}
 
+	//Validating Signup Mandatory fields
 	public void validateMandatoryFields(){
 		TestReporter.assertEquals(eleDealerNameMandatory.getText(), "*", "Dealer name field is mandatory");
 		//TestReporter.assertEquals(eleEmailMandatory.getText(), "*", "Email field is mandatory");

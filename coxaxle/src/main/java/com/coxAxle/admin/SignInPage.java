@@ -49,7 +49,7 @@ public class SignInPage {
 	 * @param location
 	 * @param password
 	 */
-	
+
 	private void pageLoaded(Element ele){
 		ele.syncVisible(20, false);
 	}

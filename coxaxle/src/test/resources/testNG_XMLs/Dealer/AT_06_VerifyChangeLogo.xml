@@ -6,9 +6,9 @@
 	<parameter name="runLocation" value="local" />
 	<parameter name="browserVersion" value="" />
 	<parameter name="operatingSystem" value="windows" />
- 	<test name="VerifyChangeMobileLogo">
+ 	<test name="VerifyChangeLogo">
 		<classes>
-			<class name="coxaxle.AT_09_VerifyChangeMobileLogo" />
+			<class name="coxaxle.Dealer.AT_06_VerifyChangeLogo" />
 		</classes>
 	</test> 
 </suite> <!-- Suite -->

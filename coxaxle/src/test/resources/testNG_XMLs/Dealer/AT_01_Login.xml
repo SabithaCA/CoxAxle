@@ -8,7 +8,7 @@
 	<parameter name="operatingSystem" value="windows" />
  	<test name="Login">
 		<classes>
-			<class name="coxaxle.AT_01_Login" />
+			<class name="coxaxle.Dealer.AT_01_Login" />
 		</classes>
 	</test> 
 </suite> <!-- Suite -->

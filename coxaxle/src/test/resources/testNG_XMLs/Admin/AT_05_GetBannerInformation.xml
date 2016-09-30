@@ -6,9 +6,9 @@
 	<parameter name="runLocation" value="local" />
 	<parameter name="browserVersion" value="" />
 	<parameter name="operatingSystem" value="windows" />
- 	<test name="VerifyChangePassword">
+ 	<test name="GetBannerInformation">
 		<classes>
-			<class name="coxaxle.AT_07_VerifyChangePassword" />
+			<class name="coxaxle.Admin.AT_05_GetBannerInformation" />
 		</classes>
 	</test> 
 </suite> <!-- Suite -->

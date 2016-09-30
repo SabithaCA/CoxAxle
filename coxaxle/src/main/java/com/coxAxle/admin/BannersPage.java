@@ -1,5 +1,6 @@
-package com.coxAxle.dealer.Banners;
+package com.coxAxle.admin;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import org.openqa.selenium.By;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import com.vensai.core.interfaces.Button;
 import com.vensai.core.interfaces.Element;
 import com.vensai.core.interfaces.Listbox;
+import com.vensai.core.interfaces.Textbox;
 import com.vensai.core.interfaces.Webtable;
 import com.vensai.core.interfaces.impl.internal.ElementFactory;
 import com.vensai.utils.Constants;
@@ -26,6 +28,10 @@ public class BannersPage {
 	@FindBy(id = "status") private Listbox lstStatus;
 	@FindBy(xpath = "//table/tbody") private Webtable wtBannersList;
 	@FindBy(linkText = "Next")  private Button btnNext;
+	@FindBy(id = "dealercode") private Textbox txtDealerCode;
+	@FindBy(xpath = "//div[2]/table/tbody") private Webtable wtBannerInformation;
+	@FindBy(linkText = "Change Banner") private Button btnChangeBanner;
+	@FindBy(xpath = "//tr[1]/td[5]/img") private Button btnStatus;
 
 
 	/**Constructor**/
@@ -45,7 +51,7 @@ public class BannersPage {
 	//Validate the presence of Buttons on Banners page
 	public void validateBannerFields(){
 		pageLoaded();
-		TestReporter.assertTrue(btnAddBanner.syncVisible(15, false), "Add Banners button is visible");
+		TestReporter.assertTrue(txtDealerCode.syncVisible(15, false), "Add Banners button is visible");
 		TestReporter.assertTrue(btnSearch.syncVisible(15, false), "Search button is visible");
 		TestReporter.assertTrue(btnClear.syncVisible(15, false), "Clear button is visible");
 		List<WebElement> values= lstStatus.getOptions();
@@ -54,18 +60,18 @@ public class BannersPage {
 		}
 	}
 
-	//Click on Add Banner Button
-	public void clickAddBanner(){
+	//Verify display of Add Banner Button
+	public void verifyAddBannerDisplayed(){
 		pageLoaded();
-		TestReporter.assertTrue(btnAddBanner.syncEnabled(20, false), "Add Banner button is enabled");
-		btnAddBanner.click();
+		TestReporter.assertFalse(btnAddBanner.syncEnabled(20, false), "Add Banner button is not visible");
+		//btnAddBanner.click();
 	}
 
-	//method to get the list count
-	public int getBannerListCount(){
-		List<WebElement> table_Row = wtBannersList.findElements(By.tagName("tr"));
-		//System.out.println("Row count "+table_Row.size());
-		return table_Row.size();
+	//btnChangeBanner
+	//Verify display of Change Banner Button
+	public void verifyChangeBannerDisplayed(){
+		TestReporter.assertFalse(btnChangeBanner.syncEnabled(20, false), "Change Banner button is not visible");
+		//btnAddBanner.click();
 	}
 
 	//Method to get the status of specified banner
@@ -77,7 +83,7 @@ public class BannersPage {
 			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
 			int columns_count = Columns_row.size();
 			if(Columns_row.get(0).getText().equalsIgnoreCase(imageName)){
-				System.out.println("Status of added new banner : "+Columns_row.get(3).findElement(By.tagName("img")).getAttribute("title"));
+				TestReporter.log("Status of added new banner : "+Columns_row.get(3).findElement(By.tagName("img")).getAttribute("title"));
 				break;
 			}
 		}
@@ -120,15 +126,51 @@ public class BannersPage {
 		for (int row=0; row<rows_count; row++){
 			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
 			int columns_count = Columns_row.size();
-			System.out.println("gng inside For");
 			if(Columns_row.get(0).getText().equalsIgnoreCase(imageName)){
-				System.out.println("gng inside IF");
 				Columns_row.get(0).findElement(By.tagName("a")).click();
 				break;
 			}
 		}
 	}
 
+	public void getBannerDetails(){
+		pageLoaded();
+		String[]  details= null;
+		String data="";
+		List<WebElement> rows_table = wtBannerInformation.findElements(By.tagName("tr"));
+		for (int row = 0; row <rows_table.size(); row++) {
+			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
+			for (WebElement webElement : Columns_row) {
+				//System.out.println(row+" row values are "+webElement.getText());
+				data = data+webElement.getText()+" ";
 
+			}
+			data=data+"_";
+		}
+		details=data.split("_");
+		System.out.println(Arrays.toString(details));
+	}
+
+	//Checking the status display
+	public void checkStatusDisplay(){
+		pageLoaded(btnStatus);
+		TestReporter.assertEquals(btnStatus.getAttribute("onclick"), null, "Status images are disabled for admin");
+	}
+
+	//Enter data and clicking on Search
+	public void clickSearch(String code){
+		pageLoaded(btnSearch);
+		txtDealerCode.set(code);
+		TestReporter.assertTrue(btnSearch.syncEnabled(20, false), "Search button is enabled");
+		btnSearch.click();
+	}
+
+	//Enter Data and clicking on clear
+	public void clickClear(String code){
+		pageLoaded(btnClear);
+		txtDealerCode.set(code);
+		TestReporter.assertTrue(btnClear.syncEnabled(20, false), "Clear button is enabled");
+		btnClear.click();
+	}
 
 }

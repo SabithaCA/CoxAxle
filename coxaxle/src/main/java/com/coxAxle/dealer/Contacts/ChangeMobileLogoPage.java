@@ -38,12 +38,14 @@ public class ChangeMobileLogoPage {
 		btnBrowse.sendKeys(imagePath);
 	}
 
+	//Click Submit
 	public void clickSubmit() throws InterruptedException{
 		TestReporter.assertTrue(btnSubmit.syncEnabled(10, false), "Submit button is visible");
 		btnSubmit.click();
 		Thread.sleep(2000);
 	}
 
+	//Click Cancel
 	public void clickCancel(){
 		TestReporter.assertTrue(btnCancel.syncEnabled(10, false), "Cancel button is visible");
 		btnCancel.click();

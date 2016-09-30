@@ -1,4 +1,4 @@
-package coxaxle;
+package coxaxle.Dealer;
 
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
@@ -58,7 +58,7 @@ public class AT_11_ValidateAddBanner extends TestEnvironment{
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String email,String password, String adminEmail, String adminPassword, 
 			String mainContact,String salesContact,String serviceDeskContact,
-			String collisionDeskContact,String webLink,String imagePath,String imageName) {
+			String collisionDeskContact,String webLink,String imagePath,String imageName,String code) {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
@@ -85,20 +85,20 @@ public class AT_11_ValidateAddBanner extends TestEnvironment{
 		TestReporter.logStep("Validating Add Banner page fields");
 		NewBannerPage newBannerPage = new NewBannerPage(driver);
 		newBannerPage.validateNewBannerFields();
-		
+
 		//Entering New Banner Information and Clicking on Cancel button
 		TestReporter.logStep("Entering New Banner Information and Clicking on Cancel button");
 		newBannerPage.enterAddBannerFieldsInfo(imageName,imagePath);
 		newBannerPage.clickCancel();
 		int bannerCount_AfterCancel = bannersPage.getBannerListCount();
-		
+
 		//Clicking on Add Banner button, Entering information and clicking on Submit button
 		TestReporter.logStep("Clicking on Add Banner button, Entering information and clicking on Submit button");
 		bannersPage.clickAddBanner();
 		newBannerPage.enterAddBannerFieldsInfo(imageName,imagePath);
 		newBannerPage.clickSubmit();
 		int bannerCount_AfterSubmit = bannersPage.getBannerListCount();
-		
+
 		//Verifying the Newly added Banner status
 		TestReporter.logStep("Verifying the Newly added Banner status");
 		bannersPage.getStatusOfSpecifiedBanner(imageName);
