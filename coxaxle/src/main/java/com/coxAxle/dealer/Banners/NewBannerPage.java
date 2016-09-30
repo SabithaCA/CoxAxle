@@ -50,14 +50,14 @@ public class NewBannerPage {
 		TestReporter.assertTrue(btnSubmit.syncEnabled(20, false), "Submit button is enabled");
 		btnSubmit.click();
 	}
-	
+
 	//Click on Cancel Button
 	public void clickCancel(){
 		pageLoaded();
 		TestReporter.assertTrue(btnCancel.syncEnabled(20, false), "Cancel button is enabled");
 		btnCancel.click();
 	}
-	
+
 	//method to enter the Add New Banner information
 	public void enterAddBannerFieldsInfo(String imageName,String imagePath){
 		txtBannerName.set(imageName);

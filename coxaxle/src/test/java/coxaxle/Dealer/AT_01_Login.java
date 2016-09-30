@@ -1,4 +1,4 @@
-package coxaxle;
+package coxaxle.Dealer;
 
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
@@ -8,18 +8,19 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.coxAxle.admin.SignInPage;
-import com.coxAxle.dealer.Account.AccountPage;
 import com.coxAxle.dealer.HomePage;
+import com.coxAxle.navigation.MainNav;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
 
 /**
- * @summary Validate Dealer Account UI
+ * @summary Dealer Login
  * @author  Sabitha Adama
- * @date 	14/09/2016
+ * @date 	13/09/2016
  */
-public class AT_03_ValidateDealerAccountUI extends TestEnvironment{
+
+public class AT_01_Login extends TestEnvironment{
 
 	// **************
 	// Data Provider
@@ -46,7 +47,7 @@ public class AT_03_ValidateDealerAccountUI extends TestEnvironment{
 		setOperatingSystem(operatingSystem);
 		setRunLocation(runLocation);
 		setTestEnvironment(environment);
-		testStart("AT_03_ValidateDealerAccountUI");
+		testStart("AT_01_Login");
 	}
 
 	@AfterTest
@@ -55,26 +56,28 @@ public class AT_03_ValidateDealerAccountUI extends TestEnvironment{
 	}
 
 	@Test(dataProvider = "dataScenario")
-	public void registerUser(String email,String password) {
+	public void exampleMethod(String email, String password){
 
 		//Validating Sign In page elements
-		SignInPage SignInPage = new SignInPage(driver);
+		SignInPage SignInPage = new SignInPage(getDriver());
 		TestReporter.logStep("Validating Sign In page elements");
 		SignInPage.validateSignInPageFields();
 
+		//Login as dealer
 		TestReporter.logStep("Login as dealer");
 		SignInPage.loginWithCredentials(email,password);
 
-		//Click on Account tab
-		TestReporter.logStep("Click on Account tab");
-		HomePage homePage = new HomePage(driver);
-		homePage.clickAccountTab();
+		//Validating Dealer home page menu items
+		TestReporter.logStep("Validating Dealer home page menu items");
+		HomePage homepage=new HomePage(driver);
+		homepage.validateMainMenuItems();
 
-		TestReporter.logStep("Validating the buttons available under accounts page");
-		AccountPage accountPage = new AccountPage(driver);
-		accountPage.validateDealerAccountButtons();
+		//Logout
+		TestReporter.logStep("Logout from appication");
+		MainNav mainNav = new MainNav(getDriver());
+		TestReporter.assertTrue(mainNav.isLogoutDisplayed(), "Verify user is successfully logged in");
+		mainNav.clickLogout();
 	}
-
 }
 
 

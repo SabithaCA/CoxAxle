@@ -26,7 +26,6 @@ public class HomePage {
 	@FindBy(linkText = "Banners") private Link lnkBanners;
 	@FindBy(name = "passwordcheck") private Textbox txtConfirmPassword;
 	@FindBy(id = "submitbutton") private Button btnSubmit;
-	@FindBy(xpath = "//form/div/div/ul/li") private Element eleAlert;
 
 	/**Constructor**/
 	public HomePage(vensaiDriver driver){
@@ -38,23 +37,17 @@ public class HomePage {
 		ele.syncVisible(20, false);
 	}
 
+	// Validate Home page menu items
 	public void validateMainMenuItems(){
 		TestReporter.assertTrue(lnkHome.syncVisible(10, false), "Home menu item is visible");
 		TestReporter.assertTrue(lnkCustomers.syncVisible(10, false), "Customers menu item is visible");
 		TestReporter.assertTrue(lnkAccount.syncEnabled(10, false), "Account menu item is visible");
 		TestReporter.assertTrue(lnkContacts.syncVisible(10, false), "Contacts menu item is visible");
-	//	TestReporter.assertTrue(lnkVehicles.syncVisible(10, false), "Vehicles menu item is visible");
+		//	TestReporter.assertTrue(lnkVehicles.syncVisible(10, false), "Vehicles menu item is visible");
 		TestReporter.assertTrue(lnkBanners.syncVisible(10, false), "Banners menu item is visible");
 	}
 
-	public void verifyActivateAccountAlert(String alertMsg){
-
-		pageLoaded(eleAlert);
-		boolean status = eleAlert.getText().trim().equalsIgnoreCase(alertMsg.trim()); 
-		TestReporter.assertTrue(status, "Activate account message is validated");
-
-	}
-
+	//Click Account tab
 	public void clickAccountTab(){
 		pageLoaded(lnkAccount);
 		TestReporter.assertTrue(lnkAccount.syncEnabled(10, false), "Account menu item is visible");
@@ -62,6 +55,7 @@ public class HomePage {
 		lnkAccount.click();
 	}
 
+	//Click Contacts tab
 	public void clickContactsTab(){
 		pageLoaded(lnkContacts);
 		TestReporter.assertTrue(lnkContacts.syncEnabled(10, false), "Contacts menu item is visible");
@@ -74,6 +68,7 @@ public class HomePage {
 		lnkVehicles.click();
 	}*/
 
+	//Click Banners tab
 	public void clickBannersTab(){
 		pageLoaded(lnkBanners);
 		TestReporter.assertTrue(lnkBanners.syncEnabled(10, false), "Banners menu item is visible");

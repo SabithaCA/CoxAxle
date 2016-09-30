@@ -8,7 +8,7 @@
 	<parameter name="operatingSystem" value="windows" />
  	<test name="VerifyUpdateContacts">
 		<classes>
-			<class name="coxaxle.AT_08_VerifyUpdateContacts" />
+			<class name="coxaxle.Dealer.AT_08_VerifyUpdateContacts" />
 		</classes>
 	</test> 
 </suite> <!-- Suite -->

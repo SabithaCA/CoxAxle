@@ -1,4 +1,4 @@
-package coxaxle;
+package coxaxle.Dealer;
 
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
@@ -84,12 +84,8 @@ public class AT_02_Signup extends TestEnvironment{
 		TestReporter.logStep("Validating the account activation message");
 		resPage.verifyActivateAccountAlert(alertMsg);
 		/*SignInPage.clickLink("Sign In");
-		SignInPage.loginWithCredentials(email,password);
+		SignInPage.loginWithCredentials(email,password)*/
 
-		//Logout
-		MainNav mainNav = new MainNav(getDriver());
-		TestReporter.assertTrue(mainNav.isLogoutDisplayed(), "Verify user is successfully logged in");
-		mainNav.clickLogout();*/
 	}
 
 }

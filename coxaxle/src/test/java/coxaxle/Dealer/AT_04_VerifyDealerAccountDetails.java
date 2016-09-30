@@ -1,4 +1,4 @@
-package coxaxle;
+package coxaxle.Dealer;
 
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
@@ -7,21 +7,23 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import com.coxAxle.admin.AdminHomePage;
+import com.coxAxle.admin.DealerPage;
 import com.coxAxle.admin.SignInPage;
 import com.coxAxle.dealer.Account.AccountPage;
-import com.coxAxle.dealer.Account.ChangePasswordPage;
-import com.coxAxle.navigation.MainNav;
 import com.coxAxle.dealer.HomePage;
+import com.coxAxle.navigation.MainNav;
+import com.vensai.utils.ArrayUtil;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
 
 /**
- * @summary Validate Dealer Change Password
+ * @summary Validate Dealer Account Details
  * @author  Sabitha Adama
- * @date 	22/09/2016
+ * @date 	15/09/2016
  */
-public class AT_07_VerifyChangePassword extends TestEnvironment{
+public class AT_04_VerifyDealerAccountDetails extends TestEnvironment{
 
 	// **************
 	// Data Provider
@@ -47,7 +49,7 @@ public class AT_07_VerifyChangePassword extends TestEnvironment{
 		setOperatingSystem(operatingSystem);
 		setRunLocation(runLocation);
 		setTestEnvironment(environment);
-		testStart("AT_07_VerifyChangePassword");
+		testStart("AT_04_VerifyDealerAccountDetails");
 	}
 
 	@AfterTest
@@ -56,14 +58,16 @@ public class AT_07_VerifyChangePassword extends TestEnvironment{
 	}
 
 	@Test(dataProvider = "dataScenario")
-	public void registerUser(String email,String password, String adminEmail, String adminPassword, String changePassword) throws InterruptedException {
+	public void registerUser(String email,String password,String AdminEmail,String AdminPassword, 
+			String changePassword,String data) {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
 		TestReporter.logStep("Validating Sign In page elements");
 		SignInPage.validateSignInPageFields();
 
-		TestReporter.logStep("Login as dealer");
+		//Login as Dealer
+		TestReporter.logStep("Login as Dealer");
 		SignInPage.loginWithCredentials(email,password);
 
 		//Click on Account tab
@@ -71,40 +75,47 @@ public class AT_07_VerifyChangePassword extends TestEnvironment{
 		HomePage homePage = new HomePage(driver);
 		homePage.clickAccountTab();
 
-		//Click on Update Account button
-		TestReporter.logStep("Click on Change Portal Logo button");
+		//Verify the Account details od dealer
+		TestReporter.logStep("Verify the Account details od dealer");
 		AccountPage accountPage = new AccountPage(driver);
-		accountPage.clickChangePassword();
-
-		//Validate the fields present on change password page
-		TestReporter.logStep("Validate the fields present on change password page");
-		ChangePasswordPage changePasswordPage = new ChangePasswordPage(driver);
-		changePasswordPage.validateChangePasswordPageFields();
-
-		//Enter password and click on cancel
-		TestReporter.logStep("Enter password and click on cancel");
-		changePasswordPage.enterPasswords(changePassword);
-		changePasswordPage.clickCancel();
-
-		//Enter password and click on Submit
-		TestReporter.logStep("Enter password and click on Submit");
-		AccountPage accountPg = new AccountPage(driver);
-		accountPg.clickChangePassword();
-		changePasswordPage.enterPasswords(changePassword);
-		changePasswordPage.clickSubmit();
+		String[] DealerAccount_Details=accountPage.verifyAccountDetails();
+		for (int i = 0; i < DealerAccount_Details.length; i++) {
+			System.out.println(DealerAccount_Details[i]);
+		}
 
 		//Logout
 		MainNav mainNav = new MainNav(getDriver());
-		TestReporter.assertTrue(mainNav.isLogoutDisplayed(), "Verify user is successfully logged in");
+		TestReporter.assertTrue(mainNav.isLogoutDisplayed(), "Verify user is successfully logged out");
 		mainNav.clickLogout();
 
-		//Login with new password
-		TestReporter.logStep("Login with new password");
-		SignInPage.loginWithCredentials(email,changePassword);
+		//Login as Admin
+		TestReporter.logStep("Login as Admin");
+		SignInPage.loginWithCredentials(AdminEmail,AdminPassword);
+
+
+		//Click on Dealers tab
+		TestReporter.logStep("Click on Dealers tab");
+		AdminHomePage adminHomePage=new AdminHomePage(driver);
+		adminHomePage.validateMainMenuItems();
+		adminHomePage.clickDealersTab();
+
+		//Clicking on specified Dealer and Verifying the Dealer details
+		TestReporter.logStep("Clicking on specified Dealer and Verifying the Dealer details");
+		DealerPage dealerPage = new DealerPage(driver);
+		dealerPage.clickOnSpecifiedDealer(email);
+		TestReporter.logStep("Getting details");
+		String[] Dealer_Details=dealerPage.verifyDealerDetails();
+		for (int i = 0; i < Dealer_Details.length; i++) {
+			System.out.println(Dealer_Details[i]);
+		}
+
+		//Comparing Dealer and Dealer account details
+		TestReporter.logStep("Comparing Dealer and Dealer account details");
+		ArrayUtil arrayutil = new ArrayUtil();
+		arrayutil.comparisonOfOneToMany(DealerAccount_Details,Dealer_Details);
 
 	}
 
 }
-
 
 

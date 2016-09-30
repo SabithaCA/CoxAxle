@@ -6,9 +6,9 @@
 	<parameter name="runLocation" value="local" />
 	<parameter name="browserVersion" value="" />
 	<parameter name="operatingSystem" value="windows" />
- 	<test name="ValidateDealerAccountUI">
+ 	<test name="ValidateChangeBanner">
 		<classes>
-			<class name="coxaxle.AT_03_ValidateDealerAccountUI" />
+			<class name="coxaxle.Dealer.AT_12_ValidateChangeBanner" />
 		</classes>
 	</test> 
 </suite> <!-- Suite -->

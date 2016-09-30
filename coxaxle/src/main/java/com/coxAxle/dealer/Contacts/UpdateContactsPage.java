@@ -40,7 +40,7 @@ public class UpdateContactsPage {
 	//Validate the presence of Buttons on Accounts page
 	public void validateDealerContactFields(){
 		String[] contactFields={"main_contact_number","sale_contact","service_desk_contact",
-				"collision_desk_contact","web_link"};
+				"collision_desk_contact","web_link","privacy_policy","ext_warranty_desc"};
 		List<WebElement> list=UpadteContactInfo;
 		for (int i = 0; i < contactFields.length; ) {
 			for (WebElement webElement : list) {
@@ -53,47 +53,31 @@ public class UpdateContactsPage {
 	}
 
 	public void enterUpdateContactData(String mainContact,String salesContact,String serviceDeskContact,
-			String collisionDeskContact,String webLink){
+			String collisionDeskContact,String webLink,String imageName,String code){
 		String[] contactFields={mainContact,salesContact,serviceDeskContact,
-				collisionDeskContact,webLink};
+				collisionDeskContact,webLink,imageName,code};
 		List<WebElement> list=UpadteContactInfo;
 		for (int i = 0; i < contactFields.length; ) {
 			for (WebElement webElement : list) {
 				webElement.clear();
 				webElement.sendKeys(contactFields[i]);
-				System.out.println("**************************");
 				i++;
 			}
-			System.out.println("((((((((((((((((");
 			break;
 		}
 	}
 
+	//Click Submit
 	public void clickSubmit(){
 		TestReporter.assertTrue(btnSubmit.syncEnabled(10, false), "Submit button is visible");
 		btnSubmit.click();
 	}
 
+	//Click Cancel
 	public void clickCancel(){
 		TestReporter.assertTrue(btnCancel.syncEnabled(10, false), "Cancel button is visible");
 		btnCancel.click();
 	}
-
-	/*public String[] getUpdateContactDetails(){
-		String value="";
-		String[] contactFields=null;
-		List<WebElement> list=UpadteContactInfo;
-		for (int i = 0; i < list.size(); ) {
-			for (WebElement webElement : list) {
-				value=value+webElement.getAttribute("value")+"_";
-				i++;
-			}
-			break;
-		}
-		contactFields=value.split("_");
-		return contactFields;
-	}*/
-
 
 }
 

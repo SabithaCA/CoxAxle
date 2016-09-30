@@ -1,4 +1,4 @@
-package coxaxle;
+package coxaxle.Dealer;
 
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
@@ -60,13 +60,14 @@ public class AT_09_VerifyChangeMobileLogo extends TestEnvironment{
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String email,String password, String adminEmail, String adminPassword, 
 			String mainContact,String salesContact,String serviceDeskContact,
-			String collisionDeskContact,String webLink,String imagePath) throws InterruptedException {
+			String collisionDeskContact,String webLink,String imagePath,String imageName,String code) throws InterruptedException {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
 		TestReporter.logStep("Validating Sign In page elements");
 		SignInPage.validateSignInPageFields();
 
+		//Login as dealer
 		TestReporter.logStep("Login as dealer");
 		SignInPage.loginWithCredentials(email,password);
 
@@ -96,8 +97,8 @@ public class AT_09_VerifyChangeMobileLogo extends TestEnvironment{
 		//Clicking on Change Mobile Logo button 
 		TestReporter.logStep("Clicking on Change Mobile Logo button");
 		contactsPage.clickChangeMobileLogo();
-		String[] imageName = imagePath.split("/");
-		String logo_BeforeSubmit=  imageName[imageName.length-1];
+		String[] imagename = imagePath.split("/");
+		String logo_BeforeSubmit=  imagename[imagename.length-1];
 
 		//Uploading an image and Clicking on Submit button
 		TestReporter.logStep("Uploading an image and Clicking on Submit button");

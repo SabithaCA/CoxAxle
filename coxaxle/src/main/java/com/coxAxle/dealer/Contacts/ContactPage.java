@@ -61,8 +61,8 @@ public class ContactPage {
 		btnUpdateContacts.click();
 	}
 
+	//Method to get contact details
 	public  String[] getContactDetails(){
-
 		pageLoaded();
 		String value="";
 		String[] table_Values=null;
@@ -81,6 +81,7 @@ public class ContactPage {
 		return table_Values;
 	}
 
+	//Method to get src of Contact logo
 	public String getContactLogo(){
 		pageLoaded(eleContactLogo);
 		TestReporter.assertTrue(eleContactLogo.getAttribute("src")
