@@ -19,8 +19,8 @@ public class ContactPage {
 	private ResourceBundle userCredentialRepo = ResourceBundle.getBundle(Constants.USER_CREDENTIALS_PATH);
 
 	/**Page Elements**/
-	@FindBy(xpath = "//div[3]/div/button")	private Button btnChangeMobileLogo;
-	@FindBy(xpath = "//input[@value='Update Contacts']")  private Button btnUpdateContacts;
+	@FindBy(xpath = "//div[1]/div[2]/button")	private Button btnChangeMobileLogo;
+	@FindBy(xpath = "//input[@value='Update Profile']")  private Button btnUpdateContacts;
 	@FindBy(xpath = "//table/tbody") private Webtable WtContactDetails;
 	@FindBy(xpath = "//div[4]/div[2]/div[1]/div/p[2]/img") private Element eleContactLogo;
 

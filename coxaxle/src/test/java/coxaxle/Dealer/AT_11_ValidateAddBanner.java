@@ -18,7 +18,7 @@ import com.vensai.utils.dataProviders.ExcelDataProvider;
 /**
  * @summary Validate Add Banner operation
  * @author  Sabitha Adama
- * @date 	27/09/2016
+ * @date 	12/10/2016
  */
 public class AT_11_ValidateAddBanner extends TestEnvironment{
 
@@ -91,6 +91,7 @@ public class AT_11_ValidateAddBanner extends TestEnvironment{
 		newBannerPage.enterAddBannerFieldsInfo(imageName,imagePath);
 		newBannerPage.clickCancel();
 		int bannerCount_AfterCancel = bannersPage.getBannerListCount();
+		//System.out.println("Banners count after cancel : "+ bannerCount_AfterCancel);
 
 		//Clicking on Add Banner button, Entering information and clicking on Submit button
 		TestReporter.logStep("Clicking on Add Banner button, Entering information and clicking on Submit button");
@@ -98,6 +99,7 @@ public class AT_11_ValidateAddBanner extends TestEnvironment{
 		newBannerPage.enterAddBannerFieldsInfo(imageName,imagePath);
 		newBannerPage.clickSubmit();
 		int bannerCount_AfterSubmit = bannersPage.getBannerListCount();
+		//System.out.println("Banners count after submit : " + bannerCount_AfterSubmit);
 
 		//Verifying the Newly added Banner status
 		TestReporter.logStep("Verifying the Newly added Banner status");

@@ -18,7 +18,7 @@ import com.vensai.utils.dataProviders.ExcelDataProvider;
 /**
  * @summary Validate Active and Deactive Banner
  * @author  Sabitha Adama
- * @date 	28/09/2016
+ * @date 	13/10/2016
  */
 public class AT_13_Validate_ActiveDeactive_Banner extends TestEnvironment{
 
@@ -28,7 +28,7 @@ public class AT_13_Validate_ActiveDeactive_Banner extends TestEnvironment{
 	@DataProvider(name = "dataScenario")
 	public Object[][] scenarios() {
 		try {
-			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_08_VerifyUpdateContacts.xlsx","Data").getTestData();
+			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_01_Login.xlsx","Data").getTestData();
 			return excelData;
 		}
 		catch (RuntimeException e){
@@ -56,9 +56,7 @@ public class AT_13_Validate_ActiveDeactive_Banner extends TestEnvironment{
 	}
 
 	@Test(dataProvider = "dataScenario")
-	public void registerUser(String email,String password, String adminEmail, String adminPassword, 
-			String mainContact,String salesContact,String serviceDeskContact,
-			String collisionDeskContact,String webLink,String imagePath,String imageName,String code) {
+	public void registerUser(String email, String password) {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
@@ -73,6 +71,15 @@ public class AT_13_Validate_ActiveDeactive_Banner extends TestEnvironment{
 		TestReporter.logStep("Click on Banners tab");
 		HomePage homePage = new HomePage(driver);
 		homePage.clickBannersTab();
+
+		//Checking the active banners
+		TestReporter.logStep("Checking the active banners");
+		BannersPage bannersPage = new BannersPage(driver);
+		bannersPage.selectAndCheckStatus("Active");
+
+		//Checking the Inactive banners
+		TestReporter.logStep("Checking the Inactive banners");
+		bannersPage.selectAndCheckStatus("Inactive");
 
 	}
 }

@@ -52,7 +52,7 @@ public class AT_05_GetBannerInformation extends TestEnvironment{
 
 	@AfterTest
 	public void close(ITestContext testResults){
-		endTest("TestAlert", testResults);
+		//endTest("TestAlert", testResults);
 	}
 
 	@Test(dataProvider = "dataScenario")
@@ -90,9 +90,9 @@ public class AT_05_GetBannerInformation extends TestEnvironment{
 
 		//Checking for Status button display
 		TestReporter.log("Checking for Status button display");
+		bannerPage.getStatusOfSpecifiedBanner(imageName);
 		adminHomePage.clickBannersTab();
-		bannerPage.checkStatusDisplay();
-
+		
 		//-------------------------Search and Clear-------------------------
 		TestReporter.logStep("Entering Dealer code and clicking on Search");
 		bannerPage.clickSearch(code);

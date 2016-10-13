@@ -9,6 +9,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.coxAxle.admin.SignInPage;
 import com.coxAxle.dealer.Account.AccountPage;
+import com.coxAxle.dealer.Account.ChangePortalLogoPage;
 import com.coxAxle.dealer.HomePage;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
@@ -27,7 +28,7 @@ public class AT_06_VerifyChangeLogo extends TestEnvironment{
 	@DataProvider(name = "dataScenario")
 	public Object[][] scenarios() {
 		try {
-			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_01_Login.xlsx","Data").getTestData();
+			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_08_VerifyUpdateContacts.xlsx","Data").getTestData();
 			return excelData;
 		}
 		catch (RuntimeException e){
@@ -51,11 +52,13 @@ public class AT_06_VerifyChangeLogo extends TestEnvironment{
 
 	@AfterTest
 	public void close(ITestContext testResults){
-		endTest("TestAlert", testResults);
+		//endTest("TestAlert", testResults);
 	}
 
 	@Test(dataProvider = "dataScenario")
-	public void registerUser(String email,String password) {
+	public void registerUser(String email,String password, String adminEmail, String adminPassword, 
+			String mainContact,String salesContact,String serviceDeskContact,
+			String collisionDeskContact,String webLink,String imagePath,String imageName,String code) {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
@@ -76,6 +79,10 @@ public class AT_06_VerifyChangeLogo extends TestEnvironment{
 		AccountPage accountPage = new AccountPage(driver);
 		accountPage.clickChangeLogo();
 
+		ChangePortalLogoPage changePortallogoPage = new ChangePortalLogoPage(driver);
+		changePortallogoPage.uploadingImage(imagePath);
+		
+		changePortallogoPage.clickCancel();
 	}
 
 }

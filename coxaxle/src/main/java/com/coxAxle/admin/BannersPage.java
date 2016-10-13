@@ -27,7 +27,7 @@ public class BannersPage {
 	@FindBy(xpath = "//div/div/button") private Button btnClear;
 	@FindBy(id = "status") private Listbox lstStatus;
 	@FindBy(xpath = "//table/tbody") private Webtable wtBannersList;
-	@FindBy(linkText = "Next")  private Button btnNext;
+	@FindBy(linkText = "NEXT")  private Button btnNext;
 	@FindBy(id = "dealercode") private Textbox txtDealerCode;
 	@FindBy(xpath = "//div[2]/table/tbody") private Webtable wtBannerInformation;
 	@FindBy(linkText = "Change Banner") private Button btnChangeBanner;
@@ -83,7 +83,7 @@ public class BannersPage {
 			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
 			int columns_count = Columns_row.size();
 			if(Columns_row.get(0).getText().equalsIgnoreCase(imageName)){
-				TestReporter.log("Status of added new banner : "+Columns_row.get(3).findElement(By.tagName("img")).getAttribute("title"));
+				TestReporter.log("Status of added new banner : "+Columns_row.get(4).findElement(By.tagName("img")).getAttribute("title"));
 				break;
 			}
 		}
@@ -112,11 +112,12 @@ public class BannersPage {
 	public  void clickOnSpecifiedBanner(String imageName) {
 		clickOnSpecifiedBannerName(imageName);
 		//Thread.sleep(2000);
-		while(btnNext.syncVisible()==true && validateButtonsEnabledOrDisabled(btnNext)==true){
+		int i=2;
+		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
 			btnNext.click();
 			clickOnSpecifiedBannerName(imageName);
-		}
-
+			i++;
+		} 
 	}
 	//Click on Specified Banner
 	public void clickOnSpecifiedBannerName(String imageName){
@@ -173,4 +174,12 @@ public class BannersPage {
 		btnClear.click();
 	}
 
+	//Getting the count of pages in pagination
+	private int validateButtonsEnabledDisabledWithTotalPagesCount() {
+		String data = driver.findButton(By.xpath(".//*[@id='content']/ul/li[9]/a")).getText();
+		String[] data_Array = data.split(" ");
+		System.out.println(data_Array[2]);
+		int count = Integer.parseInt(data_Array[2]);
+		return count;
+	}
 }

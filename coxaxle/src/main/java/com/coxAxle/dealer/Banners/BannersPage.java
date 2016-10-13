@@ -1,8 +1,10 @@
 package com.coxAxle.dealer.Banners;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.vensai.core.interfaces.Button;
@@ -25,7 +27,8 @@ public class BannersPage {
 	@FindBy(xpath = "//div/div/button") private Button btnClear;
 	@FindBy(id = "status") private Listbox lstStatus;
 	@FindBy(xpath = "//table/tbody") private Webtable wtBannersList;
-	@FindBy(linkText = "Next")  private Button btnNext;
+	@FindBy(linkText = "NEXT")  private Button btnNext;
+	@FindBy(xpath = "//td/a") private Webtable wtStatus;
 
 
 	/**Constructor**/
@@ -64,8 +67,17 @@ public class BannersPage {
 	//method to get the list count
 	public int getBannerListCount(){
 		List<WebElement> table_Row = wtBannersList.findElements(By.tagName("tr"));
-		//System.out.println("Row count "+table_Row.size());
-		return table_Row.size();
+		int count=table_Row.size();
+		int total_count = 0;
+		int i=2;
+		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
+			btnNext.click();
+			table_Row = wtBannersList.findElements(By.tagName("tr"));
+			total_count=count+table_Row.size();
+			i++;
+		} 
+		//System.out.println("Row count "+total_count);
+		return total_count;
 	}
 
 	//Method to get the status of specified banner
@@ -84,31 +96,14 @@ public class BannersPage {
 
 	}
 
-	private boolean validateButtonsEnabledOrDisabled(Element locatorName) {
-		boolean isEnabled = true;
-		pageLoaded( locatorName);
-		// Verifying Button status
-		if (locatorName.getAttribute("href").contains("#")) {
-			isEnabled = false;
-		}
-		if (isEnabled == true) {
-			// Validating enabled button
-			TestReporter.assertTrue(isEnabled,
-					locatorName.getElementIdentifier() + " button is enabled");
-		} else {
-			// Validating Disabled button
-			TestReporter.assertFalse(isEnabled,
-					locatorName.getElementIdentifier() + " button is disabled");
-		}
-		return isEnabled;
-	}
-
 	public  void clickOnSpecifiedBanner(String imageName) {
 		clickOnSpecifiedBannerName(imageName);
 		//Thread.sleep(2000);
-		while(btnNext.syncVisible()==true && validateButtonsEnabledOrDisabled(btnNext)==true){
+		int i=2;
+		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
 			btnNext.click();
 			clickOnSpecifiedBannerName(imageName);
+			i++;
 		}
 
 	}
@@ -129,6 +124,54 @@ public class BannersPage {
 		}
 	}
 
+	//Getting the count of pages in pagination
+	private int validateButtonsEnabledDisabledWithTotalPagesCount() {
+		String data = driver.findButton(By.xpath(".//*[@id='content']/ul/li[6]/a")).getText();
+		String[] data_Array = data.split(" ");
+		System.out.println(data_Array[2]);
+		int count = Integer.parseInt(data_Array[2]);
+		return count;
+	}
 
+	public void selectAndCheckStatus(String status){
+		List<WebElement> values= lstStatus.getOptions();
+		for (WebElement webElement : values) {
+			if(webElement.getText().equalsIgnoreCase(status)){
+				lstStatus.select(status);
+				btnSearch.click();
+				break;
+			}
+			else{
+				System.out.println("status not yet selected");
+			}
+		}	
+		getStatusOfBanner(status);
+		btnClear.click();
+	}
 
+	//method to get and to verify the status fields
+	public void getStatusOfBanner(String status){
+		String[] statusValues=null;	
+		String Value="";
+		List<WebElement> rows_table = driver.findElements(By.xpath("//table/tbody/tr/td[4]/a/img"));
+		for (WebElement webElement : rows_table) {
+			Value=Value+webElement.getAttribute("title")+"_";
+		}
+		int i=2;
+		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
+			btnNext.click();
+			List<WebElement> rows = driver.findElements(By.xpath("//table/tbody/tr/td[4]/a/img"));
+			rows_table.addAll(rows);
+			for (WebElement webElement : rows) {
+				Value=Value+webElement.getAttribute("title")+"_";
+			}
+			i++;
+		}
+		statusValues=Value.split("_");
+		System.out.println("rows_table "+rows_table.size());
+		for (String webElement : statusValues) {
+			TestReporter.assertTrue(webElement.contains(status),status+ " status Verified");
+		}
+		TestReporter.logStep("All the banners with "+status+" status are verified");
+	}
 }
