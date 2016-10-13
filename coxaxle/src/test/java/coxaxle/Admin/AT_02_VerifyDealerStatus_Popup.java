@@ -78,9 +78,9 @@ public class AT_02_VerifyDealerStatus_Popup extends TestEnvironment{
 		DealerPage dealerPage = new DealerPage(driver);
 		dealerPage.checkStatusOfDealer(data);
 
-		dealerPage.clickPopup_OkORCancel("OK");
+		//***dealerPage.clickPopup_OkORCancel("OK");
 		dealerPage.checkStatusOfDealer(data);
-		dealerPage.clickPopup_OkORCancel("CANCEl");
+		//***dealerPage.clickPopup_OkORCancel("CANCEl");
 		//-----------------------------------------------------------
 		adminHomePage.clickDealersTab();
 		/*String text= dealerPage.getDealerCode(email);

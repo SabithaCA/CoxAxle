@@ -62,13 +62,15 @@ public class RegistrationPage {
 	}
 
 	public void enterRegistrationDetails(String name, String email, String phone, String code,
-			String password, String comfirmPassword, String zipcode, String inTime, String outTime ){
+			String password, String comfirmPassword, String zipcode, String inTime, String outTime,
+			String imagePath, String address ){
 
 		pageLoaded();
 		txtName.set(name);
 		txtDealerCode.set(code);
 		txtZipCode.set(zipcode);
-
+		txtAddress.set(address);
+		btnDealerLogo.sendKeys(imagePath);
 		btnContactInformation.click();
 		txtemail.set(email);
 		txtPhone.set(phone);

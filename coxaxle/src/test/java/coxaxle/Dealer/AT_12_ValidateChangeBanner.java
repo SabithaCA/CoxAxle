@@ -9,7 +9,9 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.coxAxle.admin.SignInPage;
 import com.coxAxle.dealer.HomePage;
+import com.coxAxle.dealer.Banners.BannerDetailsPage;
 import com.coxAxle.dealer.Banners.BannersPage;
+import com.coxAxle.dealer.Banners.ChangeBannerPage;
 import com.coxAxle.dealer.Banners.NewBannerPage;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
@@ -18,7 +20,7 @@ import com.vensai.utils.dataProviders.ExcelDataProvider;
 /**
  * @summary Validate Change Banner
  * @author  Sabitha Adama
- * @date 	28/09/2016
+ * @date 	13/10/2016
  */
 public class AT_12_ValidateChangeBanner extends TestEnvironment{
 
@@ -74,15 +76,45 @@ public class AT_12_ValidateChangeBanner extends TestEnvironment{
 		HomePage homePage = new HomePage(driver);
 		homePage.clickBannersTab();
 
-		//Validating Banner page fields and Clicking on Add Banner button
-		TestReporter.logStep("Validating Banner page fields and Clicking on Add Banner button");
+		//Validating Banner page fields and Clicking on specified banner name
+		TestReporter.logStep("Validating Banner page fields and Clicking on specified banner name");
 		BannersPage bannersPage = new BannersPage(driver);
 		bannersPage.validateBannerFields();
-		int bannerCount = bannersPage.getBannerListCount();
 		bannersPage.clickOnSpecifiedBanner(imageName);
 
+		//Getting Image source and clicking on Change Banner Button
+		TestReporter.logStep("Getting Image source and clicking on Change Banner Button");
+		BannerDetailsPage bannerDetailsPage = new BannerDetailsPage(driver);
+		String ImageSrc_BeforeCancel = bannerDetailsPage.getImagesource();
+		bannerDetailsPage.clickChangeBanner();
+
+		//Validating the Change Banner page fields and Uploading new banner with Cancel operation
+		TestReporter.logStep("Validating the Change Banner page fields and Uploading new banner with Cancel operation");
+		ChangeBannerPage changeBannerPage = new ChangeBannerPage(driver);
+		changeBannerPage.validateChangeBannerFields();
+		changeBannerPage.clickBrowseAndUploadImage(imagePath,imageName);
+		changeBannerPage.clickCancel();
+
+		//Getting the Source after cancel operation and Image validation with cancel operation
+		TestReporter.logStep("Getting the Source after cancel operation and Image validation with cancel operation");
+		String ImageSrc_AfterCancel = bannerDetailsPage.getImagesource();
+		TestReporter.assertEquals(ImageSrc_BeforeCancel, ImageSrc_AfterCancel, 
+				"Image is validated with Cancel operation");
+
+		//Uploading new banner with Submit operation
+		TestReporter.logStep("Uploading new banner with Submit operation");
+		bannerDetailsPage.clickChangeBanner();
+		changeBannerPage.clickBrowseAndUploadImage(imagePath,imageName);
+		changeBannerPage.clickSubmit();
+
+		//Getting image source after Submit operation
+		TestReporter.logStep("Getting image source after Submit operation");
+		String ImageSrc_AfterSubmit = bannerDetailsPage.getImagesource();
+		String[] imagename = imagePath.split("/");
+		String ImageSrc_BeforeSubmit=  imagename[imagename.length-1];
+
+		//Image validation with Submit operation
+		TestReporter.logStep("Image validation with Submit operation");
+		TestReporter.assertTrue(ImageSrc_AfterSubmit.contains(ImageSrc_BeforeSubmit), "Image is validated with Submit operation");
 	}
 }
-
-
-

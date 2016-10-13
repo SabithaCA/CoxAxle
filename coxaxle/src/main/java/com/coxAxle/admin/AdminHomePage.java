@@ -62,7 +62,6 @@ public class AdminHomePage {
 	public void clickContactDealersTab(){
 		pageLoaded(lnkDealersContact);
 		TestReporter.assertTrue(lnkDealersContact.syncEnabled(10, false), "Dealers contact menu item is visible");
-		//lnkDealers.highlight(driver);
 		lnkDealersContact.click();
 	}
 
@@ -70,7 +69,6 @@ public class AdminHomePage {
 	public void clickCustomersTab(){
 		pageLoaded(lnkCustomers);
 		TestReporter.assertTrue(lnkCustomers.syncEnabled(10, false), "Customers menu item is visible");
-		//lnkDealers.highlight(driver);
 		lnkCustomers.click();
 	}
 
@@ -78,8 +76,13 @@ public class AdminHomePage {
 	public void clickBannersTab(){
 		pageLoaded(lnkBanners);
 		TestReporter.assertTrue(lnkBanners.syncEnabled(10, false), "Banners menu item is visible");
-		//lnkDealers.highlight(driver);
 		lnkBanners.click();
 	}
 
+	//clicking on Home Tab
+	public void clickHomeTab(){
+		pageLoaded(lnkHome);
+		TestReporter.assertTrue(lnkHome.syncEnabled(10, false), "Home menu item is visible");
+		lnkHome.click();
+	}
 }

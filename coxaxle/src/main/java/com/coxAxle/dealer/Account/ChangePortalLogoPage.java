@@ -16,8 +16,8 @@ public class ChangePortalLogoPage {
 
 	/**Page Elements**/
 	@FindBy(name = "dealer_logo")	private Button btnDealerLogo;
-	@FindBy(xpath = "//input[@value='Submit']") private Button btnSubmit;
-	@FindBy(linkText = "Cancel") private Button btnCancel;
+	@FindBy(xpath = "//*[@id='form']/div[@class='modal-footer']/input[@type='submit']") private Button btnSubmit;
+	@FindBy(xpath = "//*[@id='form']/div[@class='modal-footer']/button[@type='button']") private Button btnCancel;
 
 	/**Constructor**/
 	public ChangePortalLogoPage(vensaiDriver driver){
@@ -29,10 +29,10 @@ public class ChangePortalLogoPage {
 		ele.syncVisible(20, false);
 	}
 
-	public void clickBrowse(){
+	public void uploadingImage(String imagepath){
 		pageLoaded(btnDealerLogo);
 		TestReporter.assertTrue(btnDealerLogo.syncEnabled(20, false), "Browse button is enabled");
-		btnDealerLogo.click();
+		btnDealerLogo.sendKeys(imagepath);
 
 	}
 

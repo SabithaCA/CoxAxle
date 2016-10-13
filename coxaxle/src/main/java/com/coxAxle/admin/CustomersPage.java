@@ -22,7 +22,7 @@ public class CustomersPage {
 
 	/**Page Elements**/
 	@FindBy(xpath = "//table/tbody")	private Webtable wtDealerTabel;
-	@FindBy(linkText = "Next")  private Button btnNext;
+	@FindBy(linkText = "NEXT")  private Button btnNext;
 	@FindBy(xpath = "//div[2]/table/tbody") private Webtable wtDealerDetails;
 	@FindBy(id = "dealercode") private Textbox txtDealerCode;
 	@FindBy(xpath = "//input[@value='Search']") private Button btnSearch;
@@ -77,13 +77,14 @@ public class CustomersPage {
 		String A=verifyCustomerDetail();
 		Emails=A.split("_");
 		clickOnNameLink(Emails,Email);
-		while(btnNext.syncVisible()==true && validateButtonsEnabledOrDisabled(btnNext)==true){
+		int i=2;
+		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
 			btnNext.click();
 			A=A+verifyCustomerDetail();
 			Emails=A.split("_");
 			clickOnNameLink(Emails,Email);
-		}
-
+			i++;
+		} 
 	}
 
 	public void clickOnNameLink(String[] Emails, String Email){
@@ -137,7 +138,7 @@ public class CustomersPage {
 	}
 	//Getting the count of pages in pagination
 	private int validateButtonsEnabledDisabledWithTotalPagesCount() {
-		String data = driver.findButton(By.xpath("//div/ul/li[7]/a")).getText();
+		String data = driver.findButton(By.xpath(".//*[@id='content']/ul/li[6]/a")).getText();
 		String[] data_Array = data.split(" ");
 		System.out.println(data_Array[2]);
 		int count = Integer.parseInt(data_Array[2]);
