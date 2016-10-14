@@ -67,7 +67,6 @@ public class BannersPage {
 		//btnAddBanner.click();
 	}
 
-	//btnChangeBanner
 	//Verify display of Change Banner Button
 	public void verifyChangeBannerDisplayed(){
 		TestReporter.assertFalse(btnChangeBanner.syncEnabled(20, false), "Change Banner button is not visible");
@@ -87,28 +86,9 @@ public class BannersPage {
 				break;
 			}
 		}
-
 	}
 
-	private boolean validateButtonsEnabledOrDisabled(Element locatorName) {
-		boolean isEnabled = true;
-		pageLoaded( locatorName);
-		// Verifying Button status
-		if (locatorName.getAttribute("href").contains("#")) {
-			isEnabled = false;
-		}
-		if (isEnabled == true) {
-			// Validating enabled button
-			TestReporter.assertTrue(isEnabled,
-					locatorName.getElementIdentifier() + " button is enabled");
-		} else {
-			// Validating Disabled button
-			TestReporter.assertFalse(isEnabled,
-					locatorName.getElementIdentifier() + " button is disabled");
-		}
-		return isEnabled;
-	}
-
+	//Clicking on Specified banner by checking with next pages
 	public  void clickOnSpecifiedBanner(String imageName) {
 		clickOnSpecifiedBannerName(imageName);
 		//Thread.sleep(2000);
@@ -119,6 +99,7 @@ public class BannersPage {
 			i++;
 		} 
 	}
+
 	//Click on Specified Banner
 	public void clickOnSpecifiedBannerName(String imageName){
 		pageLoaded();
@@ -134,6 +115,7 @@ public class BannersPage {
 		}
 	}
 
+	//Method to get the Banner Details
 	public void getBannerDetails(){
 		pageLoaded();
 		String[]  details= null;

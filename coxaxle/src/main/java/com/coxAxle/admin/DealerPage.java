@@ -41,6 +41,7 @@ public class DealerPage {
 		ele.syncVisible(20, false);
 	}
 
+	//Method to get the Emails of Dealers
 	public String verifyDealerDetail(){
 		String value="";
 		//String[] table_Values=null;
@@ -58,6 +59,7 @@ public class DealerPage {
 		return value;
 	}
 
+	//Method to check the status of the NEXT button
 	private boolean validateButtonsEnabledOrDisabled(Element locatorName) {
 		boolean isEnabled = true;
 		pageLoaded( locatorName);
@@ -77,7 +79,7 @@ public class DealerPage {
 		return isEnabled;
 	}
 
-
+	//Method to click on Specified dealer with next pages
 	public  void clickOnSpecifiedDealer(String Email){
 		String[] Emails=null;
 		String A=verifyDealerDetail();
@@ -92,6 +94,7 @@ public class DealerPage {
 
 	}
 
+	//Click on specified dealer name link
 	public void clickOnNameLink(String[] Emails, String Email){
 		for (String string : Emails) {
 			if(string.equalsIgnoreCase(Email)){
@@ -112,6 +115,7 @@ public class DealerPage {
 		}
 	}
 
+	//Method to verify the dealer details
 	public String[] verifyDealerDetails(){
 		String value="";
 		String[] table_Values=null;
@@ -181,7 +185,6 @@ public class DealerPage {
 
 	//Getting the count of pages in pagination
 	private int validateButtonsEnabledDisabledWithTotalPagesCount() {
-		//System.out.println(driver.findButton(By.xpath(".//*[@id='content']/ul/li[7]/a")).getText());
 		String data = driver.findElement(By.xpath(".//*[@id='content']/ul/li[7]/a")).getText();
 		String[] data_Array = data.split(" ");
 		System.out.println(data_Array[2]);
@@ -200,6 +203,7 @@ public class DealerPage {
 		}
 	}
 
+	//Method to get the search fields info from dealer details
 	public String getSpecificDealerDetails(String[] Emails, String Email){
 		String text="";
 		for (String string : Emails) {
@@ -241,6 +245,7 @@ public class DealerPage {
 		return text;
 	}
 
+	//Method to set the search data
 	public void setSearchData(String Email){
 		String data = getDealerCode(Email);
 		String[] input=data.split("_"); 
@@ -250,24 +255,17 @@ public class DealerPage {
 		txtAddress.set(input[2]);	
 	}
 
+	//Clicking on Search
 	public void clickSearch(){
 		pageLoaded(btnSearch);
 		TestReporter.assertTrue(btnSearch.syncEnabled(20, false), "Search button is enabled");
 		btnSearch.click();
 	}
 
+	//Clicking on Clear
 	public void clickClear(){
 		pageLoaded(btnClear);
 		TestReporter.assertTrue(btnClear.syncEnabled(20, false), "Clear button is enabled");
 		btnClear.click();
 	}
-
-	/*public void getSearchDataToCompare(String Email){
-			String dataOnTextboxes = txtName.getText()+"_"+txtDealerCode.getText()+"_"+txtAddress.getText();
-			System.out.println("dataOnTextboxes"+dataOnTextboxes);
-			String data = getDealerCode(Email);
-
-			TestReporter.assertEquals(dataOnTextboxes, data, " Data Compared");
-
-		}*/
 }

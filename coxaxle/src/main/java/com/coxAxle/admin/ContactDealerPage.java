@@ -28,7 +28,6 @@ public class ContactDealerPage {
 	@FindBy(xpath = "//input[@value='Search']") private Button btnSearch;
 	@FindBy(xpath = "//div/div/button") private Button btnClear;
 
-
 	/**Constructor**/
 	public ContactDealerPage(vensaiDriver driver){
 		this.driver = driver;
@@ -39,6 +38,7 @@ public class ContactDealerPage {
 		ele.syncVisible(20, false);
 	}
 
+	//Method to get the dealer Emails 
 	public String verifyDealerContacts(int columnNum){
 		String value="";
 		List<WebElement> rows_table = wtDealerTabel.findElements(By.tagName("tr"));
@@ -52,6 +52,7 @@ public class ContactDealerPage {
 		return value;
 	}
 
+	//Method to check the status of the NEXT button
 	private boolean validateButtonsEnabledOrDisabled(Element locatorName) {
 		boolean isEnabled = true;
 		pageLoaded( locatorName);
@@ -71,6 +72,7 @@ public class ContactDealerPage {
 		return isEnabled;
 	}
 
+	//Clicking on the specified dealer name
 	public void clickOnNameLink(String[] Emails, String Email, int columnNum){
 		for (String string : Emails) {
 			if(string.equalsIgnoreCase(Email)){
@@ -91,7 +93,7 @@ public class ContactDealerPage {
 		}
 	}
 
-
+	//Method to verify the dealer Details
 	public String[] verifyDealerDetails(){
 		String value="";
 		String[] table_Values=null;

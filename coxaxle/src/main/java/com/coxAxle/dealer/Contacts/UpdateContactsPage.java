@@ -52,6 +52,7 @@ public class UpdateContactsPage {
 		}
 	}
 
+	//Method to enter data to update coontacts.
 	public void enterUpdateContactData(String mainContact,String salesContact,String serviceDeskContact,
 			String collisionDeskContact,String webLink,String imageName,String code){
 		String[] contactFields={mainContact,salesContact,serviceDeskContact,
@@ -78,6 +79,4 @@ public class UpdateContactsPage {
 		TestReporter.assertTrue(btnCancel.syncEnabled(10, false), "Cancel button is visible");
 		btnCancel.click();
 	}
-
 }
-

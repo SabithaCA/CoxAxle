@@ -30,28 +30,8 @@ public class SignInPage {
 		ElementFactory.initElements(driver, this);
 	}
 
-	/**Page Interactions**/
-
-	public void verifyPageIsLoaded(){
-
-	}
-
-
-	public void login(){
-	}
-
-	/**
-	 * This method logins to the application.  Note - the location drop down field only
-	 * displays if the user has more than 1 location associated to it.  So if the location
-	 * drop down does not display, then will not attempt to select a location
-	 * @author
-	 * @param username
-	 * @param location
-	 * @param password
-	 */
-
-	private void pageLoaded(Element ele){
-		ele.syncVisible(20, false);
+	private void pageLoaded(){
+		lnkSignup.syncVisible(20, false);
 	}
 
 	//method to login into application
@@ -72,12 +52,12 @@ public class SignInPage {
 
 	//Validating the presence of fields on Signin page
 	public void validateSignInPageFields(){
+		pageLoaded();
 		//txtEmail.syncVisible();
 		TestReporter.assertTrue(txtEmail.syncVisible(10, false), "Email textbox is visible on Sign In page");
 		TestReporter.assertTrue(txtPassword.syncVisible(10, false), "Password textbox is visible on Sign In page");
 		TestReporter.assertTrue(btnLogin.syncEnabled(10, false), "Sign In button is visible on Sign In page");
 		TestReporter.assertTrue(lnkSignup.syncVisible(10, false), "Sign Up link is visible on Sign In page");
 		//TestReporter.assertTrue(lnkForgotPassword.syncVisible(10, false), "Forgot Password link is visible on Sign In page");
-
 	}
 }

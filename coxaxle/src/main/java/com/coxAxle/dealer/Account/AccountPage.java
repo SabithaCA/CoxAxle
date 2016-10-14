@@ -91,6 +91,7 @@ public class AccountPage {
 
 	//Click on Change Logo button
 	public void clickChangeLogo(){
+		driver.get(driver.getCurrentUrl());
 		TestReporter.assertTrue(btnChangeLogo.syncEnabled(20, false), "Change Logo button is enabled");
 		btnChangeLogo.click();
 	}

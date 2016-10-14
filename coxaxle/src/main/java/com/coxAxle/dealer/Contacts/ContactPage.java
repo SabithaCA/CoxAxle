@@ -38,13 +38,11 @@ public class ContactPage {
 		ele.syncVisible(20, false);
 	}
 
-
 	//Validate the presence of Buttons on Accounts page
 	public void validateDealerContactButtons(){
 		pageLoaded();
 		TestReporter.assertTrue(btnUpdateContacts.syncVisible(15, false), "Update Contacts button is visible");
 		TestReporter.assertTrue(btnChangeMobileLogo.syncVisible(15, false), "Change Mobile Logo button is visible");
-
 	}
 
 	//Click on Change Mobile Logo button
@@ -89,5 +87,4 @@ public class ContactPage {
 				"Logo is Validated");
 		return eleContactLogo.getAttribute("src");
 	}
-
 }

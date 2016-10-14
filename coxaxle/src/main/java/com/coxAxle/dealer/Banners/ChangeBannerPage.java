@@ -1,8 +1,6 @@
 package com.coxAxle.dealer.Banners;
 
 import java.util.ResourceBundle;
-
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.vensai.core.interfaces.Button;
 import com.vensai.core.interfaces.Element;
@@ -36,14 +34,15 @@ public class ChangeBannerPage {
 	private void pageLoaded(Element ele){
 		ele.syncVisible(20, false);
 	}
-	
+
+	//method to validate the change banner fields
 	public void validateChangeBannerFields(){
 		TestReporter.assertTrue(txtBannerImage.syncEnabled(15, false), "Browse image button is enabled");
 		TestReporter.assertTrue(txtBannerName.syncVisible(15, false), "Banner Name field is visible");
 		TestReporter.assertTrue(btnSubmit.syncEnabled(15, false), "Submit button is enabled");
 		TestReporter.assertTrue(btnCancel.syncEnabled(15, false), "Cancel button is enabled");
 	}
-	
+
 	//Click on Change Logo button
 	public void clickBrowseAndUploadImage(String imagePath, String imageName){
 		pageLoaded(txtBannerImage);

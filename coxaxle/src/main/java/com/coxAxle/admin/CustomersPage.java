@@ -39,6 +39,7 @@ public class CustomersPage {
 		ele.syncVisible(20, false);
 	}
 
+	//Method to get the Emails of customers
 	public String verifyCustomerDetail(){
 		String value="";
 		List<WebElement> rows_table = wtDealerTabel.findElements(By.tagName("tr"));
@@ -52,26 +53,7 @@ public class CustomersPage {
 		return value;
 	}
 
-	private boolean validateButtonsEnabledOrDisabled(Element locatorName) {
-		boolean isEnabled = true;
-		pageLoaded( locatorName);
-		// Verifying Button status
-		if (locatorName.getAttribute("href").contains("#")) {
-			isEnabled = false;
-		}
-		if (isEnabled == true) {
-			// Validating enabled button
-			TestReporter.assertTrue(isEnabled,
-					locatorName.getElementIdentifier() + " button is enabled");
-		} else {
-			// Validating Disabled button
-			TestReporter.assertFalse(isEnabled,
-					locatorName.getElementIdentifier() + " button is disabled");
-		}
-		return isEnabled;
-	}
-
-
+	//Click on Specified Customer with NEXT pages
 	public  void clickOnSpecifiedCustomer(String Email){
 		String[] Emails=null;
 		String A=verifyCustomerDetail();
@@ -87,6 +69,7 @@ public class CustomersPage {
 		} 
 	}
 
+	//Click on Specified Customer name
 	public void clickOnNameLink(String[] Emails, String Email){
 		for (String string : Emails) {
 			if(string.equalsIgnoreCase(Email)){
@@ -106,6 +89,7 @@ public class CustomersPage {
 		}
 	}
 
+	//VErify Customer details
 	public String[] verifyCustomerDetails(){
 		String value="";
 		String[] table_Values=null;
@@ -124,6 +108,7 @@ public class CustomersPage {
 		return table_Values;
 	}
 
+	//Method to get the Customer Emails
 	public String verifyDealerDetail(){
 		String value="";
 		List<WebElement> rows_table = wtDealerTabel.findElements(By.tagName("tr"));
@@ -136,6 +121,7 @@ public class CustomersPage {
 		}
 		return value;
 	}
+
 	//Getting the count of pages in pagination
 	private int validateButtonsEnabledDisabledWithTotalPagesCount() {
 		String data = driver.findButton(By.xpath(".//*[@id='content']/ul/li[6]/a")).getText();
@@ -156,6 +142,7 @@ public class CustomersPage {
 		}
 	}
 
+	//Method to get the Search info from Dealer details
 	public String getSpecificDealerDetails(String[] Emails, String Email){
 		String text="";
 		for (String string : Emails) {
@@ -177,8 +164,8 @@ public class CustomersPage {
 			}
 		}
 		return text;
-
 	}
+
 	//Check the status of Dealer
 	public  String getDealerCode(String Email){
 		String[] Emails=null;
@@ -198,6 +185,7 @@ public class CustomersPage {
 		return text;
 	}
 
+	//Method to set the search data
 	public void setSearchData(String Email){
 		String data = getDealerCode(Email);
 		//System.out.println(data);
@@ -207,12 +195,14 @@ public class CustomersPage {
 		txtDealerCode.set(input[1]);
 	}
 
+	//Click Search
 	public void clickSearch(){
 		pageLoaded(btnSearch);
 		TestReporter.assertTrue(btnSearch.syncEnabled(20, false), "Search button is enabled");
 		btnSearch.click();
 	}
 
+	//Click Clear
 	public void clickClear(){
 		pageLoaded(btnClear);
 		TestReporter.assertTrue(btnClear.syncEnabled(20, false), "Clear button is enabled");

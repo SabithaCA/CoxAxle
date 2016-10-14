@@ -31,7 +31,7 @@ public class CustomerDetailsPage {
 		wtCustomerDetails.syncVisible(20, false);
 	}
 
-
+	//Method to get the Customer Details
 	public void getCustomerDetails(){
 		pageLoaded();
 		String[]  details= null;
@@ -50,6 +50,7 @@ public class CustomerDetailsPage {
 		System.out.println(Arrays.toString(details));
 	}
 
+	//Method to get the Vehicle info
 	public void getVehicleList(){
 		pageLoaded();
 		String[]  details= null;
@@ -68,7 +69,8 @@ public class CustomerDetailsPage {
 		System.out.println(Arrays.toString(details));
 	}
 
-	public void getSavedSerach(){
+	//Method to get the saved search data
+	public void getSavedSearch(){
 		pageLoaded();
 		String[]  details= null;
 		String data="";
@@ -78,7 +80,6 @@ public class CustomerDetailsPage {
 			for (WebElement webElement : Columns_row) {
 				//System.out.println(row+" row values are "+webElement.getText());
 				data = data+webElement.getText()+" ";
-
 			}
 			data=data+"_";
 		}
