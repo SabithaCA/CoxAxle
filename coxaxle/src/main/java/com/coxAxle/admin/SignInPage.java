@@ -23,6 +23,7 @@ public class SignInPage {
 	@FindBy(id = "submitbutton")	private Button btnLogin;
 	@FindBy(linkText = "Sign Up")	private Link lnkSignup;
 	@FindBy(linkText = "Forgot Password")  private Link lnkForgotPassword;
+	@FindBy(xpath = ".//*[@id='login']/div/div/ul/li") private Element eleResetValidation;
 
 	/**Constructor**/
 	public SignInPage(vensaiDriver driver){
@@ -58,6 +59,18 @@ public class SignInPage {
 		TestReporter.assertTrue(txtPassword.syncVisible(10, false), "Password textbox is visible on Sign In page");
 		TestReporter.assertTrue(btnLogin.syncEnabled(10, false), "Sign In button is visible on Sign In page");
 		TestReporter.assertTrue(lnkSignup.syncVisible(10, false), "Sign Up link is visible on Sign In page");
-		//TestReporter.assertTrue(lnkForgotPassword.syncVisible(10, false), "Forgot Password link is visible on Sign In page");
+		TestReporter.assertTrue(lnkForgotPassword.syncVisible(10, false), "Forgot Password link is visible on Sign In page");
 	}
+	
+	//Method to verify the Reset Password message
+	public void resetPasswordValidation(){
+		try{
+			TestReporter.assertEquals(eleResetValidation.getText(), "Reset password link has ben sent to your email", 
+					"Reset password message is validated");
+		}
+		catch(Exception e){
+			TestReporter.logStep("Invalid email address, Please enter a valid address");
+		}
+	}	
+	
 }
