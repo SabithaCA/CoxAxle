@@ -1,7 +1,6 @@
 package com.coxAxle.dealer.Banners;
 
 import java.util.ResourceBundle;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.vensai.core.interfaces.Button;
@@ -43,7 +42,8 @@ public class BannerDetailsPage {
 		TestReporter.assertTrue(btnChangeBanner.syncEnabled(20, false), "Change Banner button is enabled");
 		btnChangeBanner.jsClick();
 	}
-	
+
+	//Method to get the image source
 	public String getImagesource(){
 		System.out.println("Image source : "+eleImage.getAttribute("src"));
 		String source = eleImage.getAttribute("src");

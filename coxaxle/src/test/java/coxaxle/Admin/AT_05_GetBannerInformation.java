@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 import com.coxAxle.admin.AdminHomePage;
 import com.coxAxle.admin.BannersPage;
 import com.coxAxle.admin.SignInPage;
-import com.coxAxle.dealer.Banners.NewBannerPage;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
@@ -52,7 +51,7 @@ public class AT_05_GetBannerInformation extends TestEnvironment{
 
 	@AfterTest
 	public void close(ITestContext testResults){
-		//endTest("TestAlert", testResults);
+		endTest("TestAlert", testResults);
 	}
 
 	@Test(dataProvider = "dataScenario")
@@ -92,7 +91,7 @@ public class AT_05_GetBannerInformation extends TestEnvironment{
 		TestReporter.log("Checking for Status button display");
 		bannerPage.getStatusOfSpecifiedBanner(imageName);
 		adminHomePage.clickBannersTab();
-		
+
 		//-------------------------Search and Clear-------------------------
 		TestReporter.logStep("Entering Dealer code and clicking on Search");
 		bannerPage.clickSearch(code);

@@ -1,6 +1,4 @@
-package coxaxle.Admin;
-
-import java.util.Arrays;
+package coxaxle.Dealer;
 
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
@@ -9,19 +7,19 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import com.coxAxle.admin.AdminHomePage;
-import com.coxAxle.admin.DealerPage;
 import com.coxAxle.admin.SignInPage;
+import com.coxAxle.dealer.ForgotPasswordPage;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
 
 /**
- * @summary Get the Dealer Information
+ * @summary Dealer Login
  * @author  Sabitha Adama
- * @date 	28/09/2016
+ * @date 	14/10/2016
  */
-public class AT_01_GetTheDealerInformation extends TestEnvironment{
+
+public class AT_14_ForgotPassword extends TestEnvironment{
 
 	// **************
 	// Data Provider
@@ -29,7 +27,7 @@ public class AT_01_GetTheDealerInformation extends TestEnvironment{
 	@DataProvider(name = "dataScenario")
 	public Object[][] scenarios() {
 		try {
-			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_04_VerifyDealerDetails.xlsx","Data").getTestData();
+			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_01_Login.xlsx","Data").getTestData();
 			return excelData;
 		}
 		catch (RuntimeException e){
@@ -48,7 +46,7 @@ public class AT_01_GetTheDealerInformation extends TestEnvironment{
 		setOperatingSystem(operatingSystem);
 		setRunLocation(runLocation);
 		setTestEnvironment(environment);
-		testStart("AT_01_GetTheDealerInformation");
+		testStart("AT_01_Login");
 	}
 
 	@AfterTest
@@ -57,33 +55,27 @@ public class AT_01_GetTheDealerInformation extends TestEnvironment{
 	}
 
 	@Test(dataProvider = "dataScenario")
-	public void registerUser(String email,String password,String adminEmail,String adminPassword,
-			String changePassword,String data) {
+	public void exampleMethod(String email, String password) throws InterruptedException{
 
 		//Validating Sign In page elements
-		SignInPage SignInPage = new SignInPage(driver);
+		SignInPage SignInPage = new SignInPage(getDriver());
 		TestReporter.logStep("Validating Sign In page elements");
 		SignInPage.validateSignInPageFields();
 
-		//Login as Dealer
-		TestReporter.logStep("Login as Admin");
-		SignInPage.loginWithCredentials(adminEmail,adminPassword);
+		//Clicking on Forgot password link
+		TestReporter.logStep("Clicking on Forgot password link");
+		SignInPage.clickLink("Forgot Password");
 
-		//Verify the Menu items and Click on Dealers tab
-		TestReporter.logStep("Verify the Menu items and Click on Dealers tab");
-		AdminHomePage adminHomePage = new AdminHomePage(driver);
-		adminHomePage.validateMainMenuItems();
-		adminHomePage.clickDealersTab();
-
-		//Clicking on Particular Dealer name
-		TestReporter.logStep("Clicking on Particular Dealer name");
-		DealerPage dealerPage = new DealerPage(driver);
-		dealerPage.clickOnSpecifiedDealer(email);		
-
-		String[] Dealer_Details=dealerPage.verifyDealerDetails();
-		TestReporter.logStep(Arrays.toString(Dealer_Details));
+		//Validate the Forgot Password Fields and Submit the email
+		TestReporter.logStep("Validate the Forgot Password Fields and Submit the email");
+		ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage(driver);
+		forgotPasswordPage.validateForgotPasswordFields();
+		forgotPasswordPage.enterEmailAndClickSubmit(email);
+		
+		//Validating the Reset password message
+		TestReporter.logStep("Validating the Reset Password message");
+		SignInPage.resetPasswordValidation();
 	}
 }
-
 
 

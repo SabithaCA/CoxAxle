@@ -16,8 +16,8 @@ public class ChangePortalLogoPage {
 
 	/**Page Elements**/
 	@FindBy(name = "dealer_logo")	private Button btnDealerLogo;
-	@FindBy(xpath = "//*[@id='form']/div[@class='modal-footer']/input[@type='submit']") private Button btnSubmit;
-	@FindBy(xpath = "//*[@id='form']/div[@class='modal-footer']/button[@type='button']") private Button btnCancel;
+	@FindBy(xpath = ".//*[@id='myModal']/div/div/form/div[3]/input") private Button btnSubmit;
+	@FindBy(xpath = ".//*[@id='myModal']/div/div/form/div[3]/button") private Button btnCancel;
 
 	/**Constructor**/
 	public ChangePortalLogoPage(vensaiDriver driver){
@@ -29,6 +29,7 @@ public class ChangePortalLogoPage {
 		ele.syncVisible(20, false);
 	}
 
+	//method to upload image
 	public void uploadingImage(String imagepath){
 		pageLoaded(btnDealerLogo);
 		TestReporter.assertTrue(btnDealerLogo.syncEnabled(20, false), "Browse button is enabled");
@@ -36,17 +37,18 @@ public class ChangePortalLogoPage {
 
 	}
 
+	//Clicking on Submit
 	public void clickSubmit(){
 		pageLoaded(btnSubmit);
 		TestReporter.assertTrue(btnSubmit.syncEnabled(20, false), "Submit button is enabled");
 		btnSubmit.click();
 	}
+
+	//Clicking on Cancel
 	public void clickCancel(){
 		pageLoaded(btnCancel);
 		TestReporter.assertTrue(btnCancel.syncEnabled(20, false), "Cancel button is enabled");
 		btnCancel.click();
 	}
-
-
 
 }

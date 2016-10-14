@@ -1,6 +1,7 @@
 package com.coxAxle.dealer;
 
 import java.util.ResourceBundle;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.vensai.core.interfaces.Button;
 import com.vensai.core.interfaces.Element;
@@ -26,6 +27,7 @@ public class HomePage {
 	@FindBy(linkText = "Banners") private Link lnkBanners;
 	@FindBy(name = "passwordcheck") private Textbox txtConfirmPassword;
 	@FindBy(id = "submitbutton") private Button btnSubmit;
+	@FindBy(xpath = "//div[@class='header-right']/img") private WebElement eleImage;
 
 	/**Constructor**/
 	public HomePage(vensaiDriver driver){
@@ -73,5 +75,12 @@ public class HomePage {
 		pageLoaded(lnkBanners);
 		TestReporter.assertTrue(lnkBanners.syncEnabled(10, false), "Banners menu item is visible");
 		lnkBanners.click();
+	}
+
+	//Getting the Image source
+	public String getImagesource(){
+		System.out.println("Image source : "+eleImage.getAttribute("src"));
+		String source = eleImage.getAttribute("src");
+		return source;
 	}
 }

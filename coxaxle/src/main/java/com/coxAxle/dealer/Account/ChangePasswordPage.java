@@ -39,7 +39,6 @@ public class ChangePasswordPage {
 		TestReporter.assertTrue(txtPasswordConfirm.syncVisible(10, false),"Password Confirmation field is visible on Change Password page");
 		TestReporter.assertTrue(btnSubmit.isDisplayed(),"Submit button is visible on Change Password page");
 		TestReporter.assertTrue(btnCancel.syncVisible(15, false),"Cancel button is visible on Change Password page");
-
 	}
 
 	//Validate enable and Click on Submit button

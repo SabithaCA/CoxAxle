@@ -43,6 +43,7 @@ public class UpdateAccountPage {
 		ele.syncVisible(20, false);
 	}	
 
+	//Method to validate the Account fields
 	public void validateUpdateAccountFields(){
 		TestReporter.assertTrue(txtName.syncVisible(10, false),"Dealer name field is visible on Upadte Account page");
 		//TestReporter.assertTrue(txtemail.syncVisible(10, false),"Email field is visible on Upadte Account page");
@@ -54,7 +55,7 @@ public class UpdateAccountPage {
 		//TestReporter.assertTrue(txtFB.syncVisible(10, false),"Dealer FB Page Link  field is visible on Upadte Account page");
 	}
 
-
+	//Method to get the Updated Account fields info
 	public String[] getUpdateAccountFieldsInformation(){
 		/*String value=txtName.getText()+"_"+txtemail.getText()+"_"+txtPhone.getText()+"_"
 				+txtDealerCode.getText()+"_"+txtAddress.getText()+"_"+txtTwitter.getText()+"_"+txtFB.getText();*/
@@ -70,11 +71,13 @@ public class UpdateAccountPage {
 		return fieldValues;
 	}
 
+	//Click Cancel
 	public void clickCancel(){
 		TestReporter.assertTrue(btnCancel.syncEnabled(10, false), "Cancel button is visible");
 		btnCancel.click();
 	}
 
+	//Enter Details to update
 	public void enterDetailsToUpdate(String name, String email, String phone, String dealerCode,
 			String address,String ziopCode ){
 
@@ -90,12 +93,11 @@ public class UpdateAccountPage {
 		txtemail.set(email);
 		txtPhone.set(phone);
 		btnWorkingHours.click();
-
 	}
 
+	//Click Submit
 	public void clickSubmit(){
 		TestReporter.assertTrue(btnSubmit.syncEnabled(10, false), "Submit button is visible");
 		btnSubmit.click();
 	}
-
 }

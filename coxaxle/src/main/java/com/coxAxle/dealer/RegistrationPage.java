@@ -56,7 +56,6 @@ public class RegistrationPage {
 	}
 
 	public void registerUser() {
-
 		btnDealerLogo.sendKeys("D:\\PicsDemo\\Jellyfish.jpg");
 
 	}

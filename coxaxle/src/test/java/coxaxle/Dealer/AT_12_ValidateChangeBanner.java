@@ -12,7 +12,6 @@ import com.coxAxle.dealer.HomePage;
 import com.coxAxle.dealer.Banners.BannerDetailsPage;
 import com.coxAxle.dealer.Banners.BannersPage;
 import com.coxAxle.dealer.Banners.ChangeBannerPage;
-import com.coxAxle.dealer.Banners.NewBannerPage;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
@@ -115,6 +114,7 @@ public class AT_12_ValidateChangeBanner extends TestEnvironment{
 
 		//Image validation with Submit operation
 		TestReporter.logStep("Image validation with Submit operation");
-		TestReporter.assertTrue(ImageSrc_AfterSubmit.contains(ImageSrc_BeforeSubmit), "Image is validated with Submit operation");
+		TestReporter.assertTrue(ImageSrc_AfterSubmit.contains(ImageSrc_BeforeSubmit),
+				"Image is validated with Submit operation");
 	}
 }

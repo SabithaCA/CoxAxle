@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 import com.coxAxle.admin.SignInPage;
 import com.coxAxle.dealer.HomePage;
 import com.coxAxle.dealer.Banners.BannersPage;
-import com.coxAxle.dealer.Banners.NewBannerPage;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
@@ -83,6 +82,3 @@ public class AT_13_Validate_ActiveDeactive_Banner extends TestEnvironment{
 
 	}
 }
-
-
-

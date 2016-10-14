@@ -1,10 +1,8 @@
 package com.coxAxle.dealer.Banners;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.vensai.core.interfaces.Button;
@@ -93,9 +91,9 @@ public class BannersPage {
 				break;
 			}
 		}
-
 	}
 
+	//Clicking on Specified banner with NEXT pages
 	public  void clickOnSpecifiedBanner(String imageName) {
 		clickOnSpecifiedBannerName(imageName);
 		//Thread.sleep(2000);
@@ -107,6 +105,7 @@ public class BannersPage {
 		}
 
 	}
+
 	//Click on Specified Banner
 	public void clickOnSpecifiedBannerName(String imageName){
 		pageLoaded();
@@ -133,6 +132,7 @@ public class BannersPage {
 		return count;
 	}
 
+	//Select the drop down status and verify the displayed records.
 	public void selectAndCheckStatus(String status){
 		List<WebElement> values= lstStatus.getOptions();
 		for (WebElement webElement : values) {
