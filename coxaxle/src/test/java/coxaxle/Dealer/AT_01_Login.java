@@ -79,5 +79,3 @@ public class AT_01_Login extends TestEnvironment{
 		mainNav.clickLogout();
 	}
 }
-
-
