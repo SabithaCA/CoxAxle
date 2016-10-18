@@ -57,7 +57,7 @@ public class AT_07_VerifyChangePassword extends TestEnvironment{
 
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String email,String password, String adminEmail, String adminPassword, 
-			String changePassword,String data) throws InterruptedException {
+			String changePassword) throws InterruptedException {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);

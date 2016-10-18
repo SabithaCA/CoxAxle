@@ -59,7 +59,7 @@ public class AT_04_VerifyDealerAccountDetails extends TestEnvironment{
 
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String email,String password,String AdminEmail,String AdminPassword, 
-			String changePassword,String data) {
+			String changePassword) {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);

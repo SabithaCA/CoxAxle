@@ -58,7 +58,7 @@ public class AT_01_GetTheDealerInformation extends TestEnvironment{
 
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String email,String password,String adminEmail,String adminPassword,
-			String changePassword,String data) {
+			String changePassword) {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);

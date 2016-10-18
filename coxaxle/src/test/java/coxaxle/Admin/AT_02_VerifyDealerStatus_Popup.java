@@ -56,7 +56,7 @@ public class AT_02_VerifyDealerStatus_Popup extends TestEnvironment{
 
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String email,String password,String adminEmail,String adminPassword,
-			String changePassword,String data) {
+			String changePassword) {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
@@ -76,21 +76,21 @@ public class AT_02_VerifyDealerStatus_Popup extends TestEnvironment{
 		//Getting the status of a particular dealer
 		TestReporter.logStep("Getting the status of a particular dealer");
 		DealerPage dealerPage = new DealerPage(driver);
-		dealerPage.checkStatusOfDealer(data);
+		dealerPage.checkStatusOfDealer(email);
 
 		//***dealerPage.clickPopup_OkORCancel("OK");
-		dealerPage.checkStatusOfDealer(data);
+		dealerPage.checkStatusOfDealer(email);
 		//***dealerPage.clickPopup_OkORCancel("CANCEl");
 		//-----------------------------------------------------------
 		adminHomePage.clickDealersTab();
 		/*String text= dealerPage.getDealerCode(email);
 		System.out.println("data code "+text);*/
 
-		dealerPage.setSearchData(data);
+		dealerPage.setSearchData(email);
 		//dealerPage.getSearchDataToCompare(email);
 		dealerPage.clickSearch();
 		adminHomePage.clickDealersTab();
-		dealerPage.setSearchData(data);
+		dealerPage.setSearchData(email);
 		dealerPage.clickClear();
 	}
 }

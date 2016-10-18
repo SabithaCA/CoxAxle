@@ -79,6 +79,7 @@ public class AT_11_ValidateAddBanner extends TestEnvironment{
 		BannersPage bannersPage = new BannersPage(driver);
 		bannersPage.validateBannerFields();
 		int bannerCount_BeforeCancel = bannersPage.getBannerListCount();
+		System.out.println("bannerCount_BeforeCancel "+bannerCount_BeforeCancel);
 		bannersPage.clickAddBanner();
 
 		//Validating Add Banner page fields
@@ -91,7 +92,7 @@ public class AT_11_ValidateAddBanner extends TestEnvironment{
 		newBannerPage.enterAddBannerFieldsInfo(imageName,imagePath);
 		newBannerPage.clickCancel();
 		int bannerCount_AfterCancel = bannersPage.getBannerListCount();
-		//System.out.println("Banners count after cancel : "+ bannerCount_AfterCancel);
+		System.out.println("Banners count after cancel : "+ bannerCount_AfterCancel);
 
 		//Clicking on Add Banner button, Entering information and clicking on Submit button
 		TestReporter.logStep("Clicking on Add Banner button, Entering information and clicking on Submit button");
@@ -99,7 +100,7 @@ public class AT_11_ValidateAddBanner extends TestEnvironment{
 		newBannerPage.enterAddBannerFieldsInfo(imageName,imagePath);
 		newBannerPage.clickSubmit();
 		int bannerCount_AfterSubmit = bannersPage.getBannerListCount();
-		//System.out.println("Banners count after submit : " + bannerCount_AfterSubmit);
+		System.out.println("Banners count after submit : " + bannerCount_AfterSubmit);
 
 		//Verifying the Newly added Banner status
 		TestReporter.logStep("Verifying the Newly added Banner status");
