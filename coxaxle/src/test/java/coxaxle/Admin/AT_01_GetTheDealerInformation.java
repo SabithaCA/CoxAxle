@@ -85,5 +85,3 @@ public class AT_01_GetTheDealerInformation extends TestEnvironment{
 	}
 }
 
-
-
