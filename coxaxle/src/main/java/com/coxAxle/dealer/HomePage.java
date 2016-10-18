@@ -77,6 +77,13 @@ public class HomePage {
 		lnkBanners.click();
 	}
 
+	//Click Customers tab
+	public void clickCustomersTab(){
+		pageLoaded(lnkCustomers);
+		TestReporter.assertTrue(lnkCustomers.syncEnabled(10, false), "Banners menu item is visible");
+		lnkCustomers.click();
+	}
+
 	//Getting the Image source
 	public String getImagesource(){
 		System.out.println("Image source : "+eleImage.getAttribute("src"));
