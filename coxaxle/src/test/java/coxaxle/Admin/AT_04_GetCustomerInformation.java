@@ -28,7 +28,7 @@ public class AT_04_GetCustomerInformation extends TestEnvironment{
 	@DataProvider(name = "dataScenario")
 	public Object[][] scenarios() {
 		try {
-			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_04_VerifyDealerDetails.xlsx","Data").getTestData();
+			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_04_VerifyCustomers.xlsx","Data").getTestData();
 			return excelData;
 		}
 		catch (RuntimeException e){
@@ -84,6 +84,7 @@ public class AT_04_GetCustomerInformation extends TestEnvironment{
 		CustomerDetailsPage customerDetailsPage = new CustomerDetailsPage(driver);
 		customerDetailsPage.getCustomerDetails();
 		customerDetailsPage.getVehicleList();
+		customerDetailsPage.getServiceList();
 		customerDetailsPage.getSavedSearch();
 
 		//------------------------Search and Clear-----------------------------------------
