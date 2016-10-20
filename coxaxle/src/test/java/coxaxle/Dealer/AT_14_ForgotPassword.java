@@ -46,7 +46,7 @@ public class AT_14_ForgotPassword extends TestEnvironment{
 		setOperatingSystem(operatingSystem);
 		setRunLocation(runLocation);
 		setTestEnvironment(environment);
-		testStart("AT_01_Login");
+		testStart("AT_14_ForgotPassword");
 	}
 
 	@AfterTest

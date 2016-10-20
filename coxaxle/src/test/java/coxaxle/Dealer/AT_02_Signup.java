@@ -54,9 +54,10 @@ public class AT_02_Signup extends TestEnvironment{
 	}
 
 	@Test(dataProvider = "dataScenario")
-	public void registerUser(String name, String email, String phone, String code,
-			String password, String comfirmPassword, String zipcode, String alertMsg,
-			String inTime, String outTime, String imagePath,String address) {
+	public void registerUser(String name, String email, String phone, String twitter, 
+			String facebook,String code,String password, String comfirmPassword,
+			String zipcode, String alertMsg,String inTime, String outTime, 
+			String imagePath,String address) {
 
 		//Sign Up
 		TestReporter.logStep("Navigating to Sign Up page");
@@ -77,7 +78,7 @@ public class AT_02_Signup extends TestEnvironment{
 
 		//Submitting the new dealer details
 		TestReporter.logStep("Submitting the new dealer details");
-		resPage.enterRegistrationDetails(name, email, phone, code,password,
+		resPage.enterRegistrationDetails(name, email, phone,twitter,facebook,code,password,
 				comfirmPassword,zipcode,inTime,outTime,imagePath,address);
 		resPage.clickSubmit();
 

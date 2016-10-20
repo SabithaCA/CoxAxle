@@ -60,9 +60,9 @@ public class RegistrationPage {
 
 	}
 
-	public void enterRegistrationDetails(String name, String email, String phone, String code,
-			String password, String comfirmPassword, String zipcode, String inTime, String outTime,
-			String imagePath, String address ){
+	public void enterRegistrationDetails(String name, String email, String phone, String twitter,
+			String facebook,String code,String password, String comfirmPassword, String zipcode, 
+			String inTime, String outTime,String imagePath, String address){
 
 		pageLoaded();
 		txtName.set(name);
@@ -73,6 +73,8 @@ public class RegistrationPage {
 		btnContactInformation.click();
 		txtemail.set(email);
 		txtPhone.set(phone);
+		txtTwitter.set(twitter);
+		txtFB.set(facebook);
 		btnWorkingHours.click();
 		//txtMon.set(inTime);
 		String[] days={"mon_","tue_","wed_","thu_","fri_","sat_","sun_"};

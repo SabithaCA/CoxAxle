@@ -60,7 +60,7 @@ public class AT_10_ValidateDealerContactDetails extends TestEnvironment{
 
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String email,String password,String AdminEmail,
-			String AdminPassword, String changePassword,String data) throws InterruptedException {
+			String AdminPassword, String changePassword) throws InterruptedException {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);

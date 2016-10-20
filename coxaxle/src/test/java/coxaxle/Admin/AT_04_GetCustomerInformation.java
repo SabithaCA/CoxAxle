@@ -57,7 +57,7 @@ public class AT_04_GetCustomerInformation extends TestEnvironment{
 
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String email,String password,String AdminEmail,String AdminPassword, 
-			String changePassword,String data) {
+			String changePassword) {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
@@ -77,7 +77,7 @@ public class AT_04_GetCustomerInformation extends TestEnvironment{
 		//Clicking on the Specified Customer
 		TestReporter.logStep("Clicking on the Specified Customer");
 		CustomersPage customersPage = new CustomersPage(driver);
-		customersPage.clickOnSpecifiedCustomer(data);
+		customersPage.clickOnSpecifiedCustomer(email);
 
 		//Get the Customer Details
 		TestReporter.logStep("Get the Customer Details");
@@ -90,13 +90,13 @@ public class AT_04_GetCustomerInformation extends TestEnvironment{
 		//Entering Customer name , Dealer code and clicking on Search
 		TestReporter.logStep("Entering Customer name , Dealer code and clicking on Search");
 		adminHomePage.clickCustomersTab();
-		customersPage.setSearchData(data);
+		customersPage.setSearchData(email);
 		customersPage.clickSearch();
 
 		//Entering Customer name , Dealer code and clicking on Clear
 		TestReporter.logStep("Entering Customer name , Dealer code and clicking on Clear");
 		adminHomePage.clickCustomersTab();
-		customersPage.setSearchData(data);
+		customersPage.setSearchData(email);
 		customersPage.clickClear();
 
 	}
