@@ -114,9 +114,7 @@ public class BannersPage {
 		for (int row=0; row<rows_count; row++){
 			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
 			int columns_count = Columns_row.size();
-			System.out.println("gng inside For");
 			if(Columns_row.get(0).getText().equalsIgnoreCase(imageName)){
-				System.out.println("gng inside IF");
 				Columns_row.get(0).findElement(By.tagName("a")).click();
 				break;
 			}

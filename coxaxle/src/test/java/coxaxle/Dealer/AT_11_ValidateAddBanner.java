@@ -28,7 +28,7 @@ public class AT_11_ValidateAddBanner extends TestEnvironment{
 	@DataProvider(name = "dataScenario")
 	public Object[][] scenarios() {
 		try {
-			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_08_VerifyUpdateContacts.xlsx","Data").getTestData();
+			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_11_AddBanner.xlsx","Data").getTestData();
 			return excelData;
 		}
 		catch (RuntimeException e){
@@ -56,9 +56,7 @@ public class AT_11_ValidateAddBanner extends TestEnvironment{
 	}
 
 	@Test(dataProvider = "dataScenario")
-	public void registerUser(String email,String password, String adminEmail, String adminPassword, 
-			String mainContact,String salesContact,String serviceDeskContact,
-			String collisionDeskContact,String webLink,String imagePath,String imageName,String code) {
+	public void registerUser(String email,String password,String imagePath,String imageName) {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);

@@ -9,19 +9,18 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.coxAxle.admin.SignInPage;
 import com.coxAxle.dealer.HomePage;
-import com.coxAxle.dealer.Notifications.CreateNotificationPage;
+import com.coxAxle.dealer.Notifications.NotificationDetailsPage;
 import com.coxAxle.dealer.Notifications.NotificationsPage;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
-import com.vensai.utils.date.DateTimeConversion;
 
 /**
  * @summary Delete a customer
  * @author  Sabitha Adama
  * @date 	21/10/2016
  */
-public class AT_18_AddNotification extends TestEnvironment{
+public class AT_20_ChangeNotificationImage extends TestEnvironment{
 
 	// **************
 	// Data Provider
@@ -48,12 +47,12 @@ public class AT_18_AddNotification extends TestEnvironment{
 		setOperatingSystem(operatingSystem);
 		setRunLocation(runLocation);
 		setTestEnvironment(environment);
-		testStart("AT_18_AddNotification");
+		testStart("AT_20_ChangeNotificationImage");
 	}
 
 	@AfterTest
 	public void close(ITestContext testResults){
-		endTest("TestAlert", testResults);
+		//endTest("TestAlert", testResults);
 	}
 
 	@Test(dataProvider = "dataScenario")
@@ -75,35 +74,49 @@ public class AT_18_AddNotification extends TestEnvironment{
 		homePage.clickNotificationsTab();
 
 		//Validating the Notificatoion page fields
-		TestReporter.logStep("Validating the Notificatoion page fields and clicking on Add Notification");
+		TestReporter.logStep("Validating the Notificatoion page fields and clicking on specified Notification type");
 		NotificationsPage notificationPage = new NotificationsPage(driver);
 		notificationPage.validateNotificationsFields();
-		int notificationsCount_BeforeCancel=notificationPage.getNotificationsListCount();
+		notificationPage.clickOnSpecifiedNotification(type);
 
-		//Clicking on Add Notifications and Validating the Create Notification fields
-		TestReporter.logStep("Clicking on Add Notifications and Validating the Create Notification fields");
-		notificationPage.clickAddNotification();
-		CreateNotificationPage createNotificationPage = new CreateNotificationPage(driver);
-		createNotificationPage.validateCreateNotificationsFields();
+		//Getting Image source
+		String ImageSrc_BeforeCancel = homePage.getImagesource();
 
-		//Entering New Notification Information and Clicking on Cancel button
-		TestReporter.logStep("Entering New Notification Information and Clicking on Cancel button");
-		createNotificationPage.addNotificationDetails(startDate, expiryDate, type, text, title, image);
-		createNotificationPage.clickCancel();
-		int NotificationsCount_AfterCancel = notificationPage.getNotificationsListCount();
+		//Clicking on change notification image and uploading image with cancel operation
+		TestReporter.logStep("Clicking on change notification image and uploading image with cancel operation");
+		NotificationDetailsPage notificationDetailsPage = new NotificationDetailsPage(driver);
+		notificationDetailsPage.clickChangeNotificationImageButton();
+		notificationDetailsPage.uploadingImage(image);
+		notificationDetailsPage.clickCancel();
+		String ImageSrc_AfterCancel = homePage.getImagesource();
+		String[] imagename = image.split("/");
+		String ImageSrc_BeforeSubmit=  imagename[imagename.length-1];
 
-		//Clicking on Add Notifications button, Entering information and clicking on Submit button
-		TestReporter.logStep("Clicking on Add Notifications button, Entering information and clicking on Submit button");
-		notificationPage.clickAddNotification();
-		createNotificationPage.addNotificationDetails(startDate, expiryDate, type, text, title, image);
-		createNotificationPage.clickSubmit();
-		int notificationsCount_AfterSubmit = notificationPage.getNotificationsListCount();
+		//Clicking on change notification image and uploading image with submit operation
+		TestReporter.logStep("Clicking on change notification image and uploading image with submit operation");
+		notificationDetailsPage.clickChangeNotificationImageButton();
+		notificationDetailsPage.uploadingImage(image);
+		notificationDetailsPage.clickSubmit();
+		String ImageSrc_AfterSubmit = homePage.getImagesource();
 
-		//Validating the count of the banners in the list with cancel and submit operations
-		TestReporter.logStep("Validating the count of the banners in the list with cancel and submit operations");
-		TestReporter.assertEquals(notificationsCount_BeforeCancel, NotificationsCount_AfterCancel, 
-				"Validating the Banner list with Cancel operation");
-		TestReporter.assertEquals(NotificationsCount_AfterCancel, notificationsCount_AfterSubmit-1, 
-				"Validating the Banner list with Submit Operation operation");
+		//Comparison of images with cancel and submit operations
+		TestReporter.logStep("Comparison of images with cancel and submit operations");
+		TestReporter.assertEquals(ImageSrc_BeforeCancel, ImageSrc_AfterCancel, 
+				"Image is validated with Cancel operation");
+		TestReporter.assertTrue(ImageSrc_AfterSubmit.contains(ImageSrc_BeforeSubmit), 
+				"Image is validated with Submit operation");
+
+		//------------------------Search and Clear-----------------------------------------
+		//Entering Customer name , Dealer code and clicking on Search
+		TestReporter.logStep("Entering Customer name , Dealer code and clicking on Search");
+		homePage.clickNotificationsTab();
+		notificationPage.setSearchData(type);
+		notificationPage.clickSearch();
+
+		//Entering Customer name , Dealer code and clicking on Clear
+		TestReporter.logStep("Entering Customer name , Dealer code and clicking on Clear");
+		homePage.clickNotificationsTab();
+		notificationPage.setSearchData(type);
+		notificationPage.clickClear();
 	}
 }

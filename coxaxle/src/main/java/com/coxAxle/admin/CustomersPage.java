@@ -173,15 +173,14 @@ public class CustomersPage {
 		String text="";
 		Emails=A.split("_");
 		text=getSpecificDealerDetails(Emails,Email);
-		int count =validateButtonsEnabledDisabledWithTotalPagesCount();
-		int i=1;
-		while(i<count){
+		int i=2;
+		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
 			btnNext.click();
 			A=A+verifyDealerDetail();
 			Emails=A.split("_");
 			text=getSpecificDealerDetails(Emails,Email);
 			i++;
-		}
+		} 
 		return text;
 	}
 

@@ -158,7 +158,7 @@ public class BannersPage {
 
 	//Getting the count of pages in pagination
 	private int validateButtonsEnabledDisabledWithTotalPagesCount() {
-		String data = driver.findButton(By.xpath(".//*[@id='content']/ul/li[9]/a")).getText();
+		String data = driver.findButton(By.xpath(".//*[@id='content']/ul/li[6]/a")).getText();
 		String[] data_Array = data.split(" ");
 		System.out.println(data_Array[2]);
 		int count = Integer.parseInt(data_Array[2]);

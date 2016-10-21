@@ -10,18 +10,19 @@ import org.testng.annotations.Test;
 import com.coxAxle.admin.SignInPage;
 import com.coxAxle.dealer.HomePage;
 import com.coxAxle.dealer.Notifications.CreateNotificationPage;
+import com.coxAxle.dealer.Notifications.NotificationDetailsPage;
 import com.coxAxle.dealer.Notifications.NotificationsPage;
+import com.vensai.utils.ArrayUtil;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
-import com.vensai.utils.date.DateTimeConversion;
 
 /**
  * @summary Delete a customer
  * @author  Sabitha Adama
  * @date 	21/10/2016
  */
-public class AT_18_AddNotification extends TestEnvironment{
+public class AT_19_UpdateNotifications extends TestEnvironment{
 
 	// **************
 	// Data Provider
@@ -48,12 +49,12 @@ public class AT_18_AddNotification extends TestEnvironment{
 		setOperatingSystem(operatingSystem);
 		setRunLocation(runLocation);
 		setTestEnvironment(environment);
-		testStart("AT_18_AddNotification");
+		testStart("AT_19_UpdateNotifications");
 	}
 
 	@AfterTest
 	public void close(ITestContext testResults){
-		endTest("TestAlert", testResults);
+		//endTest("TestAlert", testResults);
 	}
 
 	@Test(dataProvider = "dataScenario")
@@ -75,35 +76,40 @@ public class AT_18_AddNotification extends TestEnvironment{
 		homePage.clickNotificationsTab();
 
 		//Validating the Notificatoion page fields
-		TestReporter.logStep("Validating the Notificatoion page fields and clicking on Add Notification");
+		TestReporter.logStep("Validating the Notificatoion page fields and clicking on specified Notification type");
 		NotificationsPage notificationPage = new NotificationsPage(driver);
 		notificationPage.validateNotificationsFields();
-		int notificationsCount_BeforeCancel=notificationPage.getNotificationsListCount();
+		notificationPage.clickOnSpecifiedNotification(type);
 
-		//Clicking on Add Notifications and Validating the Create Notification fields
-		TestReporter.logStep("Clicking on Add Notifications and Validating the Create Notification fields");
-		notificationPage.clickAddNotification();
+		//Getting the Notification Details before update with cancel operation
+		TestReporter.logStep("Getting the Notification Details before update with cancel operation");
+		NotificationDetailsPage notificationDetailsPage = new NotificationDetailsPage(driver);
+		String[] notificationDetails_BeforeCancel=notificationDetailsPage.verifyNotificationDetails();
+		for (int i = 0; i < notificationDetails_BeforeCancel.length; i++) {
+			System.out.println(notificationDetails_BeforeCancel[i]);
+		}
+		notificationDetailsPage.clickUpdateButton();
 		CreateNotificationPage createNotificationPage = new CreateNotificationPage(driver);
-		createNotificationPage.validateCreateNotificationsFields();
-
-		//Entering New Notification Information and Clicking on Cancel button
-		TestReporter.logStep("Entering New Notification Information and Clicking on Cancel button");
 		createNotificationPage.addNotificationDetails(startDate, expiryDate, type, text, title, image);
 		createNotificationPage.clickCancel();
-		int NotificationsCount_AfterCancel = notificationPage.getNotificationsListCount();
+		ArrayUtil arrayUtil=new ArrayUtil();
+		String[] notificationDetails_AfterCancel = notificationDetailsPage.verifyNotificationDetails();
 
-		//Clicking on Add Notifications button, Entering information and clicking on Submit button
-		TestReporter.logStep("Clicking on Add Notifications button, Entering information and clicking on Submit button");
-		notificationPage.clickAddNotification();
+		//Comparing contact details with Cancel operation
+		TestReporter.logStep("Comparing contact details with Cancel operation");
+		arrayUtil.comparisonOfOneToMany(notificationDetails_AfterCancel,notificationDetails_BeforeCancel);
+
+		//Getting the Notification Details before update with Submit operation
+		TestReporter.logStep("Getting the Notification Details before update with Submit operation");
+		notificationDetailsPage.clickUpdateButton();
 		createNotificationPage.addNotificationDetails(startDate, expiryDate, type, text, title, image);
 		createNotificationPage.clickSubmit();
-		int notificationsCount_AfterSubmit = notificationPage.getNotificationsListCount();
+		String[] notificationDetails_BeforeSubmit= {"20-Feb-2017" , type, text, title};
+		String[] notificationDetails_AfterSubmit = notificationDetailsPage.verifyNotificationDetails();
 
-		//Validating the count of the banners in the list with cancel and submit operations
-		TestReporter.logStep("Validating the count of the banners in the list with cancel and submit operations");
-		TestReporter.assertEquals(notificationsCount_BeforeCancel, NotificationsCount_AfterCancel, 
-				"Validating the Banner list with Cancel operation");
-		TestReporter.assertEquals(NotificationsCount_AfterCancel, notificationsCount_AfterSubmit-1, 
-				"Validating the Banner list with Submit Operation operation");
+		//Comparing contact details with Submit operation
+		TestReporter.logStep("Comparing contact details with Submit operation");
+		arrayUtil.comparisonOfOneToMany(notificationDetails_BeforeSubmit,notificationDetails_AfterSubmit);
+
 	}
 }

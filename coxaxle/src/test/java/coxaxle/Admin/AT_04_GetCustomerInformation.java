@@ -28,7 +28,7 @@ public class AT_04_GetCustomerInformation extends TestEnvironment{
 	@DataProvider(name = "dataScenario")
 	public Object[][] scenarios() {
 		try {
-			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_04_VerifyDealerDetails.xlsx","Data").getTestData();
+			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_04_VerifyCustomers.xlsx","Data").getTestData();
 			return excelData;
 		}
 		catch (RuntimeException e){
@@ -57,7 +57,7 @@ public class AT_04_GetCustomerInformation extends TestEnvironment{
 
 	@Test(dataProvider = "dataScenario")
 	public void registerUser(String email,String password,String AdminEmail,String AdminPassword, 
-			String changePassword) {
+			String changePassword, String data) {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
@@ -77,7 +77,7 @@ public class AT_04_GetCustomerInformation extends TestEnvironment{
 		//Clicking on the Specified Customer
 		TestReporter.logStep("Clicking on the Specified Customer");
 		CustomersPage customersPage = new CustomersPage(driver);
-		customersPage.clickOnSpecifiedCustomer(email);
+		customersPage.clickOnSpecifiedCustomer(data);
 
 		//Get the Customer Details
 		TestReporter.logStep("Get the Customer Details");
@@ -90,13 +90,13 @@ public class AT_04_GetCustomerInformation extends TestEnvironment{
 		//Entering Customer name , Dealer code and clicking on Search
 		TestReporter.logStep("Entering Customer name , Dealer code and clicking on Search");
 		adminHomePage.clickCustomersTab();
-		customersPage.setSearchData(email);
+		customersPage.setSearchData(data);
 		customersPage.clickSearch();
 
 		//Entering Customer name , Dealer code and clicking on Clear
 		TestReporter.logStep("Entering Customer name , Dealer code and clicking on Clear");
 		adminHomePage.clickCustomersTab();
-		customersPage.setSearchData(email);
+		customersPage.setSearchData(data);
 		customersPage.clickClear();
 
 	}

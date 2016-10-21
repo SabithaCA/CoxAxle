@@ -7,6 +7,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.swing.plaf.synth.SynthScrollBarUI;
+
+import jxl.DateCell;
+import jxl.write.DateTime;
+
 public class DateTimeConversion {
 	
 	public static String convert(String date, String fromFormat, String toFormat){
@@ -74,4 +79,24 @@ public class DateTimeConversion {
 	    return dateFormat.format(cal.getTime());    
 	}
 	
+	//Method to get the Month and year as "MMMM YYYY"
+	public String monthYearFormate(){
+		 Date date = new Date();
+		/*DateTime datetime = new DateTime((DateCell) date);
+		int month = Integer.parseInt(datetime.toString("MM"));*/
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("E, y-M-d 'at' h:m:s a z");
+		dateFormatter = new SimpleDateFormat("MMMM yyyy");
+	      //System.out.println("Format 3:   " + dateFormatter.format(date));
+	      return dateFormatter.format(date);
+	}
+	
+	public String dateFormate(){
+		 Date date = new Date();
+		/*DateTime datetime = new DateTime((DateCell) date);
+		int month = Integer.parseInt(datetime.toString("MM"));*/
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("E, y-M-d 'at' h:m:s a z");
+		dateFormatter = new SimpleDateFormat("d");
+	      //System.out.println("Format 3:   " + dateFormatter.format(date));
+	      return dateFormatter.format(date);
+	}
 }

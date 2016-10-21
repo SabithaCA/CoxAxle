@@ -172,20 +172,19 @@ public class DealerPage {
 		String A=verifyDealerDetail();
 		Emails=A.split("_");
 		getTitleOfStatusImage(Emails,Email);
-		int count =validateButtonsEnabledDisabledWithTotalPagesCount();
-		int i=1;
-		while(i<count){
+		int i=2;
+		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
 			btnNext.click();
 			A=A+verifyDealerDetail();
 			Emails=A.split("_");
 			getTitleOfStatusImage(Emails,Email);
 			i++;
-		}
+		} 
 	}
 
 	//Getting the count of pages in pagination
 	private int validateButtonsEnabledDisabledWithTotalPagesCount() {
-		String data = driver.findElement(By.xpath(".//*[@id='content']/ul/li[7]/a")).getText();
+		String data = driver.findElement(By.xpath(".//*[@id='content']/ul/li[6]/a")).getText();
 		String[] data_Array = data.split(" ");
 		System.out.println(data_Array[2]);
 		int count = Integer.parseInt(data_Array[2]);
