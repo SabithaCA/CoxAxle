@@ -6,9 +6,9 @@
 	<parameter name="runLocation" value="local" />
 	<parameter name="browserVersion" value="" />
 	<parameter name="operatingSystem" value="windows" />
- 	<test name="Admin">
-		<packages>
-			<package name="coxaxle.Admin.*" />
-		</packages>
+ 	<test name="VerifyServicesInfo">
+		<classes>
+			<class name="coxaxle.Dealer.AT_22_VerifyServicesInfo" />
+		</classes>
 	</test> 
 </suite> <!-- Suite -->

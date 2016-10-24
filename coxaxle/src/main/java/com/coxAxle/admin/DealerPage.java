@@ -59,43 +59,25 @@ public class DealerPage {
 		return value;
 	}
 
-	//Method to check the status of the NEXT button
-	private boolean validateButtonsEnabledOrDisabled(Element locatorName) {
-		boolean isEnabled = true;
-		pageLoaded( locatorName);
-		// Verifying Button status
-		if (locatorName.getAttribute("href").contains("#")) {
-			isEnabled = false;
-		}
-		if (isEnabled == true) {
-			// Validating enabled button
-			TestReporter.assertTrue(isEnabled,
-					locatorName.getElementIdentifier() + " button is enabled");
-		} else {
-			// Validating Disabled button
-			TestReporter.assertFalse(isEnabled,
-					locatorName.getElementIdentifier() + " button is disabled");
-		}
-		return isEnabled;
-	}
-
 	//Method to click on Specified dealer with next pages
 	public  void clickOnSpecifiedDealer(String Email){
 		String[] Emails=null;
 		String A=verifyDealerDetail();
 		Emails=A.split("_");
 		clickOnNameLink(Emails,Email);
-		while(btnNext.syncVisible()==true && validateButtonsEnabledOrDisabled(btnNext)==true){
+		int i=2;
+		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
 			btnNext.click();
 			A=A+verifyDealerDetail();
 			Emails=A.split("_");
 			clickOnNameLink(Emails,Email);
+			i++;
 		}
-
 	}
 
 	//Click on specified dealer name link
-	public void clickOnNameLink(String[] Emails, String Email){
+	public String clickOnNameLink(String[] Emails, String Email){
+		String text="";
 		for (String string : Emails) {
 			if(string.equalsIgnoreCase(Email)){
 				System.out.println(string);
@@ -107,12 +89,15 @@ public class DealerPage {
 					List<WebElement> Columns_row_link = rows_table.get(row).findElements(By.tagName("a"));
 					if(Columns_row.get(3).getText().equalsIgnoreCase(Email)){
 						//System.out.println("gng inside loop");
+						text=Columns_row_link.get(0).getText();
 						Columns_row_link.get(0).click();
+						
 						break; 
 					}
 				}	
 			}
 		}
+		return text;
 	}
 
 	//Method to verify the dealer details
@@ -135,7 +120,6 @@ public class DealerPage {
 			value=value+"_";
 			//System.out.println("*********** "+value);
 			table_Values=value.split("_");
-			//System.out.println("--------------------------------------------------");
 		}
 		/*for (int i = 0; i < table_Values.length; i++) {
 			System.out.println("Values : "+table_Values[i]);
@@ -184,7 +168,7 @@ public class DealerPage {
 
 	//Getting the count of pages in pagination
 	private int validateButtonsEnabledDisabledWithTotalPagesCount() {
-		String data = driver.findElement(By.xpath(".//*[@id='content']/ul/li[6]/a")).getText();
+		String data = driver.findElement(By.partialLinkText("Total Page")).getText();
 		String[] data_Array = data.split(" ");
 		System.out.println(data_Array[2]);
 		int count = Integer.parseInt(data_Array[2]);

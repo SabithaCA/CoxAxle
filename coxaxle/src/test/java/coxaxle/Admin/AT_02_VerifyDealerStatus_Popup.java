@@ -51,7 +51,7 @@ public class AT_02_VerifyDealerStatus_Popup extends TestEnvironment{
 
 	@AfterTest
 	public void close(ITestContext testResults){
-		//endTest("TestAlert", testResults);
+		endTest("TestAlert", testResults);
 	}
 
 	@Test(dataProvider = "dataScenario")

@@ -54,7 +54,7 @@ public class AT_19_UpdateNotifications extends TestEnvironment{
 
 	@AfterTest
 	public void close(ITestContext testResults){
-		//endTest("TestAlert", testResults);
+		endTest("TestAlert", testResults);
 	}
 
 	@Test(dataProvider = "dataScenario")

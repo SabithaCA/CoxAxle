@@ -26,6 +26,7 @@ public class HomePage {
 	//@FindBy(linkText = "Vehicles Inventory") private Link lnkVehicles;
 	@FindBy(linkText = "Banners") private Link lnkBanners;
 	@FindBy(linkText = "Notifications") private Link lnkNotifications;
+	@FindBy(linkText = "Feedback") private Link lnkFeedBack;
 	@FindBy(name = "passwordcheck") private Textbox txtConfirmPassword;
 	@FindBy(id = "submitbutton") private Button btnSubmit;
 	@FindBy(xpath = "//div[@class='header-right']/img") private WebElement eleImage;
@@ -91,6 +92,13 @@ public class HomePage {
 		pageLoaded(lnkNotifications);
 		TestReporter.assertTrue(lnkNotifications.syncEnabled(10, false), "Notifications menu item is visible");
 		lnkNotifications.click();
+	}
+
+	//Click FeedBack tab
+	public void clickFeedBackTab(){
+		pageLoaded(lnkFeedBack);
+		TestReporter.assertTrue(lnkFeedBack.syncEnabled(10, false), "FeedBack menu item is visible");
+		lnkFeedBack.click();
 	}
 
 	//Getting the Image source

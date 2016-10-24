@@ -1,15 +1,12 @@
 package com.coxAxle.dealer.Notifications;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.vensai.core.interfaces.Button;
 import com.vensai.core.interfaces.Element;
-import com.vensai.core.interfaces.Link;
 import com.vensai.core.interfaces.Textbox;
 import com.vensai.core.interfaces.Webtable;
 import com.vensai.core.interfaces.impl.internal.ElementFactory;
@@ -51,7 +48,7 @@ public class CreateNotificationPage {
 		ele.syncVisible(20, false);
 	}
 
-	//Validate the presence of Buttons on Banners page
+	//Validate the presence of Buttons on Notification page
 	public void validateCreateNotificationsFields(){
 		pageLoaded();
 		TestReporter.assertTrue(txtNotificationStartDate.isDisplayed(), "Notification Start Date textbox is visible");

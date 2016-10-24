@@ -76,7 +76,7 @@ public class AT_04_VerifyDealerAccountDetails extends TestEnvironment{
 		homePage.clickAccountTab();
 
 		//Verify the Account details od dealer
-		TestReporter.logStep("Verify the Account details od dealer");
+		TestReporter.logStep("Verify the Account details of dealer");
 		AccountPage accountPage = new AccountPage(driver);
 		String[] DealerAccount_Details=accountPage.verifyAccountDetails();
 		for (int i = 0; i < DealerAccount_Details.length; i++) {
@@ -91,7 +91,6 @@ public class AT_04_VerifyDealerAccountDetails extends TestEnvironment{
 		//Login as Admin
 		TestReporter.logStep("Login as Admin");
 		SignInPage.loginWithCredentials(AdminEmail,AdminPassword);
-
 
 		//Click on Dealers tab
 		TestReporter.logStep("Click on Dealers tab");
@@ -115,7 +114,5 @@ public class AT_04_VerifyDealerAccountDetails extends TestEnvironment{
 		arrayutil.comparisonOfOneToMany(DealerAccount_Details,Dealer_Details);
 
 	}
-
 }
-
 

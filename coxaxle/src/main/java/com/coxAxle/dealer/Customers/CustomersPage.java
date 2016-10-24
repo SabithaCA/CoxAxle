@@ -2,8 +2,6 @@ package com.coxAxle.dealer.Customers;
 
 import java.util.List;
 import java.util.ResourceBundle;
-
-import org.apache.poi.ddf.EscherColorRef.SysIndexProcedure;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -48,7 +46,7 @@ public class CustomersPage {
 		int rows_count = rows_table.size();
 		for (int row=0; row<rows_count; row++){
 			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
-			int columns_count = Columns_row.size();
+			//int columns_count = Columns_row.size();
 			String celtext = Columns_row.get(3).getText();
 			value=value+celtext+"_";
 		}
@@ -126,7 +124,7 @@ public class CustomersPage {
 
 	//Getting the count of pages in pagination
 	private int validateButtonsEnabledDisabledWithTotalPagesCount() {
-		String data = driver.findButton(By.xpath(".//*[@id='content']/ul/li[6]/a")).getText();
+		String data = driver.findButton(By.partialLinkText("Total Page")).getText();
 		String[] data_Array = data.split(" ");
 		System.out.println(data_Array[2]);
 		int count = Integer.parseInt(data_Array[2]);
@@ -175,14 +173,15 @@ public class CustomersPage {
 		String text="";
 		Emails=A.split("_");
 		text=getSpecificDealerDetails(Emails,Email);
-		int i=2;
-		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
-			btnNext.click();
-			A=A+verifyDealerDetail();
-			Emails=A.split("_");
-			text=getSpecificDealerDetails(Emails,Email);
-			i++;
-		} 
+		if(text.isEmpty()){
+			int i=2;
+			while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
+				btnNext.click();
+				A=A+verifyDealerDetail();
+				Emails=A.split("_");
+				text=getSpecificDealerDetails(Emails,Email);
+				i++;
+			} }
 		return text;
 	}
 
@@ -211,7 +210,8 @@ public class CustomersPage {
 	}
 
 	//Method to get the title of the dealer status
-	public void getTitleOfStatusImage(String[] Emails, String Email){
+	public String getTitleOfStatusImage(String[] Emails, String Email){
+		String text="";
 		for (String string : Emails) {
 			if(string.equalsIgnoreCase(Email)){
 				System.out.println(string);
@@ -224,31 +224,36 @@ public class CustomersPage {
 					if(Columns_row.get(3).getText().equalsIgnoreCase(Email)){
 						//System.out.println("gng inside loop");
 						System.out.println(Columns_row.get(5).findElement(By.tagName("img")).getAttribute("title"));
+						text=Columns_row.get(5).findElement(By.tagName("img")).getAttribute("title");
 						Columns_row.get(5).findElement(By.tagName("img")).click();
 						break; 
 					}
 				}	
 			}
 		}
+		return text;
 	}
 	//Check the status of Dealer
 	public  void checkStatusOfDealer(String Email){
 		String[] Emails=null;
 		String A=verifyDealerDetail();
 		Emails=A.split("_");
-		getTitleOfStatusImage(Emails,Email);
-		int i=2;
-		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
-			btnNext.click();
-			A=A+verifyDealerDetail();
-			Emails=A.split("_");
-			getTitleOfStatusImage(Emails,Email);
-			i++;
-		} 
+		String text = getTitleOfStatusImage(Emails,Email);
+		if(text.isEmpty()){
+			int i=2;
+			while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
+				btnNext.click();
+				A=A+verifyDealerDetail();
+				Emails=A.split("_");
+				text =	getTitleOfStatusImage(Emails,Email);
+				i++;
+			} 
+		}
 	}
 
 	//Clicking on the specified customer checkbox
-	public void checkBoxpresence(String[] Emails, String Email){
+	public String checkBoxpresence(String[] Emails, String Email){
+		String text="";
 		for (String string : Emails) {
 			if(string.equalsIgnoreCase(Email)){
 				System.out.println(string);
@@ -261,65 +266,69 @@ public class CustomersPage {
 					if(Columns_row.get(3).getText().equalsIgnoreCase(Email)){
 						//System.out.println("gng inside loop");
 						TestReporter.logStep(Columns_row.get(0).findElement(By.tagName("input")).getAttribute("type")+" is present");
+						text = Columns_row.get(0).findElement(By.tagName("input")).getAttribute("type");
 						Columns_row.get(0).findElement(By.tagName("input")).click();
 						break; 
 					}
 				}	
 			}
 		}
+		return text;
 	}
-	
+
 	//Clicking on the specified customer checkbox with next pages
 	public void checkBoxCheck(String Email){
 		String[] Emails=null;
 		String A=verifyDealerDetail();
 		Emails=A.split("_");
-		checkBoxpresence(Emails,Email);
-		int i=2;
-		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
-			btnNext.click();
-			A=A+verifyDealerDetail();
-			Emails=A.split("_");
-			checkBoxpresence(Emails,Email);
-			i++;
-		} 
-	}
-	
-	//Clicking on the specified customer checkbox
-		public void deleteButtonpresence(String[] Emails, String Email){
-			for (String string : Emails) {
-				if(string.equalsIgnoreCase(Email)){
-					System.out.println(string);
-					TestReporter.assertTrue(string.equalsIgnoreCase(Email),"Email Id is verified");
-					for (int row=0; row<Emails.length; row++){
-						List<WebElement> rows_table = wtDealerTabel.findElements(By.tagName("tr"));
-						List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
-
-						List<WebElement> Columns_row_link = rows_table.get(row).findElements(By.tagName("a"));
-						if(Columns_row.get(3).getText().equalsIgnoreCase(Email)){
-							//System.out.println("gng inside loop");
-							TestReporter.logStep(Columns_row.get(6).findElement(By.tagName("img")).getAttribute("title")+" is present");
-							Columns_row.get(6).findElement(By.tagName("img")).click();
-							break; 
-						}
-					}	
-				}
-			}
-		}
-		
-		//Clicking on the specified customer checkbox with next pages
-		public void deleteACustomer(String Email){
-			String[] Emails=null;
-			String A=verifyDealerDetail();
-			Emails=A.split("_");
-			deleteButtonpresence(Emails,Email);
+		String text = checkBoxpresence(Emails,Email);
+		if(text.isEmpty()){
 			int i=2;
 			while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
 				btnNext.click();
 				A=A+verifyDealerDetail();
 				Emails=A.split("_");
-				deleteButtonpresence(Emails,Email);
+				text = checkBoxpresence(Emails,Email);
 				i++;
 			} 
 		}
+	}
+
+	//Clicking on the specified customer checkbox
+	public void deleteButtonpresence(String[] Emails, String Email){
+		for (String string : Emails) {
+			if(string.equalsIgnoreCase(Email)){
+				System.out.println(string);
+				TestReporter.assertTrue(string.equalsIgnoreCase(Email),"Email Id is verified");
+				for (int row=0; row<Emails.length; row++){
+					List<WebElement> rows_table = wtDealerTabel.findElements(By.tagName("tr"));
+					List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
+
+					List<WebElement> Columns_row_link = rows_table.get(row).findElements(By.tagName("a"));
+					if(Columns_row.get(3).getText().equalsIgnoreCase(Email)){
+						//System.out.println("gng inside loop");
+						TestReporter.logStep(Columns_row.get(6).findElement(By.tagName("img")).getAttribute("title")+" is present");
+						Columns_row.get(6).findElement(By.tagName("img")).click();
+						break; 
+					}
+				}	
+			}
+		}
+	}
+
+	//Clicking on the specified customer checkbox with next pages
+	public void deleteACustomer(String Email){
+		String[] Emails=null;
+		String A=verifyDealerDetail();
+		Emails=A.split("_");
+		deleteButtonpresence(Emails,Email);
+		int i=2;
+		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
+			btnNext.click();
+			A=A+verifyDealerDetail();
+			Emails=A.split("_");
+			deleteButtonpresence(Emails,Email);
+			i++;
+		} 
+	}
 }

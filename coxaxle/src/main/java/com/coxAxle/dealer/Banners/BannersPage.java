@@ -85,7 +85,7 @@ public class BannersPage {
 		int rows_count = rows_table.size();
 		for (int row=0; row<rows_count; row++){
 			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
-			int columns_count = Columns_row.size();
+			//int columns_count = Columns_row.size();
 			if(Columns_row.get(0).getText().equalsIgnoreCase(imageName)){
 				System.out.println("Status of added new banner : "+Columns_row.get(3).findElement(By.tagName("img")).getAttribute("title"));
 				break;
@@ -103,7 +103,6 @@ public class BannersPage {
 			clickOnSpecifiedBannerName(imageName);
 			i++;
 		}
-
 	}
 
 	//Click on Specified Banner
@@ -123,7 +122,7 @@ public class BannersPage {
 
 	//Getting the count of pages in pagination
 	private int validateButtonsEnabledDisabledWithTotalPagesCount() {
-		String data = driver.findButton(By.xpath(".//*[@id='content']/ul/li[6]/a")).getText();
+		String data = driver.findButton(By.partialLinkText("Total Page")).getText();
 		String[] data_Array = data.split(" ");
 		System.out.println(data_Array[2]);
 		int count = Integer.parseInt(data_Array[2]);

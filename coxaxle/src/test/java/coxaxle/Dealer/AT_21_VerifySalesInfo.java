@@ -9,18 +9,18 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.coxAxle.admin.SignInPage;
 import com.coxAxle.dealer.HomePage;
-import com.coxAxle.dealer.Customers.CustomerDetailsPage;
-import com.coxAxle.dealer.Customers.CustomersPage;
+import com.coxAxle.dealer.Feedback.FeedbackDetailsPage;
+import com.coxAxle.dealer.Feedback.FeedbackPage;
 import com.vensai.utils.TestEnvironment;
 import com.vensai.utils.TestReporter;
 import com.vensai.utils.dataProviders.ExcelDataProvider;
 
 /**
- * @summary Get the Customer Information
+ * @summary Delete a customer
  * @author  Sabitha Adama
- * @date 	17/10/2016
+ * @date 	24/10/2016
  */
-public class AT_15_GetCustomerInformation extends TestEnvironment{
+public class AT_21_VerifySalesInfo extends TestEnvironment{
 
 	// **************
 	// Data Provider
@@ -28,7 +28,7 @@ public class AT_15_GetCustomerInformation extends TestEnvironment{
 	@DataProvider(name = "dataScenario")
 	public Object[][] scenarios() {
 		try {
-			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_04_VerifyCustomers.xlsx","Data").getTestData();
+			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_21_FeedBack.xlsx","Data").getTestData();
 			return excelData;
 		}
 		catch (RuntimeException e){
@@ -47,7 +47,7 @@ public class AT_15_GetCustomerInformation extends TestEnvironment{
 		setOperatingSystem(operatingSystem);
 		setRunLocation(runLocation);
 		setTestEnvironment(environment);
-		testStart("AT_15_GetCustomerInformation");
+		testStart("AT_21_VerifySalesInfo");
 	}
 
 	@AfterTest
@@ -56,8 +56,7 @@ public class AT_15_GetCustomerInformation extends TestEnvironment{
 	}
 
 	@Test(dataProvider = "dataScenario")
-	public void registerUser(String email,String password,String AdminEmail,String AdminPassword, 
-			String changePassword,String data) {
+	public void registerUser(String email,String password,String customerName) throws InterruptedException {
 
 		//Validating Sign In page elements
 		SignInPage SignInPage = new SignInPage(driver);
@@ -68,39 +67,20 @@ public class AT_15_GetCustomerInformation extends TestEnvironment{
 		TestReporter.logStep("Login as Dealer");
 		SignInPage.loginWithCredentials(email,password);
 
-		//Verify the Menu items and Click on Customers tab
-		TestReporter.logStep("Verify the Menu items and Click on Contact Dealers tab");
+		//Verify the Menu items and Click on Notifications tab
+		TestReporter.logStep("Verify the Menu items and Click on Notifications tab");
 		HomePage homePage = new HomePage(driver);
-		homePage.clickCustomersTab();
+		homePage.clickFeedBackTab();
 
-		//Clicking on the Specified Customer
-		TestReporter.logStep("Clicking on the Specified Customer");
-		CustomersPage customersPage = new CustomersPage(driver);
-		customersPage.clickOnSpecifiedCustomer(data);
+		// Validate the feedback page fields and clicking on specified customer name
+		TestReporter.logStep("Validate the feedback page fields and clicking on specified sales customer name");
+		FeedbackPage feedbackPage = new FeedbackPage(driver);
+		feedbackPage.validateFeedbackFields();
+		feedbackPage.clickOnSpecifiedSalesCustomerName(customerName);
 
-		//Get the Customer Details
-		TestReporter.logStep("Get the Customer Details");
-		CustomerDetailsPage customerDetailsPage = new CustomerDetailsPage(driver);
-		customerDetailsPage.getCustomerDetails();
-		customerDetailsPage.getVehicleList();
-		customerDetailsPage.getServiceList();
-		customerDetailsPage.getSavedSearch();
-
-		//------------------------Search and Clear-----------------------------------------
-		//Entering Customer name , Dealer code and clicking on Search
-		TestReporter.logStep("Entering Customer name , Dealer code and clicking on Search");
-		homePage.clickCustomersTab();
-		customersPage.setSearchData(data);
-		customersPage.clickSearch();
-
-		//Entering Customer name , Dealer code and clicking on Clear
-		TestReporter.logStep("Entering Customer name , Dealer code and clicking on Clear");
-		homePage.clickCustomersTab();
-		customersPage.setSearchData(data);
-		customersPage.clickClear();
-
+		//Get the customer Details
+		TestReporter.logStep("Getting the customer details");
+		FeedbackDetailsPage feedbackDetails = new FeedbackDetailsPage(driver);
+		feedbackDetails.getCustomerDetails();		
 	}
 }
-
-
-

@@ -51,7 +51,7 @@
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
 					</argLine>
 					<suiteXmlFiles>
-				 		<suiteXmlFile>demoTest.xml</suiteXmlFile> 
+				 		<suiteXmlFile>CoxAxle.xml</suiteXmlFile> 
 					</suiteXmlFiles>
 					<systemPropertyVariables>
 						<jenkinsOperatingSystem>${operatingSystem}</jenkinsOperatingSystem>

@@ -45,7 +45,7 @@ public class ContactDealerPage {
 		int rows_count = rows_table.size();
 		for (int row=0; row<rows_count; row++){
 			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
-			int columns_count = Columns_row.size();
+			//int columns_count = Columns_row.size();
 			String celtext = Columns_row.get(columnNum).getText();
 			value=value+celtext+"_";
 		}

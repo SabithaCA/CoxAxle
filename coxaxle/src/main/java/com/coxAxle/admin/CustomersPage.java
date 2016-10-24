@@ -124,7 +124,7 @@ public class CustomersPage {
 
 	//Getting the count of pages in pagination
 	private int validateButtonsEnabledDisabledWithTotalPagesCount() {
-		String data = driver.findButton(By.xpath(".//*[@id='content']/ul/li[6]/a")).getText();
+		String data = driver.findButton(By.partialLinkText("Total Page")).getText();
 		String[] data_Array = data.split(" ");
 		System.out.println(data_Array[2]);
 		int count = Integer.parseInt(data_Array[2]);
@@ -174,6 +174,7 @@ public class CustomersPage {
 		Emails=A.split("_");
 		text=getSpecificDealerDetails(Emails,Email);
 		int i=2;
+		if(text.isEmpty()){
 		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
 			btnNext.click();
 			A=A+verifyDealerDetail();
@@ -181,6 +182,7 @@ public class CustomersPage {
 			text=getSpecificDealerDetails(Emails,Email);
 			i++;
 		} 
+		}
 		return text;
 	}
 

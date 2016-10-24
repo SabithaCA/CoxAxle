@@ -2,7 +2,6 @@ package com.coxAxle.dealer.Notifications;
 
 import java.util.List;
 import java.util.ResourceBundle;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -67,7 +66,6 @@ public class NotificationsPage {
 		}
 	}
 
-
 	//method to get the list count
 	public int getNotificationsListCount() throws InterruptedException{
 		Thread.sleep(2000);
@@ -87,7 +85,7 @@ public class NotificationsPage {
 
 	//Getting the count of pages in pagination
 	private int validateButtonsEnabledDisabledWithTotalPagesCount() {
-		String data = driver.findButton(By.xpath(".//*[@id='content']/ul/li[6]/a")).getText();
+		String data = driver.findButton(By.partialLinkText("Total Page")).getText();
 		String[] data_Array = data.split(" ");
 		System.out.println(data_Array[2]);
 		int count = Integer.parseInt(data_Array[2]);
@@ -113,7 +111,7 @@ public class NotificationsPage {
 		int rows_count = rows_table.size();
 		for (int row=0; row<rows_count; row++){
 			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
-			int columns_count = Columns_row.size();
+			//int columns_count = Columns_row.size();
 			if(Columns_row.get(0).getText().equalsIgnoreCase(notificationType)){
 				Columns_row.get(0).findElement(By.tagName("a")).click();
 				break;
@@ -137,14 +135,16 @@ public class NotificationsPage {
 		String text="";
 		Emails=A.split("_");
 		text=getSpecificDealerDetails(Emails,Email);
-		int i=2;
-		while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
-			btnNext.click();
-			A=A+verifyDealerDetail();
-			Emails=A.split("_");
-			text=getSpecificDealerDetails(Emails,Email);
-			i++;
-		} 
+		if(text.isEmpty()){
+			int i=2;
+			while(btnNext.syncVisible()==true && i<=validateButtonsEnabledDisabledWithTotalPagesCount()){
+				btnNext.click();
+				A=A+verifyDealerDetail();
+				Emails=A.split("_");
+				text=getSpecificDealerDetails(Emails,Email);
+				i++;
+			} 
+		}
 		return text;
 	}
 
@@ -155,7 +155,7 @@ public class NotificationsPage {
 		int rows_count = rows_table.size();
 		for (int row=0; row<rows_count; row++){
 			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
-			int columns_count = Columns_row.size();
+			//int columns_count = Columns_row.size();
 			String celtext = Columns_row.get(0).getText();
 			value=value+celtext+"_";
 		}

@@ -27,7 +27,7 @@ public class AT_17_DeleteACustomer extends TestEnvironment{
 	@DataProvider(name = "dataScenario")
 	public Object[][] scenarios() {
 		try {
-			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_04_VerifyCustomers.xlsx","Data").getTestData();
+			Object[][] excelData = new ExcelDataProvider("/datasheets/AT_17_DeleteACustomer.xlsx","Data").getTestData();
 			return excelData;
 		}
 		catch (RuntimeException e){
