@@ -84,6 +84,7 @@ public class AT_04_GetCustomerInformation extends TestEnvironment{
 		CustomerDetailsPage customerDetailsPage = new CustomerDetailsPage(driver);
 		customerDetailsPage.getCustomerDetails();
 		customerDetailsPage.getVehicleList();
+		customerDetailsPage.getServiceList();
 		customerDetailsPage.getSavedSearch();
 
 		//------------------------Search and Clear-----------------------------------------

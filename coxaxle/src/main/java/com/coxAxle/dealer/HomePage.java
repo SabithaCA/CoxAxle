@@ -86,7 +86,6 @@ public class HomePage {
 		lnkCustomers.click();
 	}
 
-
 	//Click Notifications tab
 	public void clickNotificationsTab(){
 		pageLoaded(lnkNotifications);
